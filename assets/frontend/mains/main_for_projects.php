@@ -35,12 +35,5 @@
 	</div>
 </section>
 <section class="section_2" style="background-color: black; border-radius: 10px 10px 0px 0px; color: white;"> <!-- relative footer -->
-    <a href="index.html" class="logo d-flex align-items-center">
-        <span class="sitename" style="text-align: start; font-family: 'Lack', arial; font-size: 28px; color:rgb(255, 255, 255); margin: 0; font-weight: normal;">Контакты</span>
-    </a>
-    <p style="text-align: start; font-family: 'Helvetica', arial; font-size: 16px; color:rgb(240, 240, 240); margin: 0 0 3rem 1rem; font-weight: 100;">
-        +7 (499) 215-65-65 доб. 2404  
-    </p>
-    <br>
-    <p> vega@mirea.ru </p>
+
 </section>

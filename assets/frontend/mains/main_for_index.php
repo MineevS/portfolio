@@ -21,7 +21,7 @@
 			<h1 style="justify-self: end;">базовой кафедры</h1>
 		</article>
 		<div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%;">
-			{query_projects select="*" from="info_project" orderby="id" limit="3"}
+			{query_projects select="*" from="info_project" orderby="id" limit="1"}
 		</div>
 	</div>
 	<div style="display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
@@ -82,8 +82,4 @@
 		</svg>
 	</div>
 </section>
-<section class="section_6">
-	<div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%;">
-		{query_interests} 
-	</div>
-</section>
+

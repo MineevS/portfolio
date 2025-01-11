@@ -60,8 +60,14 @@
 				{include file="$MAIN"}
 			</main>
 			<footer>
-
-			</footer> <!-- fixed footer -->
+				<a href="index.html" class="logo d-flex align-items-center">
+					<span class="sitename" style="text-align: start; font-family: 'Lack', arial; font-size: 28px; color:rgb(255, 255, 255); margin: 0; font-weight: normal;">Контакты</span>
+				</a>
+				<p style="text-align: start;font-family: 'Helvetica', arial;font-size: 16px;color:rgb(240, 240, 240);/* margin: 0 0 3rem 1rem; */font-weight: 100;">
+					+7 (499) 215-65-65 доб. 2404  
+				</p>
+				<a style="color: white;"> vega@mirea.ru </a>
+			</footer>
 		</div>
 	</body>
 </html>

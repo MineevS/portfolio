@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-09 17:10:05
+/* Smarty version 5.4.2, created on 2025-01-11 13:56:46
   from 'file:C:\projects\site_portfolio/assets/frontend/mains/main_for_projects.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_677fd8bdee6a96_40188157',
+  'unifunc' => 'content_67824e6e126b73_09112557',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c785923c22ac1aee27830ca640ab9476e604801' => 
     array (
       0 => 'C:\\projects\\site_portfolio/assets/frontend/mains/main_for_projects.php',
-      1 => 1736431789,
+      1 => 1736588815,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_677fd8bdee6a96_40188157 (\Smarty\Template $_smarty_tpl) {
+function content_67824e6e126b73_09112557 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 ?><section class="section_1" style="width: 100%;">
 	<div style="width: 100%; height: fit-content; padding-bottom: 2%; padding-left: 25%; padding-right: 25%; margin: 0%;">
@@ -60,13 +60,6 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 	</div>
 </section>
 <section class="section_2" style="background-color: black; border-radius: 10px 10px 0px 0px; color: white;"> <!-- relative footer -->
-    <a href="index.html" class="logo d-flex align-items-center">
-        <span class="sitename" style="text-align: start; font-family: 'Lack', arial; font-size: 28px; color:rgb(255, 255, 255); margin: 0; font-weight: normal;">Контакты</span>
-    </a>
-    <p style="text-align: start; font-family: 'Helvetica', arial; font-size: 16px; color:rgb(240, 240, 240); margin: 0 0 3rem 1rem; font-weight: 100;">
-        +7 (499) 215-65-65 доб. 2404  
-    </p>
-    <br>
-    <p> vega@mirea.ru </p>
+
 </section><?php }
 }
