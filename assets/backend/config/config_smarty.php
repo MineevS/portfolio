@@ -172,7 +172,7 @@
                     </div>';
             }*/
 
-            for($i = 0; $i < 1; $i++){
+            for($i = 0; $i < 3; $i++){
                 $html = $html.
                     '<div class="item" style="display: block; ">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 470" fill="currentColor" style="display:block; width:100%">

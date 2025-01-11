@@ -52,7 +52,7 @@
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%;">
 				<path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
 			</svg>
-			<div class="carousel" style="width: 100%; display: block;">
+			<div class="carousel" style="width: 100%; display: flex;">
 				{query_stars select="*" from="info_project" orderby="id" limit="3"}
 			</div>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%;">
