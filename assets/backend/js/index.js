@@ -120,7 +120,7 @@ function editProfile(code_peration, path){
 
         // data.append('avatar', elem.src); //  if(change_avater.length === 0)
 
-        if(change_avater.length === 0 && window.delete) { data['avatar'] = elem.src; window.delete = false;}
+        if(change_avater.length === 0 && window.delete) { data['avatar'] = elem.src.split('/').pop(); window.delete = false;}
 
         $.ajax({
             type: "POST",

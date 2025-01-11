@@ -3,14 +3,14 @@
 		<article style="display: flex;  width: fit-content; justify-content: center; space-between; gap: 5%; align-items: center;">
 			<div>
 				<img class="avatar-img" src="{$icon}" alt="..." style="width: 150px; height: 150px; border-radius: 20px;">
-				<button type="submit" onclick="loadAvatar();"> Загрузить изображение</button>
+				<!--<button type="submit" onclick="loadAvatar();"> Загрузить изображение</button>-->
 				<div class="" style="position: absolute; display: flex;flex-direction: column; justify-content: center; align-items: center; 
 				background-color: #cfcbcb61; margin: 10px; row-gap: 10px;">
 					<span>Изменить фотографию
-						<input id="change-avater" class="avatar" style="opacity: 10%; position: absolute; left: 0;" type="file" accept="image/jpeg,image/png,image/gif" onchange="changeAvatar('change');"/>
+						<input id="change-avater" class="avatar" style="opacity: 10%; position: absolute; left: 0; top: 0;" type="file" accept="image/jpeg,image/png,image/gif" onchange="changeAvatar('change');"/>
 					</span>
 					<span>Удалить фотографию
-						<input id="delete-avatar" class="avatar" style="opacity: 10%; position: absolute; left: 0;" onclick="changeAvatar('delete');"/>
+						<input type="submit" id="delete-avatar" class="avatar" style="opacity: 10%; position: absolute; left: 0; top: 30px;  width: 100%;" onclick="changeAvatar('delete');"/>
 					</span>
 				</div>
 			</div>

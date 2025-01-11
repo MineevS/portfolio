@@ -260,6 +260,10 @@ class Query {
             case "password":
                 $result = "hash";
                 break;
+            case "avatar":
+                $result = "icon";
+                break;
+
         }
 
         return $result;
@@ -468,16 +472,16 @@ class WrapperDataBaseConn {
 
         $this->query->update('info_user');
 
-        if(isset($_POST['avatar'])) $this->query->set('avatar');
+        $list_set = ['group', 'course', 'cipher', 
+            'skills', 'institute', 'year_start', 
+            'specialization', 'educational_program', 'about'];
+
+        if(isset($_POST['avatar'])){ array_push($list_set, 'avatar'); $_SESSION['icon'] = $_POST['avatar']; }
 
         $status_query = $this->query
-            ->set('group', 'course', 'cipher', 
-            'skills', 'institute', 'year_start', 
-            'specialization', 'educational_program', 'about')
+            ->set(...$list_set)
             ->where('id', $_SESSION['id'])
         ->exec();
-
-        // $avatar_image = $_POST['avatar'];
         
         // --------------------
 

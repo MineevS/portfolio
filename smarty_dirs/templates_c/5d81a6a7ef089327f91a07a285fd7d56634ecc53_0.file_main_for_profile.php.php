@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-10 19:14:07
+/* Smarty version 5.4.2, created on 2025-01-11 12:26:37
   from 'file:C:\projects\site_portfolio/assets/frontend/mains/main_for_profile.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_6781474f613404_06798333',
+  'unifunc' => 'content_6782394d85a3f8_99086911',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d81a6a7ef089327f91a07a285fd7d56634ecc53' => 
     array (
       0 => 'C:\\projects\\site_portfolio/assets/frontend/mains/main_for_profile.php',
-      1 => 1736525576,
+      1 => 1736587595,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6781474f613404_06798333 (\Smarty\Template $_smarty_tpl) {
+function content_6782394d85a3f8_99086911 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 ?><section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
 	<div style="display: flex; flex-direction: column; width: 100%; padding-top: 10%; align-items: center;">
@@ -28,14 +28,14 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 			<div>
 				<img class="avatar-img" src="<?php echo $_smarty_tpl->getValue('icon');?>
 " alt="..." style="width: 150px; height: 150px; border-radius: 20px;">
-				<button type="submit" onclick="loadAvatar();"> Загрузить изображение</button>
+				<!--<button type="submit" onclick="loadAvatar();"> Загрузить изображение</button>-->
 				<div class="" style="position: absolute; display: flex;flex-direction: column; justify-content: center; align-items: center; 
 				background-color: #cfcbcb61; margin: 10px; row-gap: 10px;">
 					<span>Изменить фотографию
-						<input id="change-avater" class="avatar" style="opacity: 10%; position: absolute; left: 0;" type="file" accept="image/jpeg,image/png,image/gif" onchange="changeAvatar('change');"/>
+						<input id="change-avater" class="avatar" style="opacity: 10%; position: absolute; left: 0; top: 0;" type="file" accept="image/jpeg,image/png,image/gif" onchange="changeAvatar('change');"/>
 					</span>
 					<span>Удалить фотографию
-						<input id="delete-avatar" class="avatar" style="opacity: 10%; position: absolute; left: 0;" onclick="changeAvatar('delete');"/>
+						<input type="submit" id="delete-avatar" class="avatar" style="opacity: 10%; position: absolute; left: 0; top: 30px;  width: 100%;" onclick="changeAvatar('delete');"/>
 					</span>
 				</div>
 			</div>
