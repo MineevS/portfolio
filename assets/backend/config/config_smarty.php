@@ -75,7 +75,7 @@
                                     <p>24</p>
                                 </div>
                             </div>
-                            <input hidden name="id" id="id" type="number" value='.$data['id'].'>
+                            <input hidden name="id" id="id" value='.$data['id'].'> <!-- type="submit"-->
                         </button>
                     </form>';
             }
