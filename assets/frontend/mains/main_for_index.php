@@ -21,7 +21,7 @@
 			<h1 style="justify-self: end;">базовой кафедры</h1>
 		</article>
 		<div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%;">
-			{query_projects select="*" from="info_project" orderby="id" limit="1"}
+			{query_projects select="*" from="info_project" orderby="id" limit="3" offset="0"}
 		</div>
 	</div>
 	<div style="display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
@@ -52,8 +52,8 @@
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%;">
 				<path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
 			</svg>
-			<div class="carousel" style="width: 100%; display: flex;">
-				{query_stars select="*" from="info_project" orderby="id" limit="3"}
+			<div class="carousel" style="width: 100%; "> <!-- display: flex; flex-direction: row; justify-content: center;-->
+				{query_stars select="*" from="info_project" orderby="id" limit="1"}
 			</div>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%;">
 				<path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>

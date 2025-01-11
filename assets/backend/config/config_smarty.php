@@ -45,6 +45,7 @@
             ->from   ($params['from'])
             ->orderby($params['orderby'])
             ->limit  ($params['limit'])
+            ->offset ($params['offset'])
         ->exec();
 
         if($status){
@@ -60,7 +61,7 @@
                             </div>
                             <div class="div-right" style="width: 100%; padding: 10px; display:  flex; flex-direction: column; text-align: left; height: 100%;  border-left: 2px solid; border-color: black;"> <!-- background-color: green; -->
                                 <h1>Название проекта</h1>
-                                <img style="margin-left: 50px; background-color: gray; width: 200px; height: 200px; border-radius: 10px; "/>
+                                <img style="margin-left: 50px; background-color: gray; width: 10vw; height: 20vh; border-radius: 10px; "/>
                                 <p style="align-self: flex-end;">Описание проекта</p>
                                 <p>Запуск</p>
                                 <div style="display: flex; align-items: center; gap: 10px; height: fit-content;">
@@ -172,9 +173,9 @@
                     </div>';
             }*/
 
-            for($i = 0; $i < 1; $i++){
+            for($i = 0; $i < $params['limit']; $i++){
                 $html = $html.
-                    '<div class="item" style="display: block; "> <!-- none / block -->
+                    '<div class="item-of-stars" style="display: block;"> <!-- none / block -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 470" fill="currentColor" style="display:block; width:100%">
                             <path d="M112.608 466.549c-12.038 6.175-25.698-4.647-23.266-18.463l25.886-147.517L5.355 195.904c-10.26-9.793-4.928-27.694 8.826-29.628l152.756-21.706L235.05 9.622c6.144-12.163 22.767-12.163 28.91 0l68.114 134.948 152.756 21.706c13.754 1.934 19.087 19.835 8.795 29.628L383.783 300.57l25.885 147.517c2.433 13.816-11.227 24.638-23.265 18.463l-136.944-70.36-136.882 70.36h.031z"/>
                             <ellipse stroke="red" stroke-width="4" ry="120.22" rx="117" cy="262.22" cx="246"/>
@@ -193,22 +194,24 @@
 
     // {query_our_vacancies}
 
+    enum Color : string {
+        case Red = '#FF0000';
+        case Green = '#00FF00';
+        case Blue = '#0000FF';
+        public function hex(): string {
+            return $this->value;
+        }
+        public function rgb(): array {
+            return sscanf($this->value, '#%02x%02x%02x');
+        }
+        public static function random(): self {
+            return self::cases()[array_rand(self::cases())];
+        }
+    }
+
     $smarty->registerPlugin("function", "query_vacancies", "psql_query_vacancies");
     function psql_query_vacancies($params, $smarty){
-        enum Color: string {
-            case Red = '#FF0000';
-            case Green = '#00FF00';
-            case Blue = '#0000FF';
-            public function hex(): string {
-                return $this->value;
-            }
-            public function rgb(): array {
-                return sscanf($this->value, '#%02x%02x%02x');
-            }
-            public static function random(): self {
-                return self::cases()[array_rand(self::cases())];
-            }
-        }
+
         $html = "";
 
             /*$html = "";
@@ -307,6 +310,201 @@
         return $html;
     }
 
+    
+
+    $smarty->registerPlugin("function", "query_properties_project", "psql_query_properties_project");
+    function psql_query_properties_project($params, $smarty){
+        
+        /*if(empty($params["for"])) return '';
+
+        global $wdbc;
+
+        $status = $wdbc ->query()
+            ->select ('*')
+            ->from   ('info_user')
+            ->where  ('id', $_SESSION['id'])
+        ->exec();*/
+        $html = '';
+
+        $html =  $html.'
+            <string>Дата выхода:                    <input id="date-preview"            value=""    readonly /></string>                                       
+            <string>Статус:                         <input id="status"                  value=""    readonly /></string>                         
+            <string>Стек:                           <input id="stack"                   value=""    readonly /></string>
+            <string>Оценка сообщества:              <input id="scores_communities"      value=""    readonly /></string>  
+            <string>Оценка знатаков:                <input id="scores_experts"          value=""    readonly /></string>
+            <string>Популярные теги проекта:        <input id="populars_tags"           value=""    readonly /></string>';
+
+        /*if($status){
+            $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
+
+            $html = '';
+            foreach($array_data as $data){
+                switch($params["for"]){
+                    case 'properties':
+                        $html =  $html.'
+                        <string>Группа:                    <input id="group"                value="'.$data['group'].'"                  readonly /></string>                                       
+                        <string>Курс:                      <input id="course"               value="'.$data['course'].'"                 readonly /></string>                         
+                        <string>Шифр:                      <input id="cipher"               value="'.$data['cipher'].'"                 readonly /></string>
+                        <string>Навыки:                    <input id="skills"               value="'.$data['skills'].'"                 readonly /></string>  
+                        <string>Институт:                  <input id="institute"            value="'.$data['institute'].'"              readonly /></string>
+                        <string>Год приёма:                <input id="year_start"           value="'.$data['year_start'].'"             readonly /></string>   
+                        <string>Специальность:             <input id="specialization"       value="'.$data['specialization'].'"         readonly /></string>                <!-- (Направление) -->
+                        <string>Образовательная программа: <input id="educational_program"  value="'.$data['educational_program'].'"    readonly /></string>';
+                        break;
+                    case 'about':
+                        $html = $html.'<input id="about" value="'.$data['about'].'" readonly />';
+                        break;
+                }
+            }
+        }*/
+
+        return $html;
+    }
+
+    
+    $smarty->registerPlugin("function", "query_authors", "psql_query_authors");
+    function psql_query_authors($params, $smarty){
+        $html = '';
+
+        // TODO:
+
+        return $html;
+    }
+
+    $smarty->registerPlugin("function", "query_teams", "psql_query_teams");
+    function psql_query_teams($params, $smarty){
+        
+        global $wdbc;
+
+    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
+    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
+
+    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
+    */
+        /*$status = $wdbc ->query()
+            ->select ($params['select'])
+            ->from   ($params['from'])
+            ->orderby($params['orderby'])
+            ->limit  ($params['limit'])
+        ->exec();*/
+
+        $status = true;
+
+        $html = '';
+        if($status){
+            $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
+
+            
+            /*foreach($array_data as $data){
+                $html = $html.
+                    '<div class="item" style="">
+                    
+                    </div>';
+            }*/
+
+            for($i = 0; $i < 1; $i++){
+                $html = $html.
+                    '<div class="item-of-teams" style="display: block; "> <!-- none / block -->
+
+                    </div>';
+            }
+
+            return $html;
+        }
+
+        return $html;
+    }
+
+    $smarty->registerPlugin("function", "query_feedback", "psql_query_feedback");
+    function psql_query_feedback($params, $smarty){
+        
+        global $wdbc;
+
+    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
+    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
+
+    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
+    */
+        /*$status = $wdbc ->query()
+            ->select ($params['select'])
+            ->from   ($params['from'])
+            ->orderby($params['orderby'])
+            ->limit  ($params['limit'])
+        ->exec();*/
+
+        $status = true;
+
+        $html = '';
+        if($status){
+            $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
+
+            
+            /*foreach($array_data as $data){
+                $html = $html.
+                    '<div class="item" style="">
+                    
+                    </div>';
+            }*/
+
+            for($i = 0; $i < 1; $i++){
+                $html = $html.
+                    '<div class="item-of-feedback" style="display: block; "> <!-- none / block -->
+
+                    </div>';
+            }
+
+            return $html;
+        }
+
+        return $html;
+    }
+
+    
+    
+    $smarty->registerPlugin("function", "query_screenshots", "psql_query_screenshots");
+    function psql_query_screenshots($params, $smarty){
+        
+        global $wdbc;
+
+    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
+    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
+
+    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
+    */
+        /*$status = $wdbc ->query()
+            ->select ($params['select'])
+            ->from   ($params['from'])
+            ->orderby($params['orderby'])
+            ->limit  ($params['limit'])
+        ->exec();*/
+
+        $status = true;
+
+        $html = '';
+        if($status){
+            $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
+
+            
+            /*foreach($array_data as $data){
+                $html = $html.
+                    '<div class="item" style="">
+                    
+                    </div>';
+            }*/
+
+            for($i = 0; $i < 1; $i++){
+                $html = $html.
+                    '<div class="item-of-screenshots" style="display: block; "> <!-- none / block -->
+
+                    </div>';
+            }
+
+            return $html;
+        }
+
+        return $html;
+    }
+
     // $smarty->testInstall(); 
 
     $smarty->assign("FCN", TOTAL::FCN->value); 
@@ -321,7 +519,7 @@
     $smarty->assign("TEAMS",     NAV::TMS->value);
     $smarty->assign("VACANCIES", NAV::VAC->value);
 
-    $smarty->assign("ACTION",   PAGE::ACT->value);      // Страница сервера для выхода;
+    $smarty->assign("ACTION",   PAGE::ACT->value);      // Страница сервера для выхода; // Общение с сервером осуществляется по одной странице!
     $smarty->assign("INDEX",    INDEX::PATH->value);    // Страница `index.php`;
     $smarty->assign("PROFILE",  PAGE::PFL->value);      // Страница `profile.php`;
 

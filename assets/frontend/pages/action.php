@@ -7,14 +7,19 @@
         case logout;
         case save_data_profile;
         case load_avatar;
+        case load_projects;
     }
-
+/*
     require_once($_SERVER['DOCUMENT_ROOT'].'/assets/backend/config/paths.php');
 
-    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             /* -> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'*/
-    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             /* -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' */
+    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);              //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
+    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
 
     $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
+*/
+    $root = $_SERVER['DOCUMENT_ROOT'];
+
+    require_once($root.'/assets/backend/config/config_smarty.php');
 
     $URL = "";
     $last_error_wdbc = 0;
@@ -113,6 +118,39 @@
                 die( json_encode( $data ) );*/
             }
             break;
+
+            case ACTION::load_projects->name: 
+
+                //$result = $wdbc->load_projects($page_load_projects);
+
+                //$last_error_wdbc = $wdbc->last_error();
+
+                $count = SIZE_LOAD_PAGE::$PROJECT;
+
+                $offset = $_POST['page_load_projects'] * $count;
+
+                $params = array(
+                    'select' => '*',
+                    'from' => 'info_project',
+                    'orderby'=> 'id',
+                    'limit'=> "$count",
+                    'offset'=> "$offset",
+                );
+
+                $content_html = psql_query_projects($params, $smarty);
+
+                //psql_query_projects($params, $smarty);
+
+                //$content_html = '';
+                //if($result) $data = $wdbc->responce();
+                
+                echo json_encode(array(
+                    'load_projects' => "success", 
+                    'error_code' => 0,
+                    'data' => $content_html
+                ));
+    
+                break;
     }
 
    // if($last_error_wdbc != 0) echo "./../".$URL ; else echo $last_error_wdbc; // "Location: ./$URL"; header("Location: ./$URL");

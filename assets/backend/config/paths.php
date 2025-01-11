@@ -28,8 +28,9 @@
     }
 
     enum PAGE : string {
-        case PFL = "/assets/frontend/pages/profile.php";
-        case ACT = "/assets/frontend/pages/action.php";
+        case PFL 	 = "/assets/frontend/pages/profile.php";
+        case ACT 	 = "/assets/frontend/pages/action.php";
+		case PROJECT = "/assets/frontend/pages/project.php";
     }
 
 	enum NAV : string {
@@ -45,7 +46,9 @@
 		case TEAMS 		= "/assets/frontend/styles/css/css/teams.css";
 		case VACANCIES 	= "/assets/frontend/styles/css/css/vacancies.css";
 		case PROJECTS	= "/assets/frontend/styles/css/css/projects.css";
+		case PROJECT	= "/assets/frontend/styles/css/css/project.css";
 	}
+
 
 	/* */
 
@@ -118,6 +121,18 @@
 		case SET     = 1;
 		case WHERE   = 2;
 	}
+
+	class SIZE_LOAD_PAGE {
+		public static $PROJECT = 3;
+		public static $TEAM = 3;
+		public static $VACANCIE = 3;
+	}
+
+	/*enum SIZE_LOAD_PAGE : int {
+		case PROJECT = 3;
+		case TEAMS = 3;
+		case VACANCIES = 3;
+	}*/
 
 	class_alias('UPDATE_QUERY', 'UQ');
 ?>

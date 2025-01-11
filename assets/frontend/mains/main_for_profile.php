@@ -44,11 +44,12 @@
 	            </div>
 			</div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
-	            <article style="display: flex; gap: 2%;">
+	            <article style="display: flex; gap: 2%; align-items: center; justify-content: space-between;">
 	                  <h1><span style="display: inline-flex; width: 25px;">//</span> Проекты </h1>
+					  <button class="create_project" onclick="window.location.href='{$PAGE_PROJECT}'">создать проект</button>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-	                {query_projects select="*" from="info_project" orderby="id" limit="3"}
+					{query_projects select="*" from="info_project" orderby="id" limit="3" offset="0"}
 	            </div>
 			</div>
 		</div>

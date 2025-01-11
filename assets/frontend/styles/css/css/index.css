@@ -28,7 +28,7 @@ button {
  
  /* {5.1} - For Auth */
   
-  .body-auth {
+.body-auth {
 	display: flex; 
 	flex-direction: column;
 	height: 100%;

@@ -1,6 +1,10 @@
 const name_id_iframe = "iframe-auth-reg";
 window.delete = false;
 
+window.page_load_projects = 1;
+window.page_load_vacancies = 1;
+window.page_load_teams = 1;
+
 function create_iframe_authorization_registration() {
     var layout = document.getElementsByClassName('layout')[0];
 
@@ -148,5 +152,46 @@ function changeAvatar($code_operation){
             window.delete = true;
             break;
     }
+}
+
+
+function createElementFromHTML(htmlString) {
+  var div = document.createElement('div');
+  div.innerHTML = htmlString.trim();
+  // Change this to div.childNodes to support multiple top-level nodes.
+  return div.childNodes;
+}
+
+function loadProjets(path){
+    // можно зphp определить кол.во макс страниц и заблокировать запрос при достижении последней страницы.
+    
+    window.page_load_projects++; // Инкремент на следующую страницу; // Размер (объём) одной страницы определен в ...
+    $.ajax({
+        type: "POST",
+        url: path,
+        data: {
+            page_load_projects: window.page_load_projects,
+            action: "load_projects"
+        },
+        success: function(result) {
+            let json_data = JSON.parse(result);
+
+            if(json_data.hasOwnProperty('data')){
+                var container_projects = document.getElementById('projects');
+                var divs = createElementFromHTML(json_data['data']);
+                if(divs.length > 0)
+                    [...divs].forEach((div_elem) => {
+                        container_projects.insertBefore(div_elem, container_projects.childNodes[container_projects.childNodes.length - 2]);
+                    });
+                else {                     // Закончились элементы;
+                    // load_project_button; // Можно сделать не onckick;
+                    var svg = document.getElementById('load_project_svg');
+                        svg.style.transform = "rotate(180deg)";
+                    var p = document.getElementById('load_project_p');
+                        p.style.display = "block";
+                }
+            }
+        }
+    });
 }
 

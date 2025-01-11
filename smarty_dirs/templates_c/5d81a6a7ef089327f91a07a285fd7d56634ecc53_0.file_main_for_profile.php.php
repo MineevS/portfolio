@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-11 12:26:37
+/* Smarty version 5.4.2, created on 2025-01-11 19:04:27
   from 'file:C:\projects\site_portfolio/assets/frontend/mains/main_for_profile.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_6782394d85a3f8_99086911',
+  'unifunc' => 'content_6782968b39f814_88119607',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d81a6a7ef089327f91a07a285fd7d56634ecc53' => 
     array (
       0 => 'C:\\projects\\site_portfolio/assets/frontend/mains/main_for_profile.php',
-      1 => 1736587595,
+      1 => 1736611460,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6782394d85a3f8_99086911 (\Smarty\Template $_smarty_tpl) {
+function content_6782968b39f814_88119607 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 ?><section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
 	<div style="display: flex; flex-direction: column; width: 100%; padding-top: 10%; align-items: center;">
@@ -73,11 +73,13 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 	            </div>
 			</div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
-	            <article style="display: flex; gap: 2%;">
+	            <article style="display: flex; gap: 2%; align-items: center; justify-content: space-between;">
 	                  <h1><span style="display: inline-flex; width: 25px;">//</span> Проекты </h1>
+					  <button class="create_project" onclick="window.location.href='<?php echo $_smarty_tpl->getValue('PAGE_PROJECT');?>
+'">создать проект</button>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-	                <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"3"), $_smarty_tpl);?>
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"3",'offset'=>"0"), $_smarty_tpl);?>
 
 	            </div>
 			</div>
