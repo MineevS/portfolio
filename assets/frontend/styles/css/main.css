@@ -178,8 +178,8 @@ iframe {
   position: fixed;
   z-index: 7;
   /* width: 50%; */
-  /* height: 50%; */
-  height: var(--iframeHeight); 
+  height: 50%;
+  height: var(--iframeHeight);
   vertical-align: middle;
   /*top: 25%;
   left: 25%;*/
@@ -188,14 +188,14 @@ iframe {
   border: 2px solid white;
   border-radius: 5px;
   /*visibility: hidden;*/
-
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-
   opacity: 0;
   /*border: none;*/
-
   animation: fadeInUp 0.5s ease-out forwards;
+  top: 25%;
+  left: 25%;
+  width: 100%;
 }
 
 /* Keyframes for fadeInUp animation */
