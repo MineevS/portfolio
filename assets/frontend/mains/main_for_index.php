@@ -37,7 +37,7 @@
 		<p  style="justify-self: center;">направления</p>
 		<h1 style="justify-self: end;">исследований и разработки</h1>
 	</article>
-	<div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%;">
+	<div class="container" style="display: flex; flex-direction: column; margin-top: 2rem; width: 100%;"> <!-- gap: 30px; -->
 			{query_interests}
 	</div>
 </section>

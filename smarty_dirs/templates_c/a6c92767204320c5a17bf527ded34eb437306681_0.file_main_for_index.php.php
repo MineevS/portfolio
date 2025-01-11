@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-09 17:10:02
+/* Smarty version 5.4.2, created on 2025-01-10 09:58:42
   from 'file:C:\projects\site_portfolio/assets/frontend/mains/main_for_index.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_677fd8ba8117e7_78741828',
+  'unifunc' => 'content_6780c5227911b7_50107595',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6c92767204320c5a17bf527ded34eb437306681' => 
     array (
       0 => 'C:\\projects\\site_portfolio/assets/frontend/mains/main_for_index.php',
-      1 => 1736431778,
+      1 => 1736492317,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_677fd8ba8117e7_78741828 (\Smarty\Template $_smarty_tpl) {
+function content_6780c5227911b7_50107595 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 ?><section class="section_1">
 	<!-- Сначало указываем элементы с абсолютным расположением, а потом с относительным-->
@@ -62,7 +62,7 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 		<p  style="justify-self: center;">направления</p>
 		<h1 style="justify-self: end;">исследований и разработки</h1>
 	</article>
-	<div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%;">
+	<div class="container" style="display: flex; flex-direction: column; margin-top: 2rem; width: 100%;"> <!-- gap: 30px; -->
 			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_interests')->handle(array(), $_smarty_tpl);?>
 
 	</div>

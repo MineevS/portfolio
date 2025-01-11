@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-06 09:29:53
+/* Smarty version 5.4.2, created on 2025-01-10 19:14:07
   from 'file:C:\projects\site_portfolio/assets/frontend/mains/main_for_profile.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_677b7861175405_55554413',
+  'unifunc' => 'content_6781474f613404_06798333',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d81a6a7ef089327f91a07a285fd7d56634ecc53' => 
     array (
       0 => 'C:\\projects\\site_portfolio/assets/frontend/mains/main_for_profile.php',
-      1 => 1735900059,
+      1 => 1736525576,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,25 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_677b7861175405_55554413 (\Smarty\Template $_smarty_tpl) {
+function content_6781474f613404_06798333 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 ?><section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
 	<div style="display: flex; flex-direction: column; width: 100%; padding-top: 10%; align-items: center;">
 		<article style="display: flex;  width: fit-content; justify-content: center; space-between; gap: 5%; align-items: center;">
-            <img src="<?php echo $_smarty_tpl->getValue('icon');?>
+			<div>
+				<img class="avatar-img" src="<?php echo $_smarty_tpl->getValue('icon');?>
 " alt="..." style="width: 150px; height: 150px; border-radius: 20px;">
+				<button type="submit" onclick="loadAvatar();"> Загрузить изображение</button>
+				<div class="" style="position: absolute; display: flex;flex-direction: column; justify-content: center; align-items: center; 
+				background-color: #cfcbcb61; margin: 10px; row-gap: 10px;">
+					<span>Изменить фотографию
+						<input id="change-avater" class="avatar" style="opacity: 10%; position: absolute; left: 0;" type="file" accept="image/jpeg,image/png,image/gif" onchange="changeAvatar('change');"/>
+					</span>
+					<span>Удалить фотографию
+						<input id="delete-avatar" class="avatar" style="opacity: 10%; position: absolute; left: 0;" onclick="changeAvatar('delete');"/>
+					</span>
+				</div>
+			</div>
             <p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;"><?php echo $_smarty_tpl->getValue('firstname');?>
 </p>
             <p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;"><?php echo $_smarty_tpl->getValue('lastname');?>
@@ -37,15 +49,9 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 	            <article> <!-- display: flex; gap: 2%;-->
 	                <h1><span style="display: inline-flex; width: 25px;">//</span> Основная информация</h1>
 	            </article>
-	            <div class="container" style="display: flex; flex-direction: column; gap: 10px;">
-	                <string>Группа:                    <input value="КМБО-01-23" readonly /></string>                                       
-					<string>Курс:                      <input value="КМБО-01-23" readonly /></string>                         
-					<string>Шифр:                      <input value="КМБО-01-23" readonly /></string>
-					<string>Навыки:                    <input value="КМБО-01-23" readonly /></string>  
-					<string>Институт:                  <input value="КМБО-01-23" readonly /></string>
-					<string>Год приёма:                <input value="КМБО-01-23" readonly /></string>   
-					<string>Специальность:             <input value="КМБО-01-23" readonly /></string>                <!-- (Направление) -->
-					<string>Образовательная программа: <input value="КМБО-01-23" readonly /></string>                 
+	            <div class="container properties" style="display: flex; flex-direction: column; gap: 10px;">
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_intelligence')->handle(array('for'=>"properties"), $_smarty_tpl);?>
+                 
 	            </div>
 	        </div>
 	        <div class="container" style="display: flex; flex-direction: column; width: 100%; "> <!-- ссылки - background-color: #7feb7f; -->
@@ -62,8 +68,8 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 	                  <h1><span style="display: inline-flex; width: 25px;">//</span> О себе </h1>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-	                <a href="token@email.ru">token@email.ru</a> <!-- style="text-decoration: auto;"-->
-					<a href="token@email.ru">token@email.ru</a>
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_intelligence')->handle(array('for'=>"about"), $_smarty_tpl);?>
+
 	            </div>
 			</div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
@@ -71,7 +77,7 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 	                  <h1><span style="display: inline-flex; width: 25px;">//</span> Проекты </h1>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-	                <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_top_projects')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"3"), $_smarty_tpl);?>
+	                <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"3"), $_smarty_tpl);?>
 
 	            </div>
 			</div>

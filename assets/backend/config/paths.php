@@ -112,4 +112,12 @@
 	}
 	
 	class_alias('OPBIN', 'OB');
+
+	enum UPDATE_QUERY : int {
+		case UPDATE  = 0;
+		case SET     = 1;
+		case WHERE   = 2;
+	}
+
+	class_alias('UPDATE_QUERY', 'UQ');
 ?>

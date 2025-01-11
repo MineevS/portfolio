@@ -1,4 +1,5 @@
 const name_id_iframe = "iframe-auth-reg";
+window.delete = false;
 
 function create_iframe_authorization_registration() {
     var layout = document.getElementsByClassName('layout')[0];
@@ -43,5 +44,109 @@ function logout(path){
             }
         }
     });
+}
+
+function editProfile(code_peration, path){
+    var parent = document.getElementsByClassName('properties')[0];
+    var inpts = document.getElementsByTagName('input');
+    for (const inpt of inpts) inpt.readOnly = !code_peration;
+
+    var edit_profile = document.getElementsByClassName('editProfileButton')[0];
+
+    edit_profile.innerHTML =  code_peration ? "Сохранить изменения" : "Редактировать профиль";
+    edit_profile.setAttribute('onclick', code_peration ? "editProfile(false, '" + path + "');" : "editProfile(true, '" + path + "');");
+
+    var group               = document.getElementById('group').value;
+    var course              = document.getElementById('course').value;
+    var cipher              = document.getElementById('cipher').value;
+    var skills              = document.getElementById('skills').value;
+
+    var institute           = document.getElementById('institute').value;
+    var year_start          = document.getElementById('year_start').value;
+    var specialization      = document.getElementById('specialization').value;
+    var educational_program = document.getElementById('educational_program').value;
+    var about               = document.getElementById('about').value;
+
+    //
+    var change_avater = document.getElementById('change-avater').files;
+
+    var formData = new FormData();
+	formData.append('avatar', change_avater[0]);
+    formData.append('action', "load_avatar");
+
+   // (change_avater.lengeth() == 0 ? : ); 
+    
+    // сохранение данных в БД:
+
+    if(!code_peration){
+        $.ajax({
+            type: "POST",
+            url: path,
+            cache: false,
+            data: formData,
+            dataType: 'json',
+            // отключаем обработку передаваемых данных, пусть передаются как есть
+            processData : false,
+            // отключаем установку заголовка типа запроса. Так jQuery скажет серверу что это строковой запрос
+            contentType : false,
+            success: function(result) {
+                let json_data = result;
+
+                if(json_data.hasOwnProperty('icon')){
+                    var elements = document.getElementsByClassName('avatar-img');
+                    
+                    [...elements].forEach((element) => {
+                        element.src = json_data['icon'];
+                    });
+                }
+            }
+        });
+
+        var data = {
+            group: group,
+            course: course,
+            cipher: cipher,
+            skills: skills,
+            institute: institute,
+            year_start: year_start,
+            specialization: specialization,
+            educational_program: educational_program,
+            about: about,
+            action: "save_data_profile"
+        }
+
+        var elems = document.getElementsByClassName('avatar-img');
+        var elem = elems[0];
+
+        // data.append('avatar', elem.src); //  if(change_avater.length === 0)
+
+        if(change_avater.length === 0 && window.delete) { data['avatar'] = elem.src; window.delete = false;}
+
+        $.ajax({
+            type: "POST",
+            url: path,
+            data: data,
+            success: function(result) {
+                let json_data = JSON.parse(result);
+            }
+        });
+    }
+}
+
+function changeAvatar($code_operation){
+    switch($code_operation){
+        case 'change':
+            console.log("loadAvatar( 1 1 1)");
+            break;
+        case 'delete':
+            console.log("loadAvatar( 1 2 1)");
+            var elements = document.getElementsByClassName('avatar-img');
+                    
+            [...elements].forEach((element) => {
+                element.src = "/assets/frontend/icons/avatars/default_avatar.jpg";
+            });
+            window.delete = true;
+            break;
+    }
 }
 

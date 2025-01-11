@@ -5,6 +5,8 @@
         case registr;
         case login;
         case logout;
+        case save_data_profile;
+        case load_avatar;
     }
 
     require_once($_SERVER['DOCUMENT_ROOT'].'/assets/backend/config/paths.php');
@@ -16,6 +18,8 @@
 
     $URL = "";
     $last_error_wdbc = 0;
+    if(!isset($_POST['action'])) exit();
+
     switch($_POST['action']){
         case ACTION::registr->name:
             $result = $wdbc->register();
@@ -55,6 +59,59 @@
                 'error_code' => 0,
                 'url'        => $URL
             ));
+            break;
+        case ACTION::save_data_profile->name:
+            $result = $wdbc->save_data_profile();
+
+            $last_error_wdbc = $wdbc->last_error();
+
+            // Написать обработчик ошибок;
+
+            echo json_encode(array(
+                'save_data_profile' => "success", 
+                'error_code' => 0
+            ));
+
+            break;
+        case ACTION::load_avatar->name;
+            if(isset($_FILES['avatar'])){
+                $uploaddir = './../icons/avatars'; // . - текущая папка где находится submit.php
+
+                // cоздадим папку если её нет
+                if( ! is_dir( $uploaddir ) ) mkdir( $uploaddir, 0777, true);
+
+                $files      = $_FILES; // полученные файлы
+                $done_files = array();
+
+                // переместим файлы из временной директории в указанную
+                foreach( $files as $file ){
+                    $file_name = $file['name'];
+
+                    if( move_uploaded_file( $file['tmp_name'], "$uploaddir/$file_name" ) ){
+                        $done_files[] = realpath( "$uploaddir/$file_name" );
+
+                        $_POST['icon'] = "avatars/$file_name";
+
+                        $result = $wdbc->query()->update('info_user')->set('icon')->where('id', $_SESSION['id'])->exec();
+
+                        if($result){
+                            $last_error_wdbc = $wdbc->last_error();
+
+                            $icon_path = $_POST['icon'];
+                            $_SESSION['icon'] = $icon_path;
+                
+                            echo json_encode(array(
+                                'load_avatar'  => ($result ? "success" : "failed"), 
+                                'error_code' => ($last_error_wdbc == null ? 0 : $last_error_wdbc),
+                                'icon' => "/assets/frontend/icons/".$icon_path
+                            ));
+                        }
+                    }
+                }
+
+                /*$data = $done_files ? array('files' => $done_files ) : array('error' => 'Ошибка загрузки файлов.');
+                die( json_encode( $data ) );*/
+            }
             break;
     }
 

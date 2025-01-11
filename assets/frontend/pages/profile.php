@@ -5,7 +5,7 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
 
 	require_once($root.'/assets/backend/config/paths.php');
-	require_once($root.'/assets/backend/config/config_smarty.php');
+		require_once($root.'/assets/backend/config/config_smarty.php');
 
 	$smarty->assign('icon', 
 	(isset($_SESSION[TRU::icon->name]) 
@@ -17,8 +17,6 @@
 
 	$smarty->assign('lastname', 
 	(isset($_SESSION[TRU::lastname->name]) ? $_SESSION[TRU::lastname->name] : 'lastname'));
-
-
 
 	$smarty->assign("CSS_MAIN", STYLE::PROFILE->value);
 	$smarty->assign("MAIN", $root.'/assets/frontend/mains/main_for_profile.php'); // Указываем, что добавляем. (Реализуем и добавляем только основную часть кода);

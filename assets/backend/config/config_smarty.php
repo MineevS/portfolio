@@ -102,9 +102,24 @@
                 }
 
                 $html = $html.
+                '<form method="POST" action="/assets/frontend/pages/project.php" style=" width: 100%; height: fit-content;" class=" interestsForm">
+                <button type="submit" style=" appearance: none;" class="interestsSubmitButton">
+                    <div class="buttonTitle">
+                       <span style="display: inline-flex; width: 25px;">//</span>'.$key.'</h1>
+                    </div>
+                    <div class="buttonTags">'.$value_html.'
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                        </svg>
+                    </div>
+                </button>
+                </form>';
+
+
+                /*$html = $html.
                 '<form method="POST" action="/assets/frontend/pages/project.php" style=" width: 100%; height: fit-content;">
                     <button type="submit" style=" appearance: none; border: none; width: 100%; height: 100%;">
-                        <div class="div-left" style="display: flex; align-items: center; text-align: center; justify-content: space-between; width: 100%; height: 100%; " > <!-- background-color: red;-->
+                        <div style="display: flex; align-items: center; text-align: center; justify-content: space-between; width: 100%; height: 100%; " > <!-- background-color: red;-->
                             <div style="width: 100%; justify-self: flex-start; display: flex; gap: 1%;">
                                 <p >//</p>
                                 <p>'.$key.'</p>
@@ -118,7 +133,7 @@
                         </div>
                         <input hidden name="id" id="id" type="number" value="1">
                     </button>
-                </form>';
+                </form>';*/
 
                 next($interests);
             }
@@ -225,7 +240,7 @@
                 '<div class="card" style="'.$style.' height: fit-content; padding: 10px; border: 1px solid gray;">
                     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; height: 50px;">
                         <p>ТЕСТИРОВЩИК</p>
-                        <button>Откликнуться</button>
+                        <button type="button" style="">Откликнуться</button>
                     </div>
                         <p>Автоматизация проведения лабораторных работ по программированию</p>
                     <p>Обязанности:</p>
@@ -243,6 +258,48 @@
                 </div>';
             }
 
+
+        return $html;
+    }
+
+    $smarty->registerPlugin("function", "query_intelligence", "psql_query_intelligence");
+    function psql_query_intelligence($params, $smarty){
+        
+        if(empty($params["for"])) {
+            return '';
+        }
+
+        global $wdbc;
+
+        $status = $wdbc ->query()
+            ->select ('*')
+            ->from   ('info_user')
+            ->where('id', $_SESSION['id'])
+        ->exec();
+
+        if($status){
+            $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
+
+            $html = '';
+            foreach($array_data as $data){
+                switch($params["for"]){
+                    case 'properties':
+                        $html =  $html.'
+                        <string>Группа:                    <input id="group"                value="'.$data['group'].'"                  readonly /></string>                                       
+                        <string>Курс:                      <input id="course"               value="'.$data['course'].'"                 readonly /></string>                         
+                        <string>Шифр:                      <input id="cipher"               value="'.$data['cipher'].'"                 readonly /></string>
+                        <string>Навыки:                    <input id="skills"               value="'.$data['skills'].'"                 readonly /></string>  
+                        <string>Институт:                  <input id="institute"            value="'.$data['institute'].'"              readonly /></string>
+                        <string>Год приёма:                <input id="year_start"           value="'.$data['year_start'].'"             readonly /></string>   
+                        <string>Специальность:             <input id="specialization"       value="'.$data['specialization'].'"         readonly /></string>                <!-- (Направление) -->
+                        <string>Образовательная программа: <input id="educational_program"  value="'.$data['educational_program'].'"    readonly /></string>';
+                        break;
+                    case 'about':
+                        $html = $html.'<input id="about" value="'.$data['about'].'" readonly />';
+                        break;
+                }
+            }
+        }
 
         return $html;
     }

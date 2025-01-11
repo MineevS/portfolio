@@ -142,7 +142,7 @@ class Query {
         if($dbconn)
             $this->result_last_request = pg_query($dbconn, $this->request) || die('Ошибка запроса: ' . pg_last_error($dbconn));
         else
-            $this->result_last_request = pg_query($this->dbconn, $this->request);
+            $this->result_last_request = pg_query($this->dbconn, $this->request); // "UPDATE PUBLIC.info_user SET \"group\"='КМБО-01-23' WHERE id='1';"
 
         if($this->result_last_request)
             $this->responce = pg_fetch_all($this->result_last_request);
@@ -231,6 +231,8 @@ class Query {
         return $this;
     }
 
+
+
     function columns(){
         $res_columns = $this->accomulate(...func_get_args());
 
@@ -295,6 +297,66 @@ class Query {
     }
 
     // [INSERT INTO QUERY END] --------------------------------- //
+
+    // [UPDATE QUERY START] --------------------------------- //
+
+    function selector_query_update($op_code, $data){
+        $op_code_val = $op_code->value;
+        switch($op_code_val){
+            case UPDATE_QUERY::UPDATE->value:
+                $this->request = "UPDATE PUBLIC.".$data;
+                break;
+            case UPDATE_QUERY::SET->value:
+                $this->request = $this->request." SET ".$data;
+                break;
+            case UPDATE_QUERY::WHERE->value: // Уже сделано!
+                $this->request = $this->request." WHERE ".$data." ";
+                break;
+        }
+    }
+
+    function update(){
+        $this->clear_query();
+
+        $res_update = $this->accomulate(...func_get_args());
+        
+        $this->selector_query_update(UPDATE_QUERY::UPDATE, $res_update);
+
+        return $this;
+    }
+
+    function set(){
+        $res_update = "";
+
+        $count_args = func_num_args();
+
+        //implode(",", $args);
+        for($index_arg = 0; $index_arg < $count_args - 1; $index_arg++){
+            $arg = func_get_arg($index_arg);
+
+            $res_update = $res_update."\"".$this->decorator_column($arg)."\"=".$this->decorator_value($arg).", ";
+        }
+
+        $arg = func_get_arg($count_args - 1);
+
+        $res_update = $res_update."\"".$this->decorator_column($arg)."\"=".$this->decorator_value($arg);
+
+        $this->selector_query_update(UPDATE_QUERY::SET, $res_update);
+
+        return $this;
+    }
+
+    /*function where(){ // Уже реализован!
+        $this->clear_query();
+
+        $res_update = $this->accomulate(...func_get_args());
+        
+        $this->selector_query_update(UPDATE_QUERY::UPDATE, $res_update);
+
+        return $this;
+    }*/
+
+    // [UPDATE QUERY END] --------------------------------- //
 }
 
 class WrapperDataBaseConn {
@@ -393,6 +455,33 @@ class WrapperDataBaseConn {
                 exit;
             }
         }
+    }
+
+    function save_data_profile(){
+        $this->validate_post_args('avatar','group', 'course', 'cipher', 
+                            'skills', 'institute', 'year_start', 
+                            'specialization', 'educational_program', 'about');
+
+        // "UPDATE users SET email='john_new@example.com' WHERE id=1"
+
+        // Загрузка файла на сервер:
+
+        $this->query->update('info_user');
+
+        if(isset($_POST['avatar'])) $this->query->set('avatar');
+
+        $status_query = $this->query
+            ->set('group', 'course', 'cipher', 
+            'skills', 'institute', 'year_start', 
+            'specialization', 'educational_program', 'about')
+            ->where('id', $_SESSION['id'])
+        ->exec();
+
+        // $avatar_image = $_POST['avatar'];
+        
+        // --------------------
+
+        return $status_query;
     }
 
     function register(){

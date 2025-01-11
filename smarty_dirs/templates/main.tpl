@@ -41,10 +41,11 @@
 					<div>
 						{if isset($icon)|default}
 							<a href="">
-								<img class="" src="{$icon}" />
+								<img class="avatar-img" src="{$icon}" />
 							</a>
 							<section style="display: flex; flex-direction: column; position: absolute; z-index: 5; width: fit-content; heigh: 100px; border: 3px solid black; border-radius: 5px; ">
 								<button onclick="location.href='{$PROFILE}'">Мой профиль</button>
+								<button class="editProfileButton" onclick="editProfile(true, '{$ACTION}');">Редактировать профиль</button>
 								<button onclick="logout('{$ACTION}');">Выход</button>
 							</section>
 						{else}
@@ -58,7 +59,9 @@
 			<main>
 				{include file="$MAIN"}
 			</main>
-			<footer></footer> <!-- fixed footer-->
+			<footer>
+
+			</footer> <!-- fixed footer -->
 		</div>
 	</body>
 </html>

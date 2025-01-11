@@ -42,7 +42,7 @@ header {
 .menu {
   display: flex;
   /*flex: 1 1 0;*/
-  gap: 20%;
+  /* gap: 20%; */
   /* list-style: none; */
   align-items: center;
   /* margin: 5px; */
@@ -235,9 +235,6 @@ iframe {
 }
 }
 
-
-
-
 footer {
   /*position: fixed;
   bottom: 0;
@@ -267,3 +264,52 @@ footer {
 }
 
 /*footer { position: fixed; bottom: 0; width: 100%}*/
+
+button {
+  border: 1px solid #202020;
+  border-radius: 20px; 
+}
+
+/* БЛОК ИНТЕРЕСОВ */
+
+/* шаблон формы интересов (обёртка кнопки)*/
+.interestsForm {
+  border-top: 1px solid #f6f6f6 !important;
+
+  /* цвет из оригинала */
+  /* background-color: #202020; */
+}
+/* нижняя рамка последнему элементу */
+.interestsForm:last-child {
+  border-bottom: 1px solid #f6f6f6 !important;
+}
+
+/* кнопка интересов (контейнер) */
+.interestsSubmitButton {
+  /* ориентация */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+  padding: 0 3vw;
+  font-size: 1.8vw;
+  background: transparent;
+  color: white;
+  width: 100% !important;
+  height: 10vw;
+  border: none !important;
+}
+
+/* левый блок интересов */
+.buttonTitle {
+  display: flex;
+  gap: 5vw;
+}
+
+/* правый блок интересов с тегами */
+.buttonTags {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}

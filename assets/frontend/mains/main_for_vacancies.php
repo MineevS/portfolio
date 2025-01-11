@@ -23,7 +23,7 @@
                 </svg>
             </button>
 		</div>
-        <div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%;">
+        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0px; margin-top: 2rem; width: 100%; justify-items: center; place-content: center;"> <!-- repid in main_for_index-->
             {query_vacancies}
         </div>
 	</div>

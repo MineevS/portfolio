@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-09 17:10:45
+/* Smarty version 5.4.2, created on 2025-01-09 17:38:39
   from 'file:C:\projects\site_portfolio/assets/frontend/mains/main_for_vacancies.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_677fd8e5c6b953_87591474',
+  'unifunc' => 'content_677fdf6fa47013_02023829',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ca1ccacb41ea41064ad04f238ad56daded69f852' => 
     array (
       0 => 'C:\\projects\\site_portfolio/assets/frontend/mains/main_for_vacancies.php',
-      1 => 1736431652,
+      1 => 1736432417,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_677fd8e5c6b953_87591474 (\Smarty\Template $_smarty_tpl) {
+function content_677fdf6fa47013_02023829 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
 ?><section class="section_1" style="width: 100%;">
 	<div style="width: 100%; height: fit-content; padding-bottom: 2%; padding-left: 25%; padding-right: 25%; margin: 0%;">
@@ -47,7 +47,7 @@ $_smarty_current_dir = 'C:\\projects\\site_portfolio\\assets\\frontend\\mains';
                 </svg>
             </button>
 		</div>
-        <div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%;">
+        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0px; margin-top: 2rem; width: 100%; justify-items: center; place-content: center;"> <!-- repid in main_for_index-->
             <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_vacancies')->handle(array(), $_smarty_tpl);?>
 
         </div>
