@@ -31,12 +31,12 @@ html, body {
 	vertical-align: middle; 
 
 	/*Debug: */
-	/*background-color: #eceeef;*/
+	/*background-color: #F6F6F6;*/
 }
 
 .div_2 {
 	width: 100%; 
-	background-color: #eceeef; 
+	background-color: #F6F6F6; 
 	height: 45px; 
 	display: flex;
 	padding: 10px; 
