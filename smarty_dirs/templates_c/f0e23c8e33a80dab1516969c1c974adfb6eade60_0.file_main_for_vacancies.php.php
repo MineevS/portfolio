@@ -1,4 +1,28 @@
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 11:32:38
+  from 'file:C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_vacancies.php' */
 
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_6784ebc63a8366_95140626',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'f0e23c8e33a80dab1516969c1c974adfb6eade60' => 
+    array (
+      0 => 'C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_vacancies.php',
+      1 => 1736764357,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6784ebc63a8366_95140626 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolioSer\\assets\\frontend\\mains';
+?>
 <section class="section_1" style="width: 100%;">
 	<div style="width: 100%; height: fit-content; padding-bottom: 2%; padding-left: 25%; padding-right: 25%; margin-top: 5%;">
 		<article style="display: grid; width: 100%; align-self: flex-start;">
@@ -28,7 +52,8 @@
         </div>
         <hr class="hrProject">
         <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0px; margin-top: 2rem; width: 100%; justify-items: center; place-content: center;"> <!-- repid in main_for_index-->
-            {query_vacancies}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_vacancies')->handle(array(), $_smarty_tpl);?>
+
         </div>
 	</div>
 	<!--<div style=" height: auto; display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
@@ -38,3 +63,5 @@
 		</svg>
 	</div>-->
 </section>
+<?php }
+}

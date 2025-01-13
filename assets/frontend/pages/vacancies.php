@@ -13,6 +13,6 @@
 	$smarty->assign("CSS_MAIN", STYLE::VACANCIES->value);
 	$smarty->assign("MAIN", $root.'/assets/frontend/mains/main_for_vacancies.php'); // Указываем, что добавляем. (Реализуем и добавляем только основную часть кода);
     
-	$smarty->assign("CSS_TOTAL", STYLE::MAIN->value);
+	/*$smarty->assign("CSS_TOTAL", STYLE::MAIN->value);*/
 	$smarty->display($root.'/smarty_dirs/templates/main.tpl' );  // Указываем, куда добавляем и выводим обработанный шаблон.
 ?>

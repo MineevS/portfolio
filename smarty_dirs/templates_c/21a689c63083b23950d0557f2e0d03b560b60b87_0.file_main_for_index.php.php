@@ -1,4 +1,28 @@
-<section class="section_1">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 11:24:57
+  from 'file:C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_index.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_6784e9f96c17a5_52400247',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '21a689c63083b23950d0557f2e0d03b560b60b87' => 
+    array (
+      0 => 'C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_index.php',
+      1 => 1736763895,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6784e9f96c17a5_52400247 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1">
 	<!-- Сначало указываем элементы с абсолютным расположением, а потом с относительным-->
 	<div class="corners">
 		<p class="corner_top_left" id="1">∟</p>
@@ -20,9 +44,11 @@
 			<p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
 			<h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
 		</article>-->
-		{query_article head1="Представляем вам" head2="лучшие проекты" head3="базовой кафедры"}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"Представляем вам",'head2'=>"лучшие проекты",'head3'=>"базовой кафедры"), $_smarty_tpl);?>
+
 		<div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 3rem; width: 100%;">
-			{query_projects select="*" from="info_project" orderby="id" limit="3" offset="0"}
+			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"3",'offset'=>"0"), $_smarty_tpl);?>
+
 		</div>
 	</div>
 	<div style="display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657; padding: 2rem 0 1rem 0;">
@@ -38,9 +64,11 @@
 		<p class="VasekMain" style="justify-self: center; margin-right: 20%;">направления</p>
 		<h1 class="HelveticaMainWhite" style="justify-self: end;">исследований и разработки</h1>
 	</article>
-	<!-- {query_article head1="А это основные" head2="направления" head3="исследований и разработки"} -->
+	<!-- <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"А это основные",'head2'=>"направления",'head3'=>"исследований и разработки"), $_smarty_tpl);?>
+ -->
 	<div class="container" style="display: flex; flex-direction: column; margin-top: 2rem; width: 100%;"> <!-- gap: 30px; -->
-		{query_interests}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_interests')->handle(array(), $_smarty_tpl);?>
+
 	</div>
 </section>
 <section class="section_4" data-aos="fade-up">
@@ -50,13 +78,15 @@
 			<p class="VasekMain" style="justify-self: center; margin-right: 30%;">Аллеи Славы</p>/* тут наверное надо придумать как в класс без марджина сделать */
 			<h1 class="HelveticaMain" style="justify-self: end; margin-right: 10%;">сияют ярче, чем в Голливуде</h1>
 		</article>-->
-		{query_article head1="Наши звёзды с" head2="Аллеи Славы" head3="сияют ярче, чем в Голливуде"}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"Наши звёзды с",'head2'=>"Аллеи Славы",'head3'=>"сияют ярче, чем в Голливуде"), $_smarty_tpl);?>
+
 		<div class="container" style="display: flex; justify-content: space-between; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%;">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%;">
 				<path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 			</svg>
 			<div class="carousel" style="width: 100%; "> <!-- display: flex; flex-direction: row; justify-content: center;-->
-				{query_stars select="*" from="info_project" orderby="id" limit="1"}
+				<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_stars')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"1"), $_smarty_tpl);?>
+
 			</div>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%;">
 				<path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
@@ -72,11 +102,13 @@
 				<p class="VasekMain" style="justify-self: center;">вакансии</p>
 				<h1 class="HelveticaMain" style="justify-self: end; ">в команды</h1>
 			</article>-->
-			{query_article head1="Открытые" head2="вакансии" head3="в команды"}
+			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"Открытые",'head2'=>"вакансии",'head3'=>"в команды"), $_smarty_tpl);?>
+
 			<button class="buttonAddVacancy" style="width: auto; height: auto; justify-content: flex-end;">Добавить вакансию</button>
 		</div>
 		<div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0px; margin-top: 2rem; width: 100%; justify-items: center; place-content: center; ">
-			{query_vacancies}
+			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_vacancies')->handle(array(), $_smarty_tpl);?>
+
 		</div>
 	</div>
 	<div style="display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657; padding: 2rem 0 1rem 0;">
@@ -86,3 +118,5 @@
 		</svg>
 	</div>
 </section>
+<?php }
+}

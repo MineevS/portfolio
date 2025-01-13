@@ -1,8 +1,33 @@
-<section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 13:22:42
+  from 'file:C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_profile.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_678505922c0dd2_05308245',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'dc9bf13b17da5631db9c11378b64eae40b9091aa' => 
+    array (
+      0 => 'C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_profile.php',
+      1 => 1736770961,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_678505922c0dd2_05308245 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
 	<div style="display: flex; flex-direction: column; width: 100%; padding-top: 5%; align-items: center;">
 		<article style="display: flex;  width: fit-content; justify-content: center; space-between; gap: 5%; align-items: center; margin: 0 0 1rem 0;">
 			<div>
-				<img class="avatar-img" src="{$icon}" alt="..." style="width: 150px; height: 150px; border-radius: 20px;">
+				<img class="avatar-img" src="<?php echo $_smarty_tpl->getValue('icon');?>
+" alt="..." style="width: 150px; height: 150px; border-radius: 20px;">
 				<!--<button type="submit" onclick="loadAvatar();"> Загрузить изображение</button>-->
 				<div class="" style="position: absolute; display: flex;flex-direction: column; justify-content: center; align-items: center; 
 				background-color: #cfcbcb61; margin: 10px; row-gap: 10px;">
@@ -14,8 +39,10 @@
 					</span>
 				</div>
 			</div>
-			<p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;">{$firstname}</p>
-			<p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;">{$lastname}</p>
+			<p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;"><?php echo $_smarty_tpl->getValue('firstname');?>
+</p>
+			<p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;"><?php echo $_smarty_tpl->getValue('lastname');?>
+</p>
 		</article>
 		<div class="container" style="display: grid; width: 50%; grid-template-columns: 2fr auto; gap: 20px;"> <!-- height: 500px; -->
 			<div class="container" style="display: flex; flex-direction: column; width: 100%; background-color: #fff;"> <!-- Основная информация-->
@@ -23,7 +50,8 @@
 					<h1 class="profileHLack"><span style="display: inline-flex; width: 25px;">//</span> Основная информация</h1>
 				</article>
 				<div class="containerProfile properties" style="display: flex; flex-direction: column; gap: 10px;">
-					{query_intelligence for="properties"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_intelligence')->handle(array('for'=>"properties"), $_smarty_tpl);?>
+
 				</div>
 			</div>
 			<div class="container" style="display: flex; flex-direction: column; width: 100%; "> <!-- ссылки - background-color: #7feb7f; -->
@@ -35,7 +63,8 @@
 					<a href="token@email.ru">token@email.ru</a>
 				</div>
 				<div>
-					<button class="editProfileButton" onclick="editProfile(true, '{$ACTION}');">Редактировать профиль</button>
+					<button class="editProfileButton" onclick="editProfile(true, '<?php echo $_smarty_tpl->getValue('ACTION');?>
+');">Редактировать профиль</button>
 				</div>
 			</div>
 			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
@@ -43,16 +72,19 @@
 					<h1 class="profileHLack"><span style="display: inline-flex; width: 25px; margin:0 0 1rem 0;">//</span> О себе </h1>
 				</article>
 				<div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-					{query_intelligence for="about"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_intelligence')->handle(array('for'=>"about"), $_smarty_tpl);?>
+
 				</div>
 			</div>
 			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
 				<article style="display: flex; gap: 2%; align-items: center; justify-content: space-between; margin:0 0 1rem 0;">
 					<h1 class="profileHLack"><span style="display: inline-flex; width: 25px;">//</span> Проекты </h1>
-					<button class="create_project" onclick="window.location.href='{$PAGE_PROJECT}'">создать проект</button>
+					<button class="create_project" onclick="window.location.href='<?php echo $_smarty_tpl->getValue('PAGE_PROJECT');?>
+'">создать проект</button>
 				</article>
 				<div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-					{query_projects select="*" from="info_project" orderby="id" limit="3" offset="0"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"3",'offset'=>"0"), $_smarty_tpl);?>
+
 				</div>
 			</div>
 		</div>
@@ -108,4 +140,5 @@
 			</button>
 		</form>
 	</div>
-</section>
+</section><?php }
+}

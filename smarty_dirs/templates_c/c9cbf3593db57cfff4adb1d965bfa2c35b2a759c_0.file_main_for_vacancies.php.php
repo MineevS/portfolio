@@ -1,7 +1,31 @@
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 07:40:51
+  from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_vacancies.php' */
 
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_6784995375aba8_66196326',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c9cbf3593db57cfff4adb1d965bfa2c35b2a759c' => 
+    array (
+      0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_vacancies.php',
+      1 => 1736743121,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6784995375aba8_66196326 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
+?>
 <section class="section_1" style="width: 100%;">
 	<div style="width: 100%; height: fit-content; padding-bottom: 2%; padding-left: 25%; padding-right: 25%; margin-top: 5%;">
-		<article style="display: grid; width: 100%; align-self: flex-start;">
+		<article style="display: grid; width: 50%; align-self: flex-start;">
 			<h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
 			<p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
 			<h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
@@ -28,7 +52,8 @@
         </div>
         <hr class="hrProject">
         <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0px; margin-top: 2rem; width: 100%; justify-items: center; place-content: center;"> <!-- repid in main_for_index-->
-            {query_vacancies}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_vacancies')->handle(array(), $_smarty_tpl);?>
+
         </div>
 	</div>
 	<!--<div style=" height: auto; display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
@@ -38,3 +63,5 @@
 		</svg>
 	</div>-->
 </section>
+<?php }
+}

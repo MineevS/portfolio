@@ -1,9 +1,33 @@
-<section class="section_1" style="width: 100%;">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 07:40:53
+  from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_teams.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_67849955f270d6_89683952',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '4f3c8ea9f854492bcdf23ef5dd6e276799c5f84a' => 
+    array (
+      0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_teams.php',
+      1 => 1736743121,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_67849955f270d6_89683952 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1" style="width: 100%;">
     <div style="width: 65%; padding: 5% 7% 7% 7%; padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 25%; *//* padding-right: 25%; */margin: 0%;">
-        <article style="display: grid; width: 100%; align-self: flex-start;">
-            <h1 class="HelveticaMain" style="justify-self: start;">Здесь вы можете найти</h1>
-            <p class="VasekMain" style="justify-self: center;">лучших людей</p>
-            <h1 class="HelveticaMain" style="justify-self: end;">для своей команды</h1>
+        <article style="display: grid; width: 50%; align-self: flex-start;">
+            <h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
+            <p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
+            <h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
         </article>
         <div class="container" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%; justify-content: flex-start;">
             <div class="dropdown">
@@ -27,7 +51,9 @@
         </div>
         <hr class="hrProject">
         <div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; "> <!-- min-height: 200px; -->
-            {query_teams select="*" from="info_teams" orderby="id" limit="3"}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_teams')->handle(array('select'=>"*",'from'=>"info_teams",'orderby'=>"id",'limit'=>"3"), $_smarty_tpl);?>
+
         </div>
     </div>
-</section>
+</section><?php }
+}

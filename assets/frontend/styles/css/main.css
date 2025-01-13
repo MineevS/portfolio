@@ -3,8 +3,24 @@
   /* display: block; */
 }
 
+@font-face {
+  font-family: Vasek;
+  src: url("/assets/frontend/fonts/vasek.ttf");
+  /* /portfolioSer */
+  /* {} - Менять при изменении путей */
+}
+
+@font-face {
+  font-family: Lack;
+  src: url("/assets/frontend/fonts/Lack.ttf");
+  /* /portfolioSer */
+  /* {} - Менять при изменении путей */
+}
+
 :root {
   --iframeHeight: 450px;
+  --fontVasek: Vasek;
+  --fontLack: Lack;
 }
 
 html,
@@ -14,6 +30,7 @@ body {
   background: #F6F6F6;
   padding: 0;
   margin: 0;
+  box-shadow: black;
 }
 
 
@@ -31,7 +48,7 @@ header {
   left: 0;
   width: 100%;
   height: 50px;
-  /*background-color: #ad3d3d;*/
+  background-color: #e9e9e9;
   border-radius: 0px 0px 5px 5px;
   border-color: black;
   display: flex;
@@ -45,17 +62,19 @@ header {
   /*background: linear-gradient(#ffffff, #ffffff 50%, #f5f5f5 90%);*/
   z-index: 4;
   /* display: none; */
+  /* box-shadow: 5px 5px 5px gray; */
 }
 
 .menu {
   display: flex;
   /*flex: 1 1 0;*/
-  /* gap: 20%; */
+  gap: 20px;
   /* list-style: none; */
   align-items: center;
   /* margin: 5px; */
   /*padding: 5px;*/
   /*block-size: fit-content;*/
+  justify-content: flex-end;
 }
 
 /*
@@ -80,7 +99,7 @@ header {
 }
 
 .font-logo {
-  font-family: Lack;
+  font-family: var(--fontLack);
   /* font-size: 30px; */
   font-weight: 700ph;
   color: white;
@@ -367,7 +386,7 @@ button {
 
 h1.HelveticaMain {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 64px;
+  font-size: 3vw;
   font-weight: 400;
   margin: 0 0 0 0;
   color: #202020;
@@ -383,25 +402,27 @@ h1.HelveticaMainWhite {
 
 
 p.VasekMainWhiteP {
-  font-family: Vasek;
-  font-size: 64px;
+  font-family: var(--fontVasek);
+  font-size: 2vw;
   font-weight: 400;
   margin: 0 0 0 0;
   color: #F6F6F6;
 }
 
 p.VasekMain {
-
-  font-family: Vasek;
-  font-size: 128px;
+  font-family: var(--fontVasek);
+  font-size: 4vw;
   font-weight: 400;
   color: #EA5657;
   margin: 0 0 0 0;
 }
 
 button.MainProjectBody {
-
   background-color: #F6F6F6;
+}
+
+button.MainProjectBody:hover {
+  box-shadow: 8px 10px 5px 2px #2f2f3633;
 }
 
 p.projectIndexTitle {
@@ -415,7 +436,7 @@ p.projectIndexTitle {
 
 
 h1.projectTitle {
-  font-family: Lack;
+  font-family: var(--fontLack);
   font-size: 36px;
   /*line-height: 60px;*/
   font-weight: 400;
@@ -589,6 +610,68 @@ li.cardDuty {
   border: 1px solid #202020;
 }
 
-.hrProject{
+.hrProject {
   margin: 1rem 0 1rem 0;
+}
+
+.containerProfile {
+  background-color: #F6F6F6;
+}
+
+.arcticleProfile {
+  background-color: #F6F6F6;
+}
+
+.profileHLack {
+  font-family: var(--fontLack);
+  font-size: 24px;
+  /*line-height: 60px;*/
+  font-weight: 700;
+  margin: 0 0 0 0;
+  color: #202020;
+}
+
+.stringProfile {
+  margin: 1rem 0 0 0;
+  font-family: 'Helvetica', arial;
+  font-size: 16px;
+  font-weight: 100;
+  color: #202020;
+}
+
+.inputProfile {
+  background-color: #F6F6F6;
+  font-family: 'Helvetica', arial;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.editProfileButton {
+  margin-top: .5rem;
+  font-family: 'Helvetica', arial;
+  background-color: #F6F6F6;
+  color: #202020;
+  font-size: 15px;
+  font-weight: 100;
+  padding: 0 1rem 0 1rem;
+}
+
+.editProfileButton:hover {
+  background-color: #202020;
+  color: #F6F6F6;
+}
+
+.create_project {
+  margin-top: .5rem;
+  font-family: 'Helvetica', arial;
+  background-color: #F6F6F6;
+  color: #202020;
+  font-size: 15px;
+  font-weight: 100;
+  padding: 0 1rem 0 1rem;
+}
+
+.create_project:hover {
+  background-color: #202020;
+  color: #F6F6F6;
 }

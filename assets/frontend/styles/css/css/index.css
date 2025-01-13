@@ -126,7 +126,7 @@
  	width: 99.5%;
  	z-index: 3;
  	block-size: fit-content;
- 	font-family: Vasek;
+ 	font-family: var(--fontVasek);
  	font-size: 15vw;
  	transform: scale(2.25);
  	color: rgba(234, 86, 87, 1);
@@ -145,17 +145,7 @@
  	-webkit-text-stroke: 3px black;
  }
 
- @font-face {
- 	font-family: Vasek;
- 	src: url("/portfolioSer/assets/frontend/fonts/vasek.ttf");
- 	/* {} - Менять при изменении путей */
- }
 
- @font-face {
- 	font-family: Lack;
- 	src: url("/portfolioSer/assets/frontend/fonts/Lack.ttf");
- 	/* {} - Менять при изменении путей */
- }
 
  /* {2.2} - settings section 2: */
 

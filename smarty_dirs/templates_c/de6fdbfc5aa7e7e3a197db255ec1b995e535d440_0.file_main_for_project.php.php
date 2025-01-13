@@ -1,7 +1,32 @@
-<section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 11:52:10
+  from 'file:C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_project.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_6784f05a95cb43_82511802',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'de6fdbfc5aa7e7e3a197db255ec1b995e535d440' => 
+    array (
+      0 => 'C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_project.php',
+      1 => 1736765525,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6784f05a95cb43_82511802 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
 	<div style="display: flex; flex-direction: column; width: 100%; align-items: center;"> <!-- padding-top: 10%; -->
 		<article style="display: flex;  width: fit-content; justify-content: center; space-between; gap: 5%; align-items: center;">
-            <p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;">{$nameproject}</p>
+            <p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;"><?php echo $_smarty_tpl->getValue('nameproject');?>
+</p>
 		</article>
 	    <div class="container" style="display: grid; width: 50%; grid-template-columns: 2fr auto; gap: 20px;"> <!-- height: 500px; -->
 	        <div class="container" style="display: flex; flex-direction: column; width: 100%; background-color: #fff;"> <!-- Основная информация-->
@@ -9,7 +34,8 @@
 	                <h1><span style="display: inline-flex; width: 25px;">//</span> Основная информация </h1>
 	            </article>
 	            <div class="container properties" style="display: flex; flex-direction: column; gap: 10px;"> <!--for="properties" -->
-					{query_properties_project}                 
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_project')->handle(array(), $_smarty_tpl);?>
+                 
 	            </div>
 	        </div>
 	        <div class="container" style="display: flex; flex-direction: column; width: 100%; gap: 7%;"> <!-- ссылки - background-color: #7feb7f; -->
@@ -20,7 +46,8 @@
 	                <a href="token@email.ru">token@email.ru</a> <!-- style="text-decoration: auto;"-->
 					<a href="token@email.ru">token@email.ru</a>
 	            </div>
-                <button class="editProject" onclick="editProject(true, '{$ACTION}');">редактировать проект</button>
+                <button class="editProject" onclick="editProject(true, '<?php echo $_smarty_tpl->getValue('ACTION');?>
+');">редактировать проект</button>
 				<!--<button class="saveProject" onclick="saveProject();">сохранить проект</button>-->
 	        </div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
@@ -28,7 +55,8 @@
 	                  <h1><span style="display: inline-flex; width: 25px;">//</span> О проекте </h1>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-					{query_intelligence for="about"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_intelligence')->handle(array('for'=>"about"), $_smarty_tpl);?>
+
 	            </div>
 			</div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
@@ -40,7 +68,8 @@
                       <div>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
-					{query_authors}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_authors')->handle(array(), $_smarty_tpl);?>
+
 	            </div>
 			</div>
             <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
@@ -52,7 +81,8 @@
                       <div>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
-					{query_screenshots}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_screenshots')->handle(array(), $_smarty_tpl);?>
+
 	            </div>
 			</div>
             <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
@@ -64,7 +94,8 @@
                       <div>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
-					{query_feedback}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_feedback')->handle(array(), $_smarty_tpl);?>
+
 	            </div>
 			</div>
 		</div>
@@ -78,7 +109,8 @@
         <p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;">Артефакты</p>
 	</article>
 	<div class="container" style="display: flex; flex-direction: column; margin-top: 2rem; width: 100%;"> <!-- gap: 30px; -->
-			{query_interests}
+			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_interests')->handle(array(), $_smarty_tpl);?>
+
 	</div>
     <div style=" height: auto; display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
 		<p>Проекты по схожим тегам</p> 
@@ -102,4 +134,5 @@
 			<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
 		</svg>
 	</div>
-</section>-->
+</section>--><?php }
+}

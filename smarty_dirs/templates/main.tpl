@@ -11,12 +11,14 @@
 		<link  href="{$FCN}" 		type="image/x-icon" 	rel="icon">
 		
 		<!--{2} Стили-->
-		<link  href="{$CSS_MAIN}" 	  	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
-		<link  href="{$CSS_TOTAL}" 	type="text/css" 	rel="stylesheet"> <!-- Общий стиль для всех страниц --> 
-		
+		<link href="{$CSS_MAIN}" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
+		<link href="{$CSS_TOTAL}" 	type="text/css" 	rel="stylesheet"> <!-- Общий стиль для всех страниц --> 
+		<link href="{$CSS_AOS}"		type="text/css"		rel="stylesheet">
+
 		<!--{3} Скрипты -->
 		<script src="{$JSX}" 		type="text/javascript"></script> 
 		<script src="{$JQR}" 		type="text/javascript"></script>
+		<script src="{$AOS}" 		type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="layout">
@@ -45,7 +47,6 @@
 							</a>
 							<section style="display: flex; flex-direction: column; position: absolute; z-index: 5; width: fit-content; heigh: 100px; border: 3px solid black; border-radius: 5px; ">
 								<button onclick="location.href='{$PROFILE}'">Мой профиль</button>
-								<button class="editProfileButton" onclick="editProfile(true, '{$ACTION}');">Редактировать профиль</button>
 								<button onclick="logout('{$ACTION}');">Выход</button>
 							</section>
 						{else}
@@ -69,5 +70,9 @@
 				<a style="color: white;"> vega@mirea.ru </a>
 			</footer>
 		</div>
+		<!-- script's code -->
+		<script>
+			AOS.init();
+		</script>
 	</body>
 </html>

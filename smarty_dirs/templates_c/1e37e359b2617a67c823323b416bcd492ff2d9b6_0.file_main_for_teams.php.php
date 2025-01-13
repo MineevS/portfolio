@@ -1,4 +1,28 @@
-<section class="section_1" style="width: 100%;">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 11:31:37
+  from 'file:C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_teams.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_6784eb89420c58_51825636',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '1e37e359b2617a67c823323b416bcd492ff2d9b6' => 
+    array (
+      0 => 'C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_teams.php',
+      1 => 1736764294,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6784eb89420c58_51825636 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1" style="width: 100%;">
     <div style="width: 65%; padding: 5% 7% 7% 7%; padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 25%; *//* padding-right: 25%; */margin: 0%;">
         <article style="display: grid; width: 100%; align-self: flex-start;">
             <h1 class="HelveticaMain" style="justify-self: start;">Здесь вы можете найти</h1>
@@ -27,7 +51,9 @@
         </div>
         <hr class="hrProject">
         <div class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; "> <!-- min-height: 200px; -->
-            {query_teams select="*" from="info_teams" orderby="id" limit="3"}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_teams')->handle(array('select'=>"*",'from'=>"info_teams",'orderby'=>"id",'limit'=>"3"), $_smarty_tpl);?>
+
         </div>
     </div>
-</section>
+</section><?php }
+}

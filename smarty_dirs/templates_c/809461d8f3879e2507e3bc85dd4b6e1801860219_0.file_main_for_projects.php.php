@@ -1,4 +1,28 @@
-<section class="section_1" style="width: 100%;">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-13 11:28:40
+  from 'file:C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_projects.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_6784ead8245b49_61061790',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '809461d8f3879e2507e3bc85dd4b6e1801860219' => 
+    array (
+      0 => 'C:/xampp/htdocs/portfolioSer/assets/frontend/mains/main_for_projects.php',
+      1 => 1736764118,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6784ead8245b49_61061790 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1" style="width: 100%;">
     <div style="width: 65%; padding: 7%; padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 20%; *//* padding-right: 20%; */margin: 0%;">
         <article style="display: grid; width: 100%; align-self: flex-start;">
             <h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
@@ -27,9 +51,11 @@
         </div>
         <hr class="hrProject">
         <div id="projects" class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; min-height: 200px; align-items: center;">
-            {query_projects select="*" from="info_project" orderby="id" limit="3" offset="0"}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>"info_project",'orderby'=>"id",'limit'=>"3",'offset'=>"0"), $_smarty_tpl);?>
+
             <div style="display: flex;flex-direction: column;align-items: center; justify-content: center;">
-                <button id="load_project_button" type="submit" style="width: auto;height: auto;opacity: 100%; vertical-align: middle; border: none; background-color: none;" onclick="loadProjets('{$ACTION}');">
+                <button id="load_project_button" type="submit" style="width: auto;height: auto;opacity: 100%; vertical-align: middle; border: none; background-color: none;" onclick="loadProjets('<?php echo $_smarty_tpl->getValue('ACTION');?>
+');">
                 <!--<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
                         <rect width="29" height="29" x=".5" y=".5" stroke="#202020" rx="14.5"/>
                         <path fill="#202020" d="M14 24.896a1 1 0 0 0 2 0h-2Zm1.707-20.499a1 1 0 0 0-1.414 0l-6.364 6.364a1 1 0 0 0 1.414 1.414L15 6.518l5.657 5.657a1 1 0 0 0 1.414-1.414l-6.364-6.364ZM16 24.896V5.104h-2v19.792h2Z"/>
@@ -49,4 +75,5 @@
 			<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
 		</svg>
 	</div>-->
-</section>
+</section><?php }
+}

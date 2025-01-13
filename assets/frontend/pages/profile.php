@@ -22,6 +22,7 @@
     
 	$smarty->assign("PAGE_PROJECT", PAGE::PROJECT->value);
 
+
 	$smarty->assign("CSS_TOTAL", STYLE::MAIN->value);
 	$smarty->display($root.'/smarty_dirs/templates/main.tpl' );  // Указываем, куда добавляем и выводим обработанный шаблон.
 ?>

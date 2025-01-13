@@ -2,6 +2,8 @@
 
 	//echo $_GET['register'];
 
+	/*define(PATH, "/portfolioSer");*/
+
 	enum TOTAL : string {
 		case JQR  = "/assets/backend/js/library/jquery/jquery-3.7.1.min.js";
 		case FCN  = "/assets/frontend/icons/vega.ico";
@@ -49,6 +51,10 @@
 		case PROJECT	= "/assets/frontend/styles/css/css/project.css";
 	}
 
+	enum AOS : string {
+		case CSS = "https://unpkg.com/aos@2.3.1/dist/aos.css";
+		case JSX = "https://unpkg.com/aos@2.3.1/dist/aos.js";
+	}
 
 	/* */
 
