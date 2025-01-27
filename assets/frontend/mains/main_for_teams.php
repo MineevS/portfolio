@@ -1,9 +1,9 @@
 <section class="section_1" style="width: 100%;">
-    <div style="width: 65%; padding: 5% 7% 7% 7%; padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 25%; *//* padding-right: 25%; */margin: 0%;">
-        <article style="display: grid; width: 100%; align-self: flex-start;">
-            <h1 class="HelveticaMain" style="justify-self: start;">Здесь вы можете найти</h1>
-            <p class="VasekMain" style="justify-self: center;">лучших людей</p>
-            <h1 class="HelveticaMain" style="justify-self: end;">для своей команды</h1>
+    <div style="width: 65%; /*padding: 5% 7% 7% 7%;*/ padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 25%; *//* padding-right: 25%; */margin: 0%;">
+        <article style="display: grid; width: 50%; align-self: flex-start;">
+            <h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
+            <p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
+            <h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
         </article>
         <div class="container" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%; justify-content: flex-start;">
             <div class="dropdown">

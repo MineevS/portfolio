@@ -38,6 +38,9 @@ class Query {
             case SELECT_QUERY::WHERE->value:
                 $this->request = $this->request." WHERE ".$data;
                 break;
+            case SELECT_QUERY::ILIKE->value:
+                $this->request = $this->request." ILIKE ".$data;
+                break;
             case SELECT_QUERY::LIMIT->value:
                 $this->request = $this->request." LIMIT ".$data;
                 break;
@@ -78,6 +81,7 @@ class Query {
     function where(){
         $count_args = func_num_args();
         $cond = "";
+
         for($index_arg = 0; $index_arg < $count_args - 1; $index_arg=$index_arg+3){
             $arg1 = func_get_arg($index_arg + 0);
             $arg2 = func_get_arg($index_arg + 1);
@@ -89,6 +93,9 @@ class Query {
             }
         }
 
+        if ($count_args == 1)
+            $cond = func_get_arg(0);
+        
         $this->selector_query_select(SELECT_QUERY::WHERE, $cond);
 
         return $this;
@@ -147,6 +154,8 @@ class Query {
         if($this->result_last_request)
             $this->responce = pg_fetch_all($this->result_last_request);
 
+        $this->last_error = pg_last_error($dbconn);
+
         return $this->get_query_status();
     }
 
@@ -196,6 +205,11 @@ class Query {
         return $this->get_query_responce();
     }
 
+    function set_responce($value){
+        $this->responce = $value;
+        return $this->responce == $value;
+    }
+
     function get_query_request(){
         return $this->request;
     }
@@ -218,6 +232,9 @@ class Query {
             case INSERT_INTO_QUERY::VALUES->value:
                 $this->request = $this->request." VALUES(".$data.")";
                 break;
+            case INSERT_INTO_QUERY::RETURNING->value: 
+                $this->request = $this->request." returning ".$data;
+                break;
         }
     }
 
@@ -230,8 +247,6 @@ class Query {
 
         return $this;
     }
-
-
 
     function columns(){
         $res_columns = $this->accomulate(...func_get_args());
@@ -300,6 +315,14 @@ class Query {
         return $this;
     }
 
+    function returning(){
+        $res_returning = $this->accomulate(...func_get_args()); 
+
+        $this->selector_query_insert_into(INSERT_INTO_QUERY::RETURNING, $res_returning);
+
+        return $this;
+    }
+
     // [INSERT INTO QUERY END] --------------------------------- //
 
     // [UPDATE QUERY START] --------------------------------- //
@@ -319,6 +342,12 @@ class Query {
         }
     }
 
+    function ilike(){
+        $res_ilike = $this->accomulate(...func_get_args());
+        $this->selector_query_select(SELECT_QUERY::ILIKE, $res_ilike);
+        return $this;
+
+    }
     function update(){
         $this->clear_query();
 
@@ -346,6 +375,14 @@ class Query {
         $res_update = $res_update."\"".$this->decorator_column($arg)."\"=".$this->decorator_value($arg);
 
         $this->selector_query_update(UPDATE_QUERY::SET, $res_update);
+
+        return $this;
+    }
+
+    function delete(){
+        $this->clear_query();
+
+        $this->request = "DELETE ";
 
         return $this;
     }
@@ -397,7 +434,7 @@ class WrapperDataBaseConn {
     function login($login, $password){
         $status_query = $this->query
             ->select('*')
-            ->from(TBN::TAB_REGISTRATION_USER->value)
+            ->from(TBN::PROFILES->value) // TAB_REGISTRATION_USER
             ->where("login", $login)
         ->exec();
 
@@ -462,19 +499,14 @@ class WrapperDataBaseConn {
     }
 
     function save_data_profile(){
-        $this->validate_post_args('avatar','group', 'course', 'cipher', 
-                            'skills', 'institute', 'year_start', 
-                            'specialization', 'educational_program', 'about');
+        $list_set = [
+            'group', 'course', 'cipher', 'skills', 'institute', 
+            'year_start', 'specialization', 'educational_program', 'about'
+        ];
 
-        // "UPDATE users SET email='john_new@example.com' WHERE id=1"
-
-        // Загрузка файла на сервер:
+        $this->validate_post_args('avatar', ...$list_set);
 
         $this->query->update('info_user');
-
-        $list_set = ['group', 'course', 'cipher', 
-            'skills', 'institute', 'year_start', 
-            'specialization', 'educational_program', 'about'];
 
         if(isset($_POST['avatar'])){ array_push($list_set, 'avatar'); $_SESSION['icon'] = $_POST['avatar']; }
 
@@ -484,6 +516,75 @@ class WrapperDataBaseConn {
         ->exec();
         
         // --------------------
+
+        return $status_query;
+    }
+    
+
+    private $list_properties_project = [ // Добавить свойства проекта при необходимости
+        'name', 'premier', 'status', 'stack', 'tags', 'author', 'communities', 'experts', 'description'
+    ]; // populars_ // 'date_preview', 'scores_communities', 'scores_experts',
+
+    function save_data_project(){
+        $_POST['author'] = $_SESSION['id']; // Добавление текущего `id` пользователя в качестве `автора` создаваемого проекта!
+
+        $list_properties = $this->list_properties_project;
+
+        $this->validate_post_args('avatar', ...$list_properties);
+
+        $this->query->update(TBN::PROJECTS->value);
+
+        if(isset($_POST['avatar'])){ array_push($list_properties, 'avatar'); $_SESSION['icon-project'] = $_POST['avatar']; }
+
+        $status_query = $this->query
+            ->set(...$list_properties)
+            ->where('id', $_POST['project_id'])
+        ->exec();
+        
+        // --------------------
+
+        return $status_query;
+    }
+
+    private $list_properties_vacancy = [ // Добавить свойства `вакансии` при необходимости
+        'speciality', 'description', 'tags', 'duties', 'project_id'
+    ]; // populars_ // 'date_preview', 'scores_communities', 'scores_experts',
+
+
+    function save_data_vacancy(){
+        $_POST['project_id'] = $_SESSION['project_id']; // Добавление текущего `project_id` проекта в качестве `родителя` создаваемой вакансии!
+
+        $list_properties = $this->list_properties_vacancy;
+
+        $this->validate_post_args(...$list_properties); // 'avatar', 
+
+        $this->query->update(TBN::VACANCIES->value);
+
+        //if(isset($_POST['avatar'])){ array_push($list_properties, 'avatar'); $_SESSION['icon-project'] = $_POST['avatar']; }
+
+        $status_query = $this->query
+            ->set(...$list_properties)
+            ->where('id', $_POST['vacancy_id'])
+        ->exec();
+        
+        // --------------------
+
+        return $status_query;
+    }
+
+    function create_project(){
+        $_POST['author'] = $_SESSION['id']; // Добавление текущего `id` пользователя в качестве `автора` создаваемого проекта!
+
+        $list_properties = $this->list_properties_project;
+        $this->validate_post_args(...$list_properties);
+
+        if(isset($_POST['avatar'])){ array_push($list_properties, 'avatar'); $_SESSION['icon-project'] = $_POST['avatar']; }
+
+        $status_query = $this->query
+            ->insert_into(TBN::PROJECTS->value)
+            ->values_from_columns(...$list_properties)
+            ->returning('id')
+        ->exec(); //             
 
         return $status_query;
     }
@@ -570,6 +671,28 @@ class WrapperDataBaseConn {
 
     function getName(){
         return $this->name;
+    }
+
+    function check_like_project(){
+        $status_query = $this->query->select('*')->from(TABS_NAME::LIKE_PROJECT->value)->where('project_id', $_POST['project_id'], OPBIN::AND, 'phpsessid', session_id())->exec();
+        
+        if(!$status_query) return 0;
+
+        $sgn = -1;
+        if(count($this->query->responce()) > 0){ // Если `like` уже имеется, то снять(удалить запись), если нет, то установить.
+            $status_query = $this->query->delete()->from(TABS_NAME::LIKE_PROJECT->value)->where('project_id', $_POST['project_id'], OPBIN::AND, 'phpsessid', session_id())->exec();
+        } else {
+            $_POST['phpsessid'] = session_id();
+            
+            $status_query = $this->query->insert_into(TABS_NAME::LIKE_PROJECT->value)->values_from_columns('project_id', 'phpsessid')->exec(); // ->returning('count(*)')
+            $sgn = 1;
+        }
+
+        $this->query->select('count(*)')->from(TABS_NAME::LIKE_PROJECT->value)->where('project_id', $_POST['project_id'])->exec(); // Если не удалился, то вернем тоже кол.во строк, но с отрицательным знаком, указывающим на попытку удалить.
+
+        $this->query->set_responce($status_query ? $sgn * $this->query->responce()[0]['count']:  null);
+
+        return $status_query;
     }
 }
 

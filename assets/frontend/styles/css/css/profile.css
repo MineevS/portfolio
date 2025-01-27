@@ -1,4 +1,7 @@
 
-input:read-only{
+input {
     border: none;
+    field-sizing: content; /*Размер в зависимости от длины содержимоговпвп*/
+    text-wrap: auto;
+    /* width: 100%; */
 }

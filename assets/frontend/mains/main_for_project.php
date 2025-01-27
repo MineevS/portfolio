@@ -1,15 +1,30 @@
 <section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
 	<div style="display: flex; flex-direction: column; width: 100%; align-items: center;"> <!-- padding-top: 10%; -->
 		<article style="display: flex;  width: fit-content; justify-content: center; space-between; gap: 5%; align-items: center;">
-            <p style="font-family: 'Vasek', arial; font-size: 96px; color: #EA5657; margin: 0; line-height: .8em;">{$nameproject}</p>
+			<div>
+				{query_properties_project for="icon" icon_default="$icon_default"}
+				<!--<button type="submit" onclick="loadAvatar();"> Загрузить изображение</button>-->
+				{if isset($access)|default}
+					<div id="menu-icon" style="position: absolute; display: flex; flex-direction: column; justify-content: center; align-items: center; 
+					background-color: #cfcbcb61; margin: 10px; row-gap: 10px; visibility: hidden;">
+						<span>Изменить фотографию
+							<input id="change-avatar" class="avatar" style="opacity: 10%; position: absolute; left: 0; top: 0;" type="file" accept="image/jpeg,image/png,image/gif" onchange="changeAvatar.call(this, 'change', '{$template_name_default_img}');"/>
+						</span>
+						<span>Удалить фотографию
+							<input type="submit" id="delete-avatar" class="avatar" style="opacity: 10%; position: absolute; left: 0; top: 30px;  width: 100%;" onclick="changeAvatar.call(document.getElementById('avatar'), 'delete', '{$template_name_default_img}');"/>
+						</span>
+					</div>
+				{/if}
+			</div>
+			{query_properties_project for="name" name_default="$name_default"}
 		</article>
-	    <div class="container" style="display: grid; width: 50%; grid-template-columns: 2fr auto; gap: 20px;"> <!-- height: 500px; -->
+	    <div class="container" style="display: grid; width: 50%; grid-template-columns: 2fr auto; gap: 20px; padding-bottom: 1rem;"> <!-- height: 500px; -->
 	        <div class="container" style="display: flex; flex-direction: column; width: 100%; background-color: #fff;"> <!-- Основная информация-->
 	            <article> <!-- display: flex; gap: 2%;-->
 	                <h1><span style="display: inline-flex; width: 25px;">//</span> Основная информация </h1>
 	            </article>
 	            <div class="container properties" style="display: flex; flex-direction: column; gap: 10px;"> <!--for="properties" -->
-					{query_properties_project}                 
+					{query_properties_project for="properties"}                 
 	            </div>
 	        </div>
 	        <div class="container" style="display: flex; flex-direction: column; width: 100%; gap: 7%;"> <!-- ссылки - background-color: #7feb7f; -->
@@ -20,7 +35,9 @@
 	                <a href="token@email.ru">token@email.ru</a> <!-- style="text-decoration: auto;"-->
 					<a href="token@email.ru">token@email.ru</a>
 	            </div>
-                <button class="editProject" onclick="editProject(true, '{$ACTION}');">редактировать проект</button>
+				{if isset($access)|default}
+                	<button class="editProjectButton" onclick="editPage.call(this, true, '{$ACTION}');">редактировать</button> <!-- editProject(true, '{$ACTION}'); -->
+				{/if}
 				<!--<button class="saveProject" onclick="saveProject();">сохранить проект</button>-->
 	        </div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
@@ -28,16 +45,18 @@
 	                  <h1><span style="display: inline-flex; width: 25px;">//</span> О проекте </h1>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-					{query_intelligence for="about"}
+					{query_properties_project for="description"}
 	            </div>
 			</div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
 	            <article style="display: flex; gap: 2%; align-items: center; justify-content: space-between;">
-	                  <h1><span style="display: inline-flex; width: 25px;">//</span> Авторы </h1>
-                      <div>
-                        <button class="add-author" onclick="">удалить автора</button>
-                        <button class="del-author" onclick="">добавить автора</button>
-                      <div>
+	                <h1><span style="display: inline-flex; width: 25px;">//</span> Авторы </h1>
+					{if $access|default}
+						<div class="div-article">
+							<!--<button class="del-author" onclick="">удалить автора</button>-->
+							<button class="add-author" onclick="">добавить автора</button>
+						<div>
+					{/if}
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
 					{query_authors}
@@ -45,11 +64,13 @@
 			</div>
             <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
 	            <article style="display: flex; gap: 2%; align-items: center; justify-content: space-between;">
-	                  <h1><span style="display: inline-flex; width: 25px;">//</span> Скриншоты </h1>
-                      <div>
-                        <button class="add-author" onclick="">удалить скриншот</button>
-                        <button class="del-author" onclick="">добавить скриншот</button>
-                      <div>
+	                <h1><span style="display: inline-flex; width: 25px;">//</span> Скриншоты </h1>
+					{if $access|default}
+						<div class="div-article">
+							<!--<button class="del-author" onclick="">удалить скриншот</button>-->
+							<button class="add-author" onclick="">добавить скриншот</button>
+						<div>
+					{/if}
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
 					{query_screenshots}
@@ -57,15 +78,33 @@
 			</div>
             <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
 	            <article style="display: flex; gap: 2%; align-items: center; justify-content: space-between;">
-	                  <h1><span style="display: inline-flex; width: 25px;">//</span> Отзывы </h1>
-                      <div>
-                        <button class="add-feedback" onclick="">удалить отзыв</button>
-                        <button class="del-feedback" onclick="">добавить отзыв</button>
-                      <div>
+	                <h1><span style="display: inline-flex; width: 25px;">//</span> Отзывы </h1>
+					{if $access|default}
+						<div class="div-article">
+							<!--<button class="del-feedback" onclick="">удалить отзыв</button>-->
+							<button class="add-feedback" onclick="">добавить отзыв</button>
+						<div>
+					{/if}
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
 					{query_feedback}
 	            </div>
+			</div>
+			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
+	            <article style="display: flex; gap: 2%; align-items: center; justify-content: space-between;">
+	                <h1><span style="display: inline-flex; width: 25px;">//</span> Вакансии </h1>
+					{if $access|default}
+						<div class="div-article">
+							<!--<button class="del-vacancy"  onclick="delElem('vacancy', '{$ACTION}');">удалить вакансию</button>-->
+							<button class="add-vacancy showHide" onclick="window.location.href='{$PAGE_VACANCY}'">добавить вакансию</button> <!-- onclick="addElem('vacancy', '{$ACTION}');-->
+						<div>
+					{/if}
+	            </article>
+	            <div class="container vacancies-container" style=""> <!-- ТУТ grid в отличие от остальных --><!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
+					{if $project_id|default}
+						{query_vacancies select="*" from="$tab_vacancies" orderby="id" where="project_id" project_id="$project_id"} 
+					{/if}
+	            </div> <!-- limit="3" offset="0" -->
 			</div>
 		</div>
 	</div>

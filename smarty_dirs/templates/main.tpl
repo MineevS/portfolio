@@ -9,6 +9,8 @@
 		
 		<!--{1} Иконка сайта -->
 		<link  href="{$FCN}" 		type="image/x-icon" 	rel="icon">
+
+
 		
 		<!--{2} Стили-->
 		<link href="{$CSS_MAIN}" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
@@ -16,9 +18,15 @@
 		<link href="{$CSS_AOS}"		type="text/css"		rel="stylesheet">
 
 		<!--{3} Скрипты -->
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.6/Sortable.min.js"></script>
+		
 		<script src="{$JSX}" 		type="text/javascript"></script> 
 		<script src="{$JQR}" 		type="text/javascript"></script>
 		<script src="{$AOS}" 		type="text/javascript"></script>
+
+		<link href="/assets/backend/library/select2/select2.min.css" rel="stylesheet" />
+		<script src="/assets/backend/library/select2/select2.min.js"></script>
 	</head>
 	<body>
 		<div class="layout">
@@ -43,7 +51,7 @@
 					<div>
 						{if isset($icon)|default}
 							<a href="">
-								<img class="avatar-img" src="{$icon}" />
+								<img id="profile" class="avatar" src="{$icon}" />
 							</a>
 							<section style="display: flex; flex-direction: column; position: absolute; z-index: 5; width: fit-content; heigh: 100px; border: 3px solid black; border-radius: 5px; ">
 								<button onclick="location.href='{$PROFILE}'">Мой профиль</button>

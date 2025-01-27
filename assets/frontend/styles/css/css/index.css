@@ -11,10 +11,11 @@
  	width: 100%;
  	height: fit-content;
  	/* display: none; */
+ 	margin: 5% 0 0 0;
  }
 
  .section_1 {
- 	border: 1px solid black;
+ 	/*border: 1px solid black;*/
  	width: 100%;
  	height: 100vh;
  	/* display: none; */
@@ -73,18 +74,14 @@
  .an-1 {
  	position: absolute;
  	bottom: 5%;
-
  	line-height: 15px;
-
  	display: flex;
  	flex-wrap: wrap;
  	width: 20%;
  	flex-direction: row;
  	block-size: fit-content;
-
  	text-align: center;
  	justify-content: center;
-
  	animation-name: an_1;
  	animation-duration: 0.5s;
  	animation-iteration-count: infinite;
@@ -92,6 +89,7 @@
 
  	/*Debug: */
  	/*border: 3px solid cyan;*/
+ 	font-family: 'Helvetica';
  }
 
  .corner_top_left {
@@ -152,7 +150,7 @@
  .section_2 {
  	/*justify-content: center;
 	align-items: center;*/
- 	border: 1px solid #f01212;
+ 	/* border: 1px solid #f01212; */
  	/* display: flex; */
  	/*padding: 25%;*/
  	padding-top: 5%;
@@ -179,4 +177,234 @@
  .section_5 {
  	/* display: none; */
  }
+
+
+ /* ----------------------------- */
+ 
+/* Add font files for Helvetica */
+@font-face {
+	font-family: 'Helvetica';
+	src: url('/fonts/helvetica.woff2') format('woff2'),
+		 url('/fonts/helvetica.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+  }
+  :root {
+	--font-family-helvetica: 'Helvetica', sans-serif;
+  }
+  
+  
+  /* CSS Reset */
+  * {
+	/* margin: 0; */
+	/* padding: 0; */
+	box-sizing: border-box;
+	}
+  
+ 
+  
+  .vector-5 {
+	border: 1px solid rgba(14, 123, 67, 1);
+  }
+  
+  .icon-4 {}
+  
+  .text-7 {
+	font-size: 12px;
+	font-family: var(--font-family-helvetica);
+	font-weight: normal;
+	text-align: left;
+	color: rgba(14, 123, 67, 1);
+	}
+  
+  .typography-6 {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 10px;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 59px;
+	width: 59px;
+  }
+  
+  .alerts-3 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 4px;
+	padding: 6px 6px 6px 6px;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+	background-color: rgba(187, 239, 212, 0.5);
+	border-radius: 6px;
+	position: absolute;
+	display: none;
+	}
+  
+  .vector-8 {
+	/* position: absolute; */
+	left: 345.51202392578125px;
+	top: 5.8076171875px;
+	/* width: 549.0955200195312px; */
+	/* height: 249.24000549316406px; */
+	/* display: none; */
+	}
+  
+  .text-9 {
+	/* position: absolute; */
+	left: 379px;
+	top: 290px;
+	width: 36px;
+	height: 22px;
+	font-size: 16px;
+	font-family: var(--font-family-helvetica);
+	font-weight: normal;
+	text-align: left;
+	color: rgba(32, 32, 32, 1);
+	  display: none;
+	}
+  
+  .vector-11 {
+	position: absolute;
+	left: 3.5293288230895996px;
+	top: 3.529411792755127px;
+	width: 22.94117546081543px;
+	height: 22.941177368164062px;
+	border: 1px solid rgba(32, 32, 32, 1);
+	  display: none;
+  }
+  
+  .icon-10 {
+	/* position: absolute; */
+	left: 345px;
+	top: 287px;
+	width: 30px;
+	height: 30px;
+	  display: none;
+	}
+  
+  .text-12 {
+	/* position: absolute; */
+	left: 465px;
+	top: 290px;
+	width: 28px;
+	height: 22px;
+	font-size: 16px;
+	font-family: var(--font-family-helvetica);
+	font-weight: normal;
+	text-align: left;
+	color: rgba(32, 32, 32, 1);
+	  display: none;
+	}
+  
+  .text-14 {
+	position: absolute;
+	left: 537px;
+	top: 290px;
+	width: 9px;
+	height: 22px;
+	font-size: 16px;
+	font-family: var(--font-family-helvetica);
+	font-weight: normal;
+	text-align: left;
+	color: rgba(32, 32, 32, 1);
+	  display: none;
+  }
+  
+  .vector-16 {
+	position: absolute;
+	left: 2.8235294818878174px;
+	top: 1.4117647409439087px;
+	width: 18.35293960571289px;
+	height: 21.176471710205078px;
+	border: 1px solid rgba(32, 32, 32, 1);
+	  display: none;
+  }
+  
+  .icon-15 {
+	position: absolute;
+	left: 509px;
+	top: 290px;
+	width: 24px;
+	height: 24px;
+	  display: none;
+  }
+  
+  .group-629-13 {
+	/* position: absolute; */
+	left: 509px;
+	top: 290px;
+	width: 37px;
+	height: 24px;
+	  display: none;
+	}
+  
+  .text-18 {
+	font-size: 16px;
+	font-family: var(--font-family-helvetica);
+	font-weight: normal;
+	text-align: left;
+	color: rgba(133, 133, 133, 1);
+	  display: none;
+  }
+  
+  .line-4-19 {
+	border: 1px solid rgba(133, 133, 133, 1);
+	  display: none;
+  }
+  
+  .button-17 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	padding: 16px 24px 16px 24px;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-radius: 61px;
+	transform: scale(0.2);
+	  display: none;
+	}
+  
+  .vector-21 {
+	position: absolute;
+	left: 435.4705810546875px;
+	top: 294.94140625px;
+	width: 22.058822631835938px;
+	height: 19.779705047607422px;
+	border: 1px solid rgba(0, 0, 0, 1);
+	  display: none;
+  }
+  
+  .group-670-20 {
+	/* position: absolute; */
+	/* left: 435.4705810546875px; */
+	/* top: 294.94140625px; */
+	/* width: 22.058822631835938px; */
+	/* height: 19.779705047607422px; */
+	display: none;
+	}
+  
+  .frame-445-1 {
+	/* position: absolute; */
+	/* left: 322px; */
+	/* top: -13134px; */
+	/* width: 900px; */
+	/* height: 325px; */
+	/* position: relative; */
+	/* width: 100%; */
+	/* height: auto; */
+	display: flex;
+	flex-direction: row;
+	column-count: 2;
+	/* flex-grow: 1; */
+	/* flex-basis: 25%; */
+	}
 
