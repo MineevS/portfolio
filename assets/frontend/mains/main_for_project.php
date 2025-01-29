@@ -17,6 +17,9 @@
 				{/if}
 			</div>
 			{query_properties_project for="name" name_default="$name_default"}
+			{if isset($access)|default}
+				{query_editor_button action="$ACTION"}
+			{/if}
 		</article>
 	    <div class="container" style="display: grid; width: 50%; grid-template-columns: 2fr auto; gap: 20px; padding-bottom: 1rem;"> <!-- height: 500px; -->
 	        <div class="container" style="display: flex; flex-direction: column; width: 100%; background-color: #fff;"> <!-- Основная информация-->

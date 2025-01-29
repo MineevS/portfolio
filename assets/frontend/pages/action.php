@@ -14,7 +14,7 @@ enum ACTION
     case save_data_vacancy;
     case check_like_project;
     case show_input_suggestion;
-    case order_project_newest;
+    case order_sort;
 } // /*case load_avatar;*/
  // /*case load_avatar;*/
 
@@ -150,7 +150,7 @@ switch ($_POST['action']) {
             'offset' => "$offset",
         );
 
-        $content_html = psql_query_projects($params, $smarty);
+        $content_html = trim(psql_query_projects($params, $smarty));
 
         //psql_query_projects($params, $smarty);
 
@@ -258,31 +258,64 @@ switch ($_POST['action']) {
         ));
 
         break;
+    case ACTION::order_sort->name: // Подсказка для поиска проектов;
 
-        case ACTION::order_project_newest->name: // Подсказка для поиска проектов;
+        $type = $_POST['type'];
+        $page = $_POST['page'];
+
+        $tab = '';
+        $col = 'premier';
+        $ordebytype = OBT::ASC->name;
+        switch($page){
+            case 'profiles':
+                break;
+            case 'projects':
+                $tab = TBN::PROJECTS->value; //'info_project'
+
+                switch($type){
+                    case 'new':
+                        break;
+                    case 'old':
+                        $ordebytype = OBT::DESC->name;
+                        break;
+                    case 'rel':
+                        break;
+                }
+               
+                break;
+            case 'vacancies':
+                break;                      
+        }
+
+        /*
+        LIMIT 10;
+        groupby('create')
+        orderByType(OBT::ASC->value)
+        ASC/DESC
+        */
         
-            $tab = TBN::PROJECTS->value; //'info_project'
-            $params = array(
-                'select' => '*',
-                'from' => "$tab",
-                'orderby' => 'start', // asc добавить
-                
-            );
+        
+        $params = array(
+            'select' => '*',
+            'from' => "$tab",
+            'orderby' => $col, // asc добавить
+            'orderbytype' => $ordebytype 
+        );
+
+        $content_html = trim(psql_query_projects($params, $smarty));
+
+        //psql_query_projects($params, $smarty);
+
+        //$content_html = '';
+        //if($result) $data = $wdbc->responce();
+
+        echo json_encode(array(
+            'load_projects' => "success",
+            'error_code' => 0,
+            'data' => $content_html // $wdbc->query()->request()
+        ));
     
-            $content_html = psql_query_projects($params, $smarty);
-    
-            //psql_query_projects($params, $smarty);
-    
-            //$content_html = '';
-            //if($result) $data = $wdbc->responce();
-    
-            echo json_encode(array(
-                'load_projects' => "success",
-                'error_code' => 0,
-                'data' => $content_html // $wdbc->query()->request()
-            ));
-    
-            break;
+        break;
 }
 
 // if($last_error_wdbc != 0) echo "./../".$URL ; else echo $last_error_wdbc; // "Location: ./$URL"; header("Location: ./$URL");

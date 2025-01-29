@@ -38,9 +38,9 @@
                             <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                         </svg></button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="orderByNewest('{$ACTION}')">Новые</a>
-                        <a href="#">Старые</a>
-                        <a href="#">Релевантные</a>
+                        <a href="#" onclick="order_sort.call(this, 'new', '{$ACTION}')">Новые</a>
+                        <a href="#" onclick="order_sort.call(this, ('old', '{$ACTION}')">Старые</a>
+                        <a href="#" onclick="order_sort.call(this, ('rel', '{$ACTION}')">Релевантные</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
         <div id="projects" class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; min-height: 200px; align-items: center;">
             {query_projects select="*" from="$tab_projects" orderby="id" limit="$SIZE_PAGE_PROJECTS" offset="0"}
             <div style="display: flex;flex-direction: column;align-items: center; justify-content: center;">
-                <button id="load_project_button" type="submit" style="width: auto;height: auto;opacity: 100%; vertical-align: middle; border: none; background-color: none;" onclick="loadProjets('{$ACTION}');">
+                <button class="loadProjectsBtn" id="load_project_button" type="submit" style="width: auto;height: auto;opacity: 100%; vertical-align: middle; border: none; border-radius: 20px;" onclick="loadProjets('{$ACTION}');">
                     <!--<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
                         <rect width="29" height="29" x=".5" y=".5" stroke="#202020" rx="14.5"/>
                         <path fill="#202020" d="M14 24.896a1 1 0 0 0 2 0h-2Zm1.707-20.499a1 1 0 0 0-1.414 0l-6.364 6.364a1 1 0 0 0 1.414 1.414L15 6.518l5.657 5.657a1 1 0 0 0 1.414-1.414l-6.364-6.364ZM16 24.896V5.104h-2v19.792h2Z"/>
@@ -62,7 +62,7 @@
                         <path fill="#202020" d="M15.999 5.104a1 1 0 1 0-2 0h2Zm-1.707 20.498a1 1 0 0 0 1.414 0l6.364-6.363a1 1 0 0 0-1.414-1.415l-5.657 5.657-5.657-5.657a1 1 0 1 0-1.414 1.415l6.364 6.363Zm-.293-20.498v19.791h2V5.104h-2Z" />
                     </svg> <!-- Если элементы ещё имеются -->
                 </button>
-                <p id="load_project_p" style="display: none;">Кажется вы всё посмотрели</p>
+                <p id="load_project_p" style="display: none; font-family: 'Helvetica'; font-size: 16px; font-weight: lighter;">Кажется вы всё посмотрели</p>
             </div>
         </div>
     </div>

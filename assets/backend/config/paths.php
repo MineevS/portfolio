@@ -62,7 +62,7 @@
 	enum ICON_DEFAULT : string {
 		case VACANCY 	= "/assets/frontend/icons/default_avatar_vacancy.jpg";
 		case PROFILE 	= "/assets/frontend/icons/default_avatar_profile.jpg";
-		case PROJECT 	= "/assets/frontend/icons/default_avatar_profile.jpg";
+		case PROJECT 	= "/assets/frontend/icons/default_avatar_project.jpg";
 	}
 
 	enum PATH_DEFAULT : string {
@@ -120,7 +120,7 @@
 	class_alias('SELECT_QUERY', 'SQ');
 	
 	enum ORDERBYTYPE {
-		case ACS;
+		case ASC;
 		case DESC;
 	}
 	

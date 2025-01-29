@@ -9,7 +9,8 @@
 					<p class="VasekMain" style="justify-self: start;"> Вакансия </p>
 					<h1 class="HelveticaMain" style="justify-self: center;"> в команду </h1>
 					{if isset($access)|default}
-                		<button id="editPage" style="justify-self: end;" onclick="editPage.call(this, true, '{$ACTION}');">редактировать</button>
+						{query_editor_button action="$ACTION" style="justify-self: end;"}
+                		<!-- <button id="editPage" style="justify-self: end;" onclick="editPage.call(this, true, '{$ACTION}');">редактировать</button>-->
 					{/if}
 				</article>
 
@@ -66,7 +67,6 @@
                       <div>-->
 	            </article>
 				 {if $access|default}
-
 				 <div class="input_content container" style="display: none; flex-direction: column; gap:  10px; align-items: center;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
 						<!--query_authors-->
 						<!--<div class="container" style="width: 100%;">-->

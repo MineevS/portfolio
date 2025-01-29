@@ -33,28 +33,31 @@ class Query {
                 $this->request = "SELECT $data";
                 break;
             case SELECT_QUERY::FROM->value:
-                $this->request = $this->request." FROM ".$data;
+                $this->request .= " FROM ".$data;
                 break;
             case SELECT_QUERY::WHERE->value:
-                $this->request = $this->request." WHERE ".$data;
+                $this->request .= " WHERE ".$data;
                 break;
             case SELECT_QUERY::ILIKE->value:
-                $this->request = $this->request." ILIKE ".$data;
+                $this->request .= " ILIKE ".$data;
                 break;
             case SELECT_QUERY::LIMIT->value:
-                $this->request = $this->request." LIMIT ".$data;
+                $this->request .= " LIMIT ".$data;
                 break;
             case SELECT_QUERY::OFFSET->value:
-                $this->request = $this->request." OFFSET ".$data;
+                $this->request .= " OFFSET ".$data;
                 break;
             case SELECT_QUERY::HAVING->value:
-                $this->request = $this->request." HAVING ".$data;
+                $this->request .= " HAVING ".$data;
                 break;
             case SELECT_QUERY::GROUPBY->value:
-                $this->request = $this->request." GROUP BY ".$data;
+                $this->request .= " GROUP BY ".$data;
                 break;
             case SELECT_QUERY::ORDERBY->value:
-                $this->request = $this->request." ORDER BY ".$data;
+                $this->request .= " ORDER BY ".$data;
+                break;
+            case SELECT_QUERY::ORDERBYTYPE->value:
+                $this->request .= " ".$data;
                 break;
         }
     }
@@ -344,9 +347,10 @@ class Query {
 
     function ilike(){
         $res_ilike = $this->accomulate(...func_get_args());
+        
         $this->selector_query_select(SELECT_QUERY::ILIKE, $res_ilike);
-        return $this;
 
+        return $this;
     }
     function update(){
         $this->clear_query();

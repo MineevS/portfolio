@@ -50,13 +50,20 @@
 					</nav>
 					<div>
 						{if isset($icon)|default}
-							<a href="">
-								<img id="profile" class="avatar" src="{$icon}" />
-							</a>
-							<section style="display: flex; flex-direction: column; position: absolute; z-index: 5; width: fit-content; heigh: 100px; border: 3px solid black; border-radius: 5px; ">
+							
+							<!--<section style="display: flex; flex-direction: column; position: absolute; z-index: 5; width: fit-content; heigh: 100px; border: 3px solid black; border-radius: 5px; ">
 								<button onclick="location.href='{$PROFILE}'">Мой профиль</button>
 								<button onclick="logout('{$ACTION}');">Выход</button>
-							</section>
+							</section>-->
+							<div class="dropdown">
+							<a href="" class="lass="dropbtn"">
+								<img id="profile" class="avatar" src="{$icon}" />
+							</a>
+								<div class="dropdown-content">
+									<a href="#" onclick="location.href='{$PROFILE}'">Мой профиль</a>
+									<a href="#" onclick="logout('{$ACTION}');">Выход</a>
+								</div>
+							</div>
 						{else}
 							<div>
 								<a target="iframe-auth-reg" onclick="create_iframe_authorization_registration();" href="{$HFR}" >Вход</a> <!-- <?php echo AUTH::PATH->value; ?> href="./frames/authorization.html" -->

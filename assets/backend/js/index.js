@@ -178,7 +178,7 @@ function createElementFromHTML(htmlString) {
     var div = document.createElement('div');
     div.innerHTML = htmlString.trim();
     // Change this to div.childNodes to support multiple top-level nodes.
-    return div.childNodes;
+    return div.children; //childNodes
 }
 
 function loadProjets(path) {
@@ -186,6 +186,10 @@ function loadProjets(path) {
 
     window.page_load_projects++; // Инкремент на следующую страницу; // Размер (объём) одной страницы определен в ...
 
+    query_projects(path);
+}
+
+function query_projects(path){
     $.ajax({
         type: "POST",
         url: path,
@@ -199,6 +203,13 @@ function loadProjets(path) {
     });
 }
 
+function removeAllChildren(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
+  
+
 function print_projects(result) {
     console.log(result);
     console.log(result['data']);
@@ -206,9 +217,12 @@ function print_projects(result) {
 
     if (json_data.hasOwnProperty('data')) {
         var container_projects = document.getElementById('projects');
+        /*removeAllChildren(container_projects);*/
         var divs = createElementFromHTML(json_data['data']);
         if (divs.length > 0)
             [...divs].forEach((div_elem) => {
+
+                console.log(div_elem.getElementsByClassName('projectTitle')[0].textContent);
                 container_projects.insertBefore(div_elem, container_projects.childNodes[container_projects.childNodes.length - 2]);
             });
         else {                     // Закончились элементы;
@@ -256,19 +270,37 @@ function editPage(code_peration, path) {
                 break;
         }
     });
-    var inputs_content = document.getElementsByClassName('showHide');
-    [...inputs_content].forEach((input) => {
-        input.style.display = (code_peration ? 'flex' : 'none');
+    var displays = document.getElementsByClassName('display');
+    [...displays].forEach((elem) => {
+        elem.style.display = (code_peration ? 'flex' : 'none');
+        if(elem.classList.contains('buttonTag')) 
+            elem.setAttribute('onclick', (code_peration ? 'this.parentNode.remove();' : '')) // onclick=""
     });
-    var edits = document.getElementsByClassName('edit');
-    [...edits].forEach((elem) => {
-        elem.style.visibility = (code_peration ? 'visible' : 'hidden');
+    var visibls = document.getElementsByClassName('visibility'); // edit
+    [...visibls].forEach((vis) => {
+        vis.style.visibility = (code_peration ? 'visible' : 'hidden');
         /*if(code_peration) { // visibility: visible;
             elem.removeAttribute('hidden');
         } else {
             elem.setAttribute('hidden', true);
         }*/
     });
+    /*var showsHides = document.getElementsByClassName('showHide');
+    [...showsHides].forEach((sh) => {
+        if(code_peration) sh.removeAttribute('hidden');
+        else sh.setAttribute('hidden', true);
+    });*/
+    var selects = document.getElementsByClassName('selProperty');
+    [...selects].forEach((sl) => {
+        var elem = sl.previousElementSibling;
+
+        if(code_peration) sl.removeAttribute('hidden');
+        else sl.setAttribute('hidden', true);
+
+        elem.setAttribute('type', (!code_peration ? 'text' : 'hidden'));
+        if (!code_peration) elem.value = sl.value;
+    });
+
     var showers_hiders = document.getElementsByClassName('shower_hider');
     [...showers_hiders].forEach((input) => {
         var select = input.nextElementSibling;
@@ -288,6 +320,12 @@ function editPage(code_peration, path) {
         case 'profile':
             //this.innerHTML += " профиль";
             if (!code_peration) { // Сохранить
+                /*var selects = document.getElementsByTagName('select');
+                [...selects].forEach((select) => {
+                    console.log(select.value);
+                    select.previousElementSibling;
+                });*/
+                
                 func_page = function (json_data) {
                     if (json_data.hasOwnProperty('error_code') && !json_data['error_code']) { // Очистка после успешной загрузки;
                         var avatar = document.getElementById('avatar');
@@ -335,28 +373,65 @@ function editPage(code_peration, path) {
                     if (property.textContent.trim() !== "") { formData.append(property.id, property.textContent.split('/').pop().trim()); property.textContent = null; }; // отправляем url на аватарку по умолчанию;
                     break;
                 case 'tags': // ???
+                case 'skills':
                     if (currentPage === 'project')
                         formData.append(property.id, property.value.trim());
                     else {
-                        var tags = accum.call(property.childNodes);
-                        formData.append('tags', JSON.stringify(tags));
+                        var tags = accum.call(property.children);
+                        formData.append(property.id, JSON.stringify(tags));
                     }
                     break;
+                /*case 'skills':
+                    var skills = accum.call(property.children); // childNodes // children;
+                    formData.append('skills', JSON.stringify(skills));
+                    break;*/
                 case 'duties':
+                case 'goals':
                     var duties = accum.call([...property.getElementsByClassName('cardDuty')]);
                     formData.append(property.id, JSON.stringify(duties));
                     break;
                 case 'email':
+                    if(!emails.includes(property.value.trim())){
+                        emails.push(property.value.trim());
+                    } else {
+                        // TODO;
+                    }
+                    break;
                 case 'phone':
+                    if(!phones.includes(property.value.trim())){
+                        phones.push(property.value.trim());
+                    } else {
+                        // TODO;
+                    }
+                    break;
                 case 'site':
-                    contacts[property.value.trim()] = property.id; // Ключом является значение, а значением id.
+                    if(!sites.includes(property.value.trim())){
+                        sites.push(property.value.trim());
+                    } else {
+                        // TODO;
+                    }
+                    break;
                     break;
                 default:
-                    formData.append(property.id, property.value.trim());
+                    try {
+                        if(property.value) formData.append(property.id, property.value.trim());
+                        else formData.append(property.id, property.textContent.trim());
+                    } catch(error){
+                        console.log(error);
+                    }
                     break;
             }
         });
+
+        if(emails.length > 0) contacts['emails'] = emails;
+        if(phones.length > 0) contacts['phones'] = phones;
+        if(sites.length  > 0) contacts['sites']  = sites;
+
         if (Object.keys(contacts).length > 0) formData.append('contacts', JSON.stringify(contacts));
+
+
+        // contacts[property.value.trim()] = property.id; // Ключом является значение, а значением id.
+        
         formData.entries().forEach((entry) => { // For Debug;
             console.log(entry);
         });
@@ -372,6 +447,7 @@ function selectTypeContact() {
     var name = '';
     var maxlength = '';
     var placeholder = '';
+    var mask = function (params) {};
     switch (this.value) {
         case 'Телефон':
             value = "+7(___)___-__-__";
@@ -380,7 +456,9 @@ function selectTypeContact() {
             type = 'tel';
             name = 'phone';
 
-            maxlength = '12';
+            maxlength = '17';
+
+            mask = mask_phone;
             break;
         case 'Почта':
             value = "___@___.__";
@@ -388,6 +466,8 @@ function selectTypeContact() {
 
             type = 'email';
             name = 'email';
+
+            mask = mask_email;
             break;
         case 'Сайт':
             value = "http://...";
@@ -395,8 +475,14 @@ function selectTypeContact() {
 
             type = 'url';
             name = 'site';
+
+            mask = mask_site;
             break;
     }
+
+    //input.removeEventListener('input');
+
+    //input.addEventListener("input", mask_phone, false);
     var input = this.nextElementSibling;
     input.name = name;
     input.id = name; // временно;
@@ -404,6 +490,12 @@ function selectTypeContact() {
     input.value = value;
     input.maxlength = maxlength;
     input.placeholder = placeholder;
+
+    input.setAttribute('oninput', mask_phone);
+    
+    input.setAttribute('value', value);
+    input.setAttribute('maxlength', maxlength);
+    input.setAttribute('placeholder', placeholder);
 }
 
 /*var formData = new FormData();
@@ -437,6 +529,30 @@ elems += '"' + this[this.length - 1].textContent.trim() + '"]';*/
     
     
 }*/
+
+function addGoalDuty(container, log){
+    //console.log(this.value, container);
+    var li = document.createElement('li');
+    var div = ' \
+        <li> \
+            <div class="cardDuty" style=""> \
+                <button onclick="this.parentNode.remove();" class="buttonDuty display" style="display: flex;"> \
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="5.5 9 20 20"> \
+                        <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path> \
+                    </svg> \
+                </button> \
+                <span style="margin: 0; padding-right: 3vw;" onclick="loadDuty.call(this);"> \
+                    '+ this.value +' \
+                </span> \
+            </div> \
+        </li>'; // wrapperHtmlLi()
+
+    li.innerHTML = div;
+
+    // console.log(li.textContent);
+
+    duplicateСontrol.call(li, container,  log);
+}
 
 
 function addDuty() {
@@ -703,7 +819,7 @@ function editVacancy(code_peration, path) {
 
         if (window.hasOwnProperty('vacancy_id')) data['vacancy_id'] = window.vacancy_id;
 
-        ajax_data(data, function (result) {
+        /*ajax_data(data, function (result) {
             let json_data = JSON.parse(result);
 
             if (json_data.hasOwnProperty('save_data_vacancy')) {
@@ -719,10 +835,10 @@ function editVacancy(code_peration, path) {
             }
 
             //
-        }, path);
+        }, path);*/
 
-        if (change_avater.length != 0)
-            ajax_img(formData, path, 'avatar-vacancy');
+        //if (change_avater.length != 0)
+            //ajax_img(formData, path, 'avatar-vacancy');
     }
 }
 
@@ -795,6 +911,72 @@ function addTag() {
     //elem.style.listStyleType = 'none'; //(code_peration ? 'none': 'disc')
 
     tags.appendChild(elem);
+}
+
+function addSkill(container, log){
+    console.log(this, this.value); // input;
+    console.log(container); // container;
+
+    var label = document.createElement('label');
+    label.classList.add('labelTag');
+
+    label.innerHTML = this.value + ' \
+        <button class="buttonTag display" onclick="this.parentNode.remove();" style="display: block;" > <!-- hidden visibility: hidden; style="display: none;" --> \
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="7 10 20 20"> \
+                <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path> \
+            </svg> \
+        </button>'; // clone in functions.php [wrapperHtmlTagsSkills() row:col];
+
+    duplicateСontrol.call(label, container, log); // this.value, 
+
+    /*var fsd = false; // fsd - flag_search_dublicap;
+    for (const label of container.children){
+        if(label.textContent.trim() === this.value.trim()){
+            fsd = true; 
+            break;
+        }
+    }
+
+    if(!fsd) { 
+        label.innerHTML = this.value + ' \
+        <button class="buttonTag display" onclick="this.parentNode.remove();" style="display: block;" > <!-- hidden visibility: hidden; style="display: none;" --> \
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="7 10 20 20"> \
+                <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path> \
+            </svg> \
+        </button>'; // clone in functions.php [wrapperHtmlTagsSkills() row:col];
+        container.append(label);
+    } else log.textContent = 'Обнаружен дубликат навыка!'; // console.log('Обнаружен дубликат навыка!');
+
+    var myTimer = setTimeout(function(){
+        log.textContent = '';
+        clearTimeout(myTimer);
+    }, 1000);*/
+}
+
+function duplicateСontrol(container, log) {
+    var fsd = false; // fsd - flag_search_dublicap;
+    for (const elem of container.children){
+        if(elem.textContent.trim() === this.textContent.trim()){
+            fsd = true; 
+            break;
+        }
+    }
+
+    if(!fsd) container.append(this);
+    else {
+        log.textContent = 'Обнаружен дубликат!';
+
+        var myTimer = setTimeout(function(){
+            log.textContent = '';
+            clearTimeout(myTimer);
+        }, 1000);
+
+        this.remove();
+    }
+}
+
+function addTagSkill(){
+    
 }
 
 function resultSearch(value) {
@@ -901,8 +1083,8 @@ function setPattern() {
     var tels = document.getElementsByName('phone');
 
     tels.forEach((tel) => {
-        tel.pattern = "\\+7\\s?[\\(]{0,1}9[0-9]{2}[\\)]{0,1}\\s?\\d{3}[-]{0,1}\\d{2}[-]{0,1}\\d{2}";
-        console.log(tel);
+        //tel.pattern = "\\+7\\s?[\\(]{0,1}9[0-9]{2}[\\)]{0,1}\\s?\\d{3}[-]{0,1}\\d{2}[-]{0,1}\\d{2}";
+        //console.log(tel);
     });
 }
 
@@ -918,7 +1100,7 @@ function setCursorPosition(pos, e) {
     }
 }
 
-function mask(e) {
+function mask_phone(e) {
     var matrix = this.placeholder,// .defaultValue
         i = 0,
         def = matrix.replace(/\D/g, ""),
@@ -933,14 +1115,27 @@ function mask(e) {
     setCursorPosition(i, this);
 }
 
+function mask_email(e) {
+
+}
+
+function mask_site(e) {
+
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     //loadMetaStars();
     //goToNextSlide();
 
     setPattern();
 
-    var input = document.querySelector("#phone");
-    if (input) input.addEventListener("input", mask, false);
+    //var input = document.querySelector("#phone");
+    //if (input) input.addEventListener("input", mask_phone, false);
+
+    var textareas = document.getElementsByTagName('textarea');
+    [...textareas].forEach((elem) => { // Недостаток `textarea` исправляем таким образом. // div c contentEdit='true'.
+        elem.style.height = (elem.scrollHeight > 0 ? elem.scrollHeight : 40) + 'px';
+    });
 
 
     var list = document.getElementById("dragAndDrop");
@@ -963,13 +1158,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
         }
 
+        /*
+        draggable: dragTag,
+        */
         new Sortable(container, {
             draggable: dragTag,
             animation: 150,
+            axis: "y",
+            filter: 'input', // Исключаем из сортировки возможность брать за input и перетаскивать
+            preventOnFilter: false, // Позволяем передовать внешнему обработчику собития на фокус.
             onEnd: function (event) {
                 var elem = event.originalEvent.target;
                 if (elem.classList.contains('remove') && elem.id === remId) event.item.remove();
-            }
+            }// filter: 'input',
         });
     });
 
@@ -1150,7 +1351,7 @@ function goToPrevSlide() {
 
 /*profile*/
 function addContacts() {
-    console.log(this);
+    // console.log(this);
     var span = document.createElement('span');
     //span.draggable ="true";
     span.className = "contact ";
@@ -1162,8 +1363,8 @@ function addContacts() {
 							<option value="Почта">Почта</option>\
 							<option value="Сайт">Сайт</option>\
 						</select>\
-						<input class="contentProperty" id="phone" name="phone" type="tel" maxlength="12" value="+7(___)___-__-__" placeholder="+7(___)___-__-__" readOnly/> \
-            			<svg class="drag showHide" width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"> \
+						<input class="contentProperty" id="phone" name="phone" type="tel" oninput="mask_phone();" maxlength="17" value="+7(___)___-__-__" placeholder="+7(___)___-__-__" readOnly/> \
+            			<svg class="drag display" width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"> \
 							<rect width="48" height="48" fill="white" fill-opacity="0.01"/> \
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M19 10.3075C19 12.6865 17.2091 14.615 15 14.615C12.7909 14.615 11 12.6865 11 10.3075C11 7.92854 12.7909 6 15 6C17.2091 6 19 7.92854 19 10.3075ZM15 28.615C17.2091 28.615 19 26.6865 19 24.3075C19 21.9285 17.2091 20 15 20C12.7909 20 11 21.9285 11 24.3075C11 26.6865 12.7909 28.615 15 28.615ZM15 42.615C17.2091 42.615 19 40.6865 19 38.3075C19 35.9285 17.2091 34 15 34C12.7909 34 11 35.9285 11 38.3075C11 40.6865 12.7909 42.615 15 42.615Z" fill="black"/> \
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M37 10.3075C37 12.6865 35.2091 14.615 33 14.615C30.7909 14.615 29 12.6865 29 10.3075C29 7.92854 30.7909 6 33 6C35.2091 6 37 7.92854 37 10.3075ZM33 28.615C35.2091 28.615 37 26.6865 37 24.3075C37 21.9285 35.2091 20 33 20C30.7909 20 29 21.9285 29 24.3075C29 26.6865 30.7909 28.615 33 28.615ZM33 42.615C35.2091 42.615 37 40.6865 37 38.3075C37 35.9285 35.2091 34 33 34C30.7909 34 29 35.9285 29 38.3075C29 40.6865 30.7909 42.615 33 42.615Z" fill="black"/> \
@@ -1279,7 +1480,7 @@ function addContactsIcon() {
 function inputSugToolTip(path) {
 
     let inputValue = document.getElementById("inputSearch").value;
-    document.getElementsByClassName('inputSug')[0].style.display = 'flex';
+    //document.getElementsByClassName('inputSug')[0].style.display = 'flex';
 
     $.ajax({
         type: "POST",
@@ -1319,7 +1520,8 @@ function orderByNewest(path){
         url: path,
         data: {
             // search: inputValue,
-            action: "order_project_newest"
+            type: 'new', // 'old' // 'rel';
+            action: "order_project"
         },
         success: function (result) {
             console.log(result);
@@ -1328,4 +1530,43 @@ function orderByNewest(path){
          
         }
     });
+}
+
+function order_sort(type, path){
+    var currentPage = window.location.href.split('/').pop().split('.')[0];
+
+    
+
+    if(this.style.background === ''){
+        this.style.background = 'red';
+
+        $.ajax({
+            type: "POST",
+            url: path,
+            data: {
+                // search: inputValue,
+                type: type, // 'old' // 'relevant';
+                page: currentPage,
+                action: "order_sort"
+            },
+            success: function (result) {
+                console.log(result);
+                
+                document.getElementById('projects').innerHTML = '';
+                
+                print_projects(result);
+             
+            }
+        });
+
+    } else {
+        this.style.background = '';
+
+        query_projects(path);
+    }
+}
+
+function resizeTextarea(){
+    this.style.height = '1px';
+    this.style.height = (this.scrollHeight + 6) + 'px'; 
 }
