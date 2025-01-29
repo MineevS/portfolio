@@ -42,6 +42,15 @@ $smarty->registerPlugin("function", "query_feedback",           "psql_query_feed
 $smarty->registerPlugin("function", "query_screenshots",        "psql_query_screenshots");
 $smarty->registerPlugin("function", "query_vacancy",            "psql_query_vacancy");
 $smarty->registerPlugin("function", "query_properties_vacancy", "psql_query_properties_vacancy");
+$smarty->registerPlugin("function", "query_editor_button",      "psql_query_editor_button");
+$smarty->registerPlugin("function", "query_header_page",        "psql_query_header_page");
+
+$smarty->registerPlugin("function", "query_input",              "query_input");
+
+
+
+
+
 
 // $smarty->testInstall(); 
 
