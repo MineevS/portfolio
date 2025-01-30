@@ -181,7 +181,7 @@ function psql_query_projects($params, $smarty)
                                 <small class="contentProperty" id="participants">24</small>
                             </div>
                         </div>
-                        <button class="buttonRef"><input hidden name="id" id="id" value=' . $data['id'] . '>Подробнее →</button>
+                        <button class="buttonRef"><input type="hidden" name="id" id="id" value=' . $data['id'] . '>Подробнее →</button>
                     </div>
                 </div>';
 
@@ -586,7 +586,7 @@ function psql_query_vacancies($params, $smarty)
 
             $html .= '</div></div>'; // </div>
 
-            $html .= '<input hidden type="text" name="id" id="id" value="' . $data["id"] . '">';
+            $html .= '<input  type="hidden" name="id" id="id" value="' . $data["id"] . '">';
             $html .= '<button  class="clickVacancy" type="submit" > Откликнуться </button>'; // Откликнуться / Вы откликнулись;
             $html .= '</form>';
         }
@@ -754,7 +754,10 @@ function query_property_option()
                 $count++;
             }
 
-            $array_values = array(...$array_yers);
+            $array_values = $array_yers;
+            break;
+        case 'status';
+            $array_values = array("Запуск", "В разработке", "Завершен", "В Архиве", "Идёт набор");
             break;
     }
 
@@ -880,9 +883,214 @@ function psql_query_properties_profile($params, $smarty)
     return $html;
 }
 
+function psql_query_properties_user($params, $smarty){
+
+    if (empty($params["for"])) return ''; // fro="project"
+
+    global $wdbc;
+
+    if(isset($params['data_users'])) $data_users = $params['data_users'];
+
+    $html = '';
+    foreach($data_users as $key => $value){
+        $sq = $wdbc->query()
+        ->select('*')
+        ->from('info_user')
+        ->where('id', $key)->exec();
+
+        if ($sq) {
+            $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
+    
+            foreach ($array_data as $data) {
+                $firstname = '';
+                $lastname = '';
+                $from ='';
+                $to ='';
+                $role ='';
+                $icon ='';
+                $id_prefix = 'pro';
+
+                switch($params["for"]){
+                    case 'project':
+                    case 'feedback':
+                        if(isset($data["firstname"]))   $firstname  = $data["firstname"];
+                        if(isset($data["lastname"]))    $lastname   = $data["lastname"];
+                        if(isset($data["lastname"]))    $lastname   = $data["lastname"];
+                        if(isset($data["icon"]))        $icon       = $data["icon"];
+
+                        break;
+                }
+
+                switch($params["for"]){
+                    case 'project':
+                        if(isset($value[0]))            $from  = $value[0];
+                        if(isset($value[1]))            $to    = $value[1];
+                        if(isset($value[2]))            $role  = $value[2];
+                        break;
+                    case 'feedback':
+                        $id_prefix = 'fb';
+
+                        if(isset($value[0]))            $count_stars    = $value[0];
+                        if(isset($value[0]))            $msg            = $value[1];
+
+                        break;
+                }
+
+                $id = $id_prefix.'-'.$key;
+                $html .= '
+                <div style="display: flex; flex-direction: row; column-gap: 10px;">
+                    <div class="div-left">
+                            <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="128" height="105" fill="none" viewBox="0 0 214 211">
+                            <defs>
+                                <pattern id="'.$id.'" width="1" height="1" patternContentUnits="objectBoundingBox">
+                                    <use href="#img'.'-'.$id.'" transform="translate(0 -.6) scale(.00174)"></use>
+                                </pattern>
+                                <image class="avatar" id="img'.'-'.$id.'" width="576" height="1280" data-name="image.png" href="/assets/frontend/icons/avatars_profiles/'.$icon.'"></image>
+                            </defs>
+                            <rect width="197.234" height="197.234" x="8.067" y="10.59" fill="url(#'.$id.')" stroke="#EA5657" stroke-width="3" rx="98.617"></rect>
+                            <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658"></path>
+                            <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M2 109.838C7.045 49.298 33.532 16.505 72.63 2"></path>
+                        </svg>
+                    </div>
+                    <div class="div-right" style="display: flex; flex-direction: column; column-gap: 7px; justify-content: center; ">
+                        <input class="projectTitle name" value="'.$firstname .' '. $lastname.'" readOnly />';
+
+                switch($params["for"]){
+                    case 'project':
+                        $html .= '
+                            <div style="display: flex; column-gap: 10px; align-items: center; ">
+                                <div style="display: flex; column-gap: 7px;">
+                                    <string>c</string><input id="from" class="user_data" type="text"  value="'.$from.'" readOnly>
+                                    <string>по</string><input id="to" class="user_data" type="text"  value="'.$to.'" readOnly>
+                                </div>
+                                <string styl="matgin-left: 1rem;">|</string><input  id="role" class="user_data" type="text"  value="'.$role.'" readOnly>
+                            </div></div>';
+                        break;
+                    case 'feedback':
+
+                        $count_stars;
+
+                        $status = ($count_stars > 2 ? 'Рекомендую' : 'Не рекомендую');
+
+                        $html_stars = '<div class="stars">';
+                        $name = 'star-'.$id;
+                        /*for($i = 0; $i < 5; $i++){
+                            $sid = $name.'-'.$i;
+
+                            $html_stars .= '
+                            <input name="'.$sid.'" type="radio" class="star-ratio" name="rt">
+                            <label class="star" for="'.$sid.'"></label>';
+                        }*/
+
+                        $html_stars .= '</div>';
+                            
+
+                            /*
+                            <svg class="star" xmlns="http://www.w3.org/2000/svg" '.($i < $count_stars ? 'fill' : 'stroke').'="#202020" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                <path d="M7.21 1.604c.3-.922 1.603-.922 1.903 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.44 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.679 15.25c-.784.57-1.839-.197-1.54-1.118l1.107-3.403a1 1 0 0 0-.364-1.118L.987 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.21 1.603Z"/>
+                            </svg>
+                            
+                            */
+
+                            
+
+                        /*$html_stars .= '<div class="ratio">
+                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
+                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
+                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
+                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
+                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
+                        </div>';*/
+
+                        // <string>'.$status.$html_stars.'</string></div>
+
+                        $html_stars = '
+                            <fieldset class="rating">
+                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                            </fieldset>
+                        ';
+
+
+                        /*
+                        
+                                                    <fieldset class="rating">
+                                
+                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+                                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                            </fieldset>
+                        
+                        
+                        */
+
+                        $html .= '
+                            <string>'.$status.$html_stars.'</string>
+                            <textarea>'.$msg.'</textarea></div>
+                        ';
+
+
+                        break;
+                }
+
+                $html .= '</div>';
+
+                
+    
+                /*$html .= '
+                    <div style="display: flex; flex-direction: row; column-gap: 10px;">
+                        <div class="div-left">
+                                <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="128" height="105" fill="none" viewBox="0 0 214 211">
+                                <defs>
+                                    <pattern id="'.$id.'" width="1" height="1" patternContentUnits="objectBoundingBox">
+                                        <use href="#img'.'-'.$id.'" transform="translate(0 -.6) scale(.00174)"></use>
+                                    </pattern>
+                                    <image class="avatar" id="img'.'-'.$id.'" width="576" height="1280" data-name="image.png" href="/assets/frontend/icons/avatars_profiles/'.$icon.'"></image>
+                                </defs>
+                                <rect width="197.234" height="197.234" x="8.067" y="10.59" fill="url(#'.$id.')" stroke="#EA5657" stroke-width="3" rx="98.617"></rect>
+                                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658"></path>
+                                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M2 109.838C7.045 49.298 33.532 16.505 72.63 2"></path>
+                            </svg>
+                        </div>
+                        <div class="div-right" style="display: flex; flex-direction: column; column-gap: 7px; justify-content: center; ">
+                            <input class="projectTitle name" value="'.$firstname .' '. $lastname.'" readOnly />
+                            <div style="display: flex; column-gap: 10px; align-items: center; ">
+                                <div style="display: flex; column-gap: 7px;">
+                                    <string>c</string><input id="from" class="user_data" type="text"  value="'.$from.'" readOnly>
+                                    <string>по</string><input id="to" class="user_data" type="text"  value="'.$to.'" readOnly>
+                                </div>
+                                <string styl="matgin-left: 1rem;">|</string><input  id="role" class="user_data" type="text"  value="'.$role.'" readOnly>
+                            </div>
+                        </div>
+                    </div>
+                ';*/
+    
+            }
+        }
+    }
+
+    return $html;
+}
+
 function psql_query_intelligence($params, $smarty) {}
 
-function psql_query_editor_button($params, $smarty)
+function query_editor_button($params, $smarty)
 { // $params['action'] // \'{$ACTION}\'
     $style = '';
     if (isset($params['style']))  $style = $params['style'];
@@ -902,11 +1110,11 @@ function psql_query_header_page($params, $smarty)
 
     $action = $smarty->getTemplateVars('ACTION');
     $url_templ_img = $smarty->getTemplateVars('template_name_default_img');
-    $url_img_profile = $smarty->getTemplateVars('icon');
+    // $url_img_profile = $smarty->getTemplateVars('icon');
     // $page = $params['page'];
 
     /*
-        {query_properties_profile for="head"}
+        {query_properties 1_profile for="head"}
 		{query_editor_button}
     */
 
@@ -919,8 +1127,54 @@ function psql_query_header_page($params, $smarty)
     switch ($page) {
         case 'profile':
             $params['for'] = 'head';
+            $url_img = $smarty->getTemplateVars('icon');
             $content_html = psql_query_properties_profile($params, $smarty);
-            $content_html .= psql_query_editor_button($params, $smarty);
+            $content_html .= query_editor_button($params, $smarty);
+
+            $svg_border = '
+                <rect width="197.234" height="197.234" x="8.067" y="10.59" fill="url(#a)" stroke="#EA5657" stroke-width="3" rx="98.617"/>
+                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658"/>
+                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M2 109.838C7.045 49.298 33.532 16.505 72.63 2"/>';
+
+            $width = 214;
+            $height = 211;
+            break;
+        case 'project':
+            // {query_propertiesd 1_project for="icon" icon_default="$icon_default"}
+            $params_list = array(
+                'for' => "url_icon",
+                'icon_default' => $smarty->getTemplateVars('icon_default')
+            );
+
+            //$url_img = $smarty->getTemplateVars('icon');
+
+            $url_img = psql_query_properties_project($params_list, $smarty);
+
+            //{query_properties 1_project for="name" name_default="$name_default"}
+            $params_list = array(
+                'for' => "name",
+                'name_default' => $smarty->getTemplateVars('name_default')
+            );
+            $html_name = psql_query_properties_project($params_list, $smarty);
+
+            $htm_editor_button = '';
+            if($smarty->getTemplateVars('access')){
+                // {query_editor_button action="$ACTION"}
+                $params_list = array(
+                    'action' => $smarty->getTemplateVars('ACTION')
+                );
+                $htm_editor_button = query_editor_button($params_list, $smarty);
+            }
+
+            $svg_border = '
+                <rect width="210" height="210" x="5" y="6" fill="url(#a)" stroke="#EA5657" stroke-width="3" rx="10"/>
+                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M208 6s-45 13-106 1.5C61.992-.043 35.965 2.309 22.789 4.82c-6.537 1.246-11.113 6.559-12.323 13.102C7.064 36.318.713 75.31 1.999 104c1.88 41.926 7 103.999 7 103.999M20 218.5s66-16 106-6c38.463 9.616 65.84 6.023 79.215 2.83 5.967-1.425 10.208-6.292 11.468-12.297 3.749-17.87 10.32-57.642 2.817-89.533-9.612-40.852 0-94.5 0-94.5"/>
+            ';
+
+            $content_html .= $html_name . $htm_editor_button;
+            $width = 225;
+            $height = 221;
+
             break;
     }
 
@@ -937,19 +1191,28 @@ function psql_query_header_page($params, $smarty)
 		</svg>
     */
 
+    /*'
+    <svg xmlns="http://www.w3.org/2000/svg" width="225" height="221" fill="none" viewBox="0 0 225 221">
+
+  <defs>
+    <pattern id="a" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <use href="#b" transform="translate(-.21 -.11) scale(.00088)"/>
+    </pattern>
+    <image id="b" width="1616" height="1264" data-name="image.png" href=""/>
+  </defs>
+</svg>
+    ';*/
+
     return    '<article class="articleProfile"> <!-- style="display: flex;  width: fit-content; justify-content: center; space-between; gap: 5%; align-items: center;"-->
 			<div class="avatar">
-                <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="214" height="211" fill="none" viewBox="0 0 214 211">
-                            <defs>
-                                <pattern id="a" width="1" height="1" patternContentUnits="objectBoundingBox">
-                                    <use href="#imgProfile" transform="translate(0 -.6) scale(.00174)"/>
-                                </pattern>
-                                <image class="avatar" id="imgProfile" width="576" height="1280" data-name="image.png" href="' . $url_img_profile . '"/>
-                                
-                            </defs>
-                            <rect width="197.234" height="197.234" x="8.067" y="10.59" fill="url(#a)" stroke="#EA5657" stroke-width="3" rx="98.617"/>
-                            <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658"/>
-                            <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M2 109.838C7.045 49.298 33.532 16.505 72.63 2"/>
+                <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="'.$width.'" height="'.$height.'" fill="none" viewBox="0 0 '.$width.' '.$height.'">
+                    <defs>
+                        <pattern id="a" width="1" height="1" patternContentUnits="objectBoundingBox">
+                            <use href="#imgProfile" transform="translate(0 -.6) scale(.00174)"/>
+                        </pattern>
+                        <image class="avatar" id="imgProfile" width="576" height="1280" data-name="image.png" href="' . $url_img . '"/>
+                    </defs>
+                    '.$svg_border.'
                 </svg>
 				<button class="avatar display" onclick="showContextMenu()" style="display: none;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="100" height="101" fill="none" viewBox="0 0 100 101">
@@ -994,19 +1257,28 @@ function query_input($params, $smarty)
     $type = 'search';
     switch ($for) {
         case 'search':
+            $onclick = 'addSkill';
             break;
         case 'add':
             $placeholder = 'дабавить';
             $type = 'text';
             break;
+        case 'tags':
+            $onclick = "addTag";
+            break;
+        case 'stack':
+            $onclick = "addSkill";
+            break;
     }
+
+    $onclick .= '.call(this.previousElementSibling, this.parentNode.parentNode.previousElementSibling, this.parentNode.nextElementSibling);';
 
     switch ($type_elem) {
         case 'span':
             $html = '
             <span class="' . $css . '">
                 <input class="' . $css . '" type="' . $type . '" placeholder="' . $placeholder . '" />
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 15 15" onclick="addSkill.call(this.previousElementSibling, this.parentNode.parentNode.previousElementSibling, this.parentNode.nextElementSibling);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 15 15" onclick="'.$onclick.'">
                     <path stroke="#858585" stroke-linecap="round" d="M10.698 10.59 14 14m-1.91-7.274c0 3.163-2.483 5.727-5.545 5.727C3.482 12.453 1 9.889 1 6.726 1 3.564 3.482 1 6.545 1c3.062 0 5.544 2.564 5.544 5.726Z"/>
                 </svg>
             </span>';
@@ -1018,9 +1290,48 @@ function query_input($params, $smarty)
             break;
     }
 
-
-
     return $html .= '<string></string>';
+}
+
+function query_properties_add($params, $smarty){
+    if (isset($params['for'])) $for = $params['for'];
+
+    $isDragAndDrop = false;
+    $onclick = '';
+    switch($for){
+        case 'contacts':
+            $isDragAndDrop = true;
+            $onclick = 'addContacts.call(this.parentNode.parentNode)';
+            break;
+        case 'projects':
+            $onclick = 'window.location.href=\''.$smarty->getTemplateVars('PAGE_PROJECT').'\'';
+            break;
+        case 'references':
+            $isDragAndDrop = true;
+            $onclick = 'addRefs.call(this.parentNode.parentNode)';
+            break;
+        case 3:
+            break;
+    }
+
+    $svg_bascket =' 
+        <svg id="contact" class="add remove" xmlns="http://www.w3.org/2000/svg" width="34" height="33" fill="none" viewBox="0 0 100 100">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m25.582 43.93 5.542 33.334a8.334 8.334 0 0 0 8.334 6.958H60.79a8.334 8.334 0 0 0 8.333-6.958l5.542-33.334a8.334 8.334 0 0 0-8.334-9.708h-32.54a8.333 8.333 0 0 0-8.208 9.708Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M39.999 38.389V27.555a10.042 10.042 0 0 1 10-10 10.042 10.042 0 0 1 10 10V38.39m-4.125 14.957-11.75 11.75m11.75 0-11.75-11.75"/>
+        </svg>';
+
+    $html = '
+        <div class="display" style="display: flex; justify-content: space-between; display: none; width: 100%; align-items: center;  height: 100%;">
+            <button class="visibility add " onclick="'.$onclick.'"  >
+                <svg class="add" xmlns="http://www.w3.org/2000/svg" width="34" height="33" fill="none" viewBox="0 0 34 33">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.444 17h31.111M17 1v31.111"/>
+                </svg>
+            </button>
+            '.($isDragAndDrop ? $svg_bascket : '').'
+        </div>
+    ';
+
+    return $html;
 }
 
 function psql_query_properties_project($params, $smarty)
@@ -1037,8 +1348,6 @@ function psql_query_properties_project($params, $smarty)
             ->where('id', $_SESSION['project_id'])
             ->exec();
     }
-
-
 
     /* Инициализация по умолчанию */
     $premier        = '...';
@@ -1065,9 +1374,10 @@ function psql_query_properties_project($params, $smarty)
                     if (isset($data['stack']))           $stack          = $data['stack'];
                     if (isset($data['communities']))     $communities    = $data['communities'];
                     if (isset($data['experts']))         $experts        = $data['experts'];
-                    if (isset($data['tags']))            $tags           = $data['tags'];
+                    
                     break;
                 case 'icon':
+                case 'url_icon':
                     if (isset($data['icon']))            $icon           = '/assets/frontend/icons/avatars_projects/' . $data['icon']; // avatar ?
                     break;
                 case 'name':
@@ -1076,36 +1386,102 @@ function psql_query_properties_project($params, $smarty)
                 case 'description':
                     if (isset($data['description']))     $description    = $data['description'];
                     break;
+                case 'tags':
+                    if (isset($data['tags']))            $tags           = json_decode($data['tags']);
+                    break;
+                case 'stack':
+                    if (isset($data['stack']))           $stack          = json_decode($data['stack']);
+                    break;
+                case 'team':
+                    if (isset($data['team']))            $team           = json_decode($data['team']);
+                    break;
+
             }
         }
     } // сведения о проекте не найдены. Создаем новый с данными по умолчанию.
 
     switch ($params["for"]) {
         case 'properties':
+            $html_select = query_property_option('status');
             $html .= '
-            <string>Дата выхода:                    <input class="contentProperty" id="premier"            value="' . $premier . '"        type="date"         readonly /></string>                                       
+            <string>Дата начала:                    <input class="contentProperty" id="premier"          value="' . $premier . '"        type="date"         readonly /></string>                                       
             <span>
-                <label for="select_status">Статус:  <input class="contentProperty" id="status"            value="' . $status . '"         name="selectStatus"  readonly /></label>
-                <select name="Status" id="select_status" hidden="true" > 
-                    <option value="Запуск"      >Запуск</option>
-                    <option value="В процессе"  >В процессе</option>
-                    <option value="Завершен"    >Завершен</option>
-                </select>
-            </span>                         
-            <string>Стек:                           <input class="contentProperty" id="stack"                   value="' . $stack . '"          type="text"         readonly /></string>
-            <string>Оценка сообщества:              <input class="contentProperty" id="communities"      value="' . $communities . '"    type="text"         readonly /></string>  
-            <string>Оценка знатаков:                <input class="contentProperty" id="experts"          value="' . $experts . '"        type="text"         readonly /></string>';
+                <string >Статус:                    
+                <input class="contentProperty" id="status"           value="' . $status . '"         name="selectStatus"  readonly />
+                    '.$html_select.'
+                </string>
+            </span>';
+
+            /*
+                <string>Стек:                           <input class="contentProperty" id="stack"            value="' . $stack . '"          type="text"         readonly /></string>
+                <string>Оценка сообщества:              <input class="contentProperty" id="communities"      value="' . $communities . '"    type="text"         readonly /></string>  
+                <string>Оценка знатаков:                <input class="contentProperty" id="experts"          value="' . $experts . '"        type="text"         readonly /></string>
+            */
 
             /*  <string>Популярные теги проекта:        <input class="contentProperty" id="tags"           value="'.$tags.'"           type="text"         readonly /></string> */
             break;
         case 'icon':
             $html .= '<img id="project" class="avatar" src="' . $icon . '" alt="..." style="width: 150px; height: 150px; border-radius: 20px;">';
             break;
+        case 'url_icon':
+            $html .= $icon;
+            break;
         case 'name':
-            $html .= '<input class="contentProperty" id="' . $params["for"] . '" style="font-family: \'Vasek\', arial; font-size: 4vw; text-align: center; color: #EA5657; margin: 0; line-height: .8em; white-space:nowrap;"  value="' . $name . '" readonly/>';
+            $html .= '<input class="contentProperty" id="' . $params["for"] . '"  value="' . $name . '" readonly/>';
             break;
         case 'description':
-            $html .= '<textarea class="contentProperty" id="' . $params["for"] . '" style="width: 100%;" readonly>' . $description . '</textarea>';
+            $html .= '<textarea class="contentProperty" oninput="resizeTextarea.call(this);" id="' . $params["for"] . '" style="width: 100%;" readonly>' . $description . '</textarea>';
+            break;
+        case 'tags':
+            if (isset($data[$params["for"]])) {
+                $tags = json_decode($data[$params["for"]]);
+                $html .= wrapperHtmlA(...$tags);
+            }
+            break;
+        case 'stack':
+            if (isset($data[$params["for"]])) {
+                $stack = json_decode($data[$params["for"]]);
+                $html .= wrapperHtmlLabel(...$stack);
+            }
+            break;
+        case 'team':
+            if (isset($data[$params["for"]])) {
+                $team = json_decode($data[$params["for"]]);
+
+                $params_list = array(
+                    'for' => 'project',
+                    'data_users' => $team
+                );
+
+                $html .= psql_query_properties_user($params_list, $smarty);
+
+                // $html .= wrapperHtmlLabel(...$team);
+            }
+            break;
+        case 'screenshots':
+            if (isset($data[$params["for"]])) {
+                $screenshots = json_decode($data[$params["for"]]);
+
+                foreach($screenshots as $screenshot){
+                    $html .= '
+                        <image style="box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);" src="/assets/frontend/img/' .  $screenshot . '"/> <!-- class="avatar" id="imgProfile" width="576" height="1280" data-name="image.png"-->
+                    ';
+                }
+            }
+
+            break;
+        case 'feedback':
+            if (isset($data[$params["for"]])) {
+                $feedbacks = json_decode($data[$params["for"]]);
+
+                $params_list = array(
+                    'for' => 'feedback',
+                    'data_users' => $feedbacks
+                );
+
+                $html .= psql_query_properties_user($params_list, $smarty);
+
+            }
             break;
     }
 
@@ -1610,6 +1986,23 @@ function wrapperHtmlLabel()
                 </svg>
             </button>
         </label>'; // template in index.js [add];
+    return $content_html;
+}
+
+function wrapperHtmlA()
+{
+    $list = func_get_args();
+    usort($list, 'sortByLength');
+    $content_html = '';
+    foreach ($list as $elem)
+        $content_html .= '
+        <a class="tag" style="">#' . $elem . '
+            <button class="remove display" style="display: none;" > <!-- hidden visibility: hidden; style="display: none;" --> 
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="6 9 20 20">
+                    <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path>
+                </svg>
+            </button>
+        </a>'; // template in index.js [add];
     return $content_html;
 }
 

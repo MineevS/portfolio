@@ -5,6 +5,7 @@
 	/*define(PATH, "/portfolioSer");*/
 
 	enum TOTAL : string {
+		case SJS  = "/assets/backend/js/library/sortablejs/Sortable.min.js"; // https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.6/Sortable.min.js
 		case JQR  = "/assets/backend/js/library/jquery/jquery-3.7.1.min.js";
 		case FCN  = "/assets/frontend/icons/vega.ico";
         case CDB  = "/assets/backend/config/config_db.php";

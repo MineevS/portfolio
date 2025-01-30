@@ -42,10 +42,14 @@ $smarty->registerPlugin("function", "query_feedback",           "psql_query_feed
 $smarty->registerPlugin("function", "query_screenshots",        "psql_query_screenshots");
 $smarty->registerPlugin("function", "query_vacancy",            "psql_query_vacancy");
 $smarty->registerPlugin("function", "query_properties_vacancy", "psql_query_properties_vacancy");
-$smarty->registerPlugin("function", "query_editor_button",      "psql_query_editor_button");
+//$smarty->registerPlugin("function", "query_editor_button",      "psql_query_editor_button");
 $smarty->registerPlugin("function", "query_header_page",        "psql_query_header_page");
 
 $smarty->registerPlugin("function", "query_input",              "query_input");
+$smarty->registerPlugin("function", "query_properties_add",     "query_properties_add");
+$smarty->registerPlugin("function", "query_editor_button",      "query_editor_button");
+
+
 
 
 
@@ -56,6 +60,8 @@ $smarty->registerPlugin("function", "query_input",              "query_input");
 
 $smarty->assign("FCN", TOTAL::FCN->value);
 $smarty->assign("CSS", INDEX::CSS->value);
+
+$smarty->assign("SJS", TOTAL::SJS->value);
 $smarty->assign("JSX", INDEX::JSX->value);
 $smarty->assign("JQR", TOTAL::JQR->value);
 $smarty->assign("HFR", AUTH::PATH->value);

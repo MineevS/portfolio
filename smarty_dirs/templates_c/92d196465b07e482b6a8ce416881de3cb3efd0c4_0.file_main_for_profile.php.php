@@ -1,13 +1,39 @@
-<section class="section_1">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-29 20:53:37
+  from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_profile.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_679a6b2146c1e7_57794119',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '92d196465b07e482b6a8ce416881de3cb3efd0c4' => 
+    array (
+      0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_profile.php',
+      1 => 1738173037,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_679a6b2146c1e7_57794119 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1">
 	<div class="section_1">
-		{query_header_page}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_header_page')->handle(array(), $_smarty_tpl);?>
+
 	    <div class="container propertiesProfile" > <!-- height: 500px; style="display: grid; width: 50%; grid-template-columns: 2fr auto; gap: 20px;" -->
 	        <div class="container" style="display: flex; flex-direction: column; width: 100%; background-color: #fff;"> <!-- Основная информация-->
 	            <article> <!-- display: flex; gap: 2%;-->
 	                <h1><span>//</span> Основная информация</h1>
 	            </article>
 	            <div class="container properties" style="display: flex; flex-direction: column; gap: 10px;">
-					{query_properties_profile for="base_properties"}              
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_profile')->handle(array('for'=>"base_properties"), $_smarty_tpl);?>
+              
 	            </div>
 	        </div>
 	        <div class="container contacts"> <!-- ссылки - background-color: #7feb7f; -->
@@ -15,8 +41,10 @@
 	                  <h1><span>//</span>Контакты </h1>
 	            </article>
 	            <div id="contacts" class="container remove dragAndDrop" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"  > <!--ondropstart="drop(event)" ondragover="allowDrop(event)"-->
-					{query_properties_profile  	for="contacts"}
-					{query_properties_add 		for="contacts"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_profile')->handle(array('for'=>"contacts"), $_smarty_tpl);?>
+
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_add')->handle(array('for'=>"contacts"), $_smarty_tpl);?>
+
 	            </div>
 				<div id="urls" class="icons remove dragAndDrop">
 					<span class="icon" style="display: flex; flex-direction: column; ">
@@ -66,7 +94,8 @@
 	                  <h1><span>//</span> О себе </h1>
 	            </article>
 	            <div class="container" style="display: grid;"> <!-- display: flex; flex-direction: column; gap:  10px; align-items: flex-start; -->
-					{query_properties_profile  for="about"} 
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_profile')->handle(array('for'=>"about"), $_smarty_tpl);?>
+ 
 	            </div>
 			</div>
 			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
@@ -74,10 +103,12 @@
 	                  <h1><span>//</span> Навыки </h1>
 	            </article>
 	            <div id="skills" class="contentProperty container skills ">
-					{query_properties_profile  for="skills"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_profile')->handle(array('for'=>"skills"), $_smarty_tpl);?>
+
 	            </div>
 				<div class="display" style="display: flex; flex-direction: column; align-items: center; margin-top: 25px; row-gap: 15px; display: none;">
-					{query_input for="add"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_input')->handle(array('for'=>"add"), $_smarty_tpl);?>
+
 				</div>
 			</div>
 			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
@@ -85,10 +116,12 @@
 	                  <h1><span>//</span> Цели </h1>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-					{query_properties_profile  for="goals"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_profile')->handle(array('for'=>"goals"), $_smarty_tpl);?>
+
 	            </div>
 				<div class="display" style="display: flex; flex-direction: column; align-items: center; margin-top: 25px; display: none;"> <!-- row-gap: 15px; -->
-					{query_input for="add" type="textarea"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_input')->handle(array('for'=>"add",'type'=>"textarea"), $_smarty_tpl);?>
+
 				</div>
 			</div>
 			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
@@ -96,7 +129,8 @@
 	                  <h1><span>//</span> Материалы </h1>
 	            </article>
 	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
-					{query_properties_profile  for="materials"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_profile')->handle(array('for'=>"materials"), $_smarty_tpl);?>
+
 	            </div>
 			</div>
 	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- Проекты  background-color: gray; -->
@@ -105,10 +139,13 @@
 					  <button class="create_project" onclick="">создать проект</button>
 	            </article>
 	            <div class="container" style="display: grid; grid-template-columns: auto auto; gap:  10px; align-items: flex-start; justify-content: center;">
-					{query_projects for="profile" select="*" from="$tab_projects" orderby="id" limit="3" offset="0" where="author" author="$id_author"}
-					{query_properties_add 		for="projects"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('for'=>"profile",'select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tab_projects')),'orderby'=>"id",'limit'=>"3",'offset'=>"0",'where'=>"author",'author'=>((string)$_smarty_tpl->getValue('id_author'))), $_smarty_tpl);?>
+
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_add')->handle(array('for'=>"projects"), $_smarty_tpl);?>
+
 	            </div>
 			</div>
 		</div>
 	</div>
-</section>
+</section><?php }
+}

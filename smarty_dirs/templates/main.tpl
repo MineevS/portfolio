@@ -19,7 +19,7 @@
 
 		<!--{3} Скрипты -->
 		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.6/Sortable.min.js"></script>
+		<script src="{$SJS}">								</script>
 		
 		<script src="{$JSX}" 		type="text/javascript"></script> 
 		<script src="{$JQR}" 		type="text/javascript"></script>

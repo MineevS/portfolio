@@ -1,4 +1,28 @@
-<section class="section_1" style="margin: 0;">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-29 20:53:09
+  from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_index.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_679a6b057e03e0_74030986',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'da48d9b20ca556b7f66c9b6e8574cf241e07181f' => 
+    array (
+      0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_index.php',
+      1 => 1738173154,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_679a6b057e03e0_74030986 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1" style="margin: 0;">
 	<!-- Сначало указываем элементы с абсолютным расположением, а потом с относительным-->
 	<div class="corners">
 		<p class="corner_top_left" id="1">∟</p>
@@ -20,14 +44,17 @@
 			<p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
 			<h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
 		</article>-->
-		{query_article head1="Представляем вам" head2="лучшие проекты" head3="базовой кафедры № 536"}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"Представляем вам",'head2'=>"лучшие проекты",'head3'=>"базовой кафедры № 536"), $_smarty_tpl);?>
+
 		<div class="container projects" style="display: flex; flex-direction: column; gap: 30px; margin-top: 3rem; width: 100%; "> <!-- display: grid; display: flex; flex-direction: column;-->
-			{query_projects select="*" from="$tab_projects" orderby="id" limit="$SIZE_PAGE_PROJECTS" offset="0"}
+			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tab_projects')),'orderby'=>"id",'limit'=>((string)$_smarty_tpl->getValue('SIZE_PAGE_PROJECTS')),'offset'=>"0"), $_smarty_tpl);?>
+
 		</div>
 	</div>
 	<div style="display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657; padding: 1rem 0 1rem 0;">
 		<p class="VasekMainWhiteP">Посмотрите все наши проекты</p>
-		<svg onclick="window.location.href='{$PROJECTS}'" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16" style="color: #F6F6F6; margin: 0 1rem 0 1rem;">
+		<svg onclick="window.location.href='<?php echo $_smarty_tpl->getValue('PROJECTS');?>
+'" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16" style="color: #F6F6F6; margin: 0 1rem 0 1rem;">
 			<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
 		</svg>
 	</div>
@@ -44,9 +71,11 @@
 		<path fill="#EA5657" d="M348.916 89.535a1.5 1.5 0 1 0-2.755 1.187l2.755-1.187Zm25.468 6.644-.344-1.46.344 1.46Zm23.032-33.522-.005 1.5.005-1.5Zm15.573 22.759-.617-1.367.617 1.367Zm28.911-32.31a1.5 1.5 0 0 0-1.846-1.044l-13.009 3.609a1.5 1.5 0 1 0 .802 2.89l11.563-3.207 3.208 11.563a1.5 1.5 0 1 0 2.891-.802L441.9 53.107Zm-95.739 37.616c1.179 2.736 3.739 5.598 8.35 7.187 4.576 1.578 11.091 1.878 20.216-.27l-.687-2.92c-8.79 2.069-14.688 1.686-18.551.354-3.828-1.32-5.734-3.592-6.573-5.538l-2.755 1.187Zm28.566 6.917c11.612-2.734 22.4-11.35 27.903-19.321 2.712-3.93 4.383-8.051 3.799-11.395-.307-1.76-1.237-3.262-2.842-4.287-1.557-.995-3.636-1.47-6.165-1.48l-.011 3c2.202.008 3.653.428 4.561 1.008.86.549 1.332 1.3 1.502 2.275.371 2.124-.701 5.39-3.313 9.174-5.147 7.456-15.34 15.568-26.121 18.106l.687 2.92Zm22.695-36.482c-13.932-.049-21.024 11.063-18.669 20.1 1.188 4.56 4.757 8.383 10.671 9.786 5.845 1.386 13.876.398 24.183-4.26l-1.235-2.734c-9.98 4.51-17.3 5.25-22.255 4.075-4.887-1.16-7.566-4.19-8.461-7.623-1.811-6.95 3.598-16.386 15.755-16.344l.011-3Zm16.185 25.626c11.706-5.29 19.645-17.495 28.153-32.537l-2.611-1.477c-8.582 15.172-16.097 26.453-26.777 31.28l1.235 2.734Z"/>
 	</svg>-->
 
-	{query_article head1="А это основные" svg="1" head3="исследований и разработки" class="HelveticaMainWhite" style="width: 85%; padding: 3%;"}
+	<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"А это основные",'svg'=>"1",'head3'=>"исследований и разработки",'class'=>"HelveticaMainWhite",'style'=>"width: 85%; padding: 3%;"), $_smarty_tpl);?>
+
 	<div class="interestDiv"> <!-- gap: 30px; -->
-		{query_interests}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_interests')->handle(array(), $_smarty_tpl);?>
+
 	</div>
 </section>
 <section class="section_4" data-aos="fade-up" style="border: none;">
@@ -56,21 +85,24 @@
 			<p class="VasekMain" style="justify-self: center; margin-right: 30%;">Аллеи Славы</p>/* тут наверное надо придумать как в класс без марджина сделать */
 			<h1 class="HelveticaMain" style="justify-self: end; margin-right: 10%;">сияют ярче, чем в Голливуде</h1>
 		</article>-->
-		{query_article head1="Наши звёзды с" svg="2" head3="сияют ярче, чем в Голливуде" class="HelveticaMain"}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"Наши звёзды с",'svg'=>"2",'head3'=>"сияют ярче, чем в Голливуде",'class'=>"HelveticaMain"), $_smarty_tpl);?>
+
 		<div class="container stars" > <!-- gap: 30px;-->
 			<svg onclick="prevStar.call(this.nextSibling.nextSibling);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%; box-shadow: 20px 0px 10px 0px #ffffff; z-index: 1;">
 				<path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 			</svg>
 			<div class="carousel" style="width: 100%; "> <!-- display: flex; flex-direction: row; justify-content: center;--> <!--limit="5"-->
 				<div class="carousel-inner"> 
-					{query_stars select="*" from="$tag_awesome" orderby="id"}
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_stars')->handle(array('select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tag_awesome')),'orderby'=>"id"), $_smarty_tpl);?>
+
 				</div>
 			</div> 
 			<svg onclick="nextStar.call(this.previousSibling.previousSibling);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%; box-shadow: -20px 0px 8px 0px #ffffff; z-index: 1;">
 				<path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
 			</svg>
 		</div>
-		{query_article head1="Лучший" head2="дизайнер" head3="месяца" id="article-item" class="VasekMain2" class2="HelveticaMain2" style="width: 25%;"}
+		<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"Лучший",'head2'=>"дизайнер",'head3'=>"месяца",'id'=>"article-item",'class'=>"VasekMain2",'class2'=>"HelveticaMain2",'style'=>"width: 25%;"), $_smarty_tpl);?>
+
 	</div>
 </section>
 <section class="section_5" data-aos="fade-up">
@@ -81,7 +113,8 @@
 				<p class="VasekMain" style="justify-self: center;">вакансии</p>
 				<h1 class="HelveticaMain" style="justify-self: end; ">в команды</h1>
 			</article>-->
-			{query_article head1="Наши открытые" head2="вакансии в команды" head3="лучших разработчиков" class="HelveticaMain" style="width: 50%;"}
+			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_article')->handle(array('head1'=>"Наши открытые",'head2'=>"вакансии в команды",'head3'=>"лучших разработчиков",'class'=>"HelveticaMain",'style'=>"width: 50%;"), $_smarty_tpl);?>
+
 			<!--<button class="buttonAddVacancy" style="width: auto; height: auto; justify-content: flex-end;">Добавить вакансию
 			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 15 15">
 				<path stroke="#858585" stroke-linecap="round" d="M1 7.5h13M7.5 1v13"/>
@@ -89,15 +122,19 @@
 			</button>--> <!--  Добавление вакансии происходит при авторизации на конкретном-->
 		</div>
 		<div class="container vacancies-container" style="display: grid;"> <!--display: grid;-->
-			{query_vacancies style="grid" select="*" from="$tab_vacancies" orderby="id" limit="$limit_vacancies" offset="0"}
+			<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_vacancies')->handle(array('style'=>"grid",'select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tab_vacancies')),'orderby'=>"id",'limit'=>((string)$_smarty_tpl->getValue('limit_vacancies')),'offset'=>"0"), $_smarty_tpl);?>
+
 		</div>
 	</div>
 	<div style="background: #202020; width: 100%;">
 		<div class="footerSection" > <!-- style="display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; border-radius: 0 0 25px 25px; background-color: #EA5657; padding: 1rem 0 1rem 0;"-->
 			<p class="VasekMainWhiteP">Больше вакансий тут</p>
-			<svg onclick="window.location.href='{$VACANCIES}'" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right" style="color: #F6F6F6; margin: 0 1rem 0 1rem;" viewBox="0 0 16 16">
+			<svg onclick="window.location.href='<?php echo $_smarty_tpl->getValue('VACANCIES');?>
+'" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right" style="color: #F6F6F6; margin: 0 1rem 0 1rem;" viewBox="0 0 16 16">
 				<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
 			</svg>
 		</div>
 	</div>
 </section>
+<?php }
+}

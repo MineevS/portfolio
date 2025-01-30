@@ -366,20 +366,37 @@ function editPage(code_peration, path) {
         var phones = [];
         var sites = [];
         var contacts = {};
+
+        var refs = new Map();
         [...contentProperties].forEach((property) => {
             switch (property.id) {
                 case 'avatar':
                     if (property.value.trim() !== "") formData.append(property.id, property.files[0]); // property.value.trim() // Загрузка новой аватарки, отличной от аватарки по умолчанию;
                     if (property.textContent.trim() !== "") { formData.append(property.id, property.textContent.split('/').pop().trim()); property.textContent = null; }; // отправляем url на аватарку по умолчанию;
                     break;
+                case 'references':
+                    //var refs = accum.call(property.children);
+                    [...property.getElementsByTagName('span')].forEach((span) => {
+                        console.log(span); // span.children.getElementById('url').value, span.children.getElementById('name').value
+                        var  nameref = span.firstElementChild; //getElementById('urlref')
+                        var  urlref = span.firstElementChild.nextElementSibling.nextElementSibling;
+                        
+                        refs.set(nameref.value, urlref.value);
+                    });
+                    
+                    if(refs.size > 0) formData.append(property.id, JSON.stringify(Object.fromEntries(refs)));
+                    break;
                 case 'tags': // ???
                 case 'skills':
-                    if (currentPage === 'project')
+                case 'stack':
+                    /*if (currentPage === 'project')
                         formData.append(property.id, property.value.trim());
                     else {
                         var tags = accum.call(property.children);
                         formData.append(property.id, JSON.stringify(tags));
-                    }
+                    }*/
+                    var tags = accum.call(property.children);
+                    if(tags.length > 0 ) formData.append(property.id, JSON.stringify(tags));
                     break;
                 /*case 'skills':
                     var skills = accum.call(property.children); // childNodes // children;
@@ -842,75 +859,22 @@ function editVacancy(code_peration, path) {
     }
 }
 
-function addTag() {
-    // Declare variables
-    /*var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('myInput');
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
+function addTag(container, log) {
+    console.log(this, this.value); // input;
+    console.log(container); // container;
 
-    if(filter.length != 0) ul.removeAttribute('hidden');
-    else ul.setAttribute('hidden', true);
+    var a = document.createElement('a');
+    a.classList.add('tag');
 
-    li = ul.getElementsByTagName('li');
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-
-        li[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none");
-    }*/
-
-    var tag = document.getElementById('tag').value.trim();
-    var tags = document.getElementById('tags');
-
-    if (tag.length > 5 || tag.length == 0) return;  // Проверка на длину тега // длина тега не может превышать `` символов.
-
-    var status_clone = false;   // Проверка на повторяющие теги;
-    tags.childNodes.forEach((ptag) => {
-        if (ptag.textContent.trim() == tag) { status_clone = true; return; }
-        else console.log(ptag.textContent.trim());
-    });
-    if (status_clone) return;
-
-    var mode = document.getElementById('editPage').textContent;
-    var display = 'none';
-    var paddingRight = '5';
-    switch (mode) {
-        case 'сохранить':
-            display = 'block';
-            paddingRight = '0';
-            break;
-        default:
-            break;
-    }
-
-    var label = tag + '\
-                    <button onclick="this.parentNode.remove();" class="buttonTag" style="display: '+ display + ';"> <!-- hidden visibility: hidden; -->\
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="7 10 20 20"> \
-                            <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path>\
-                        </svg>\
-                    </button>'; // '<label class="labelTag" style="padding-right: ' + paddingRight + 'px;">' + 
-
-    /*var div = '<div class="cardDuty" style="display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: center;"> \
-            <button onclick="this.parentNode.remove();" class="buttonDuty" style="display: '+ display +';"> <!-- hidden visibility: hidden; none --> \
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="6 8 20 20"> \
+    a.innerHTML = '#' + this.value + ' \
+            <button class="remove display" style="display: flex;" onclick="this.parentNode.remove();"> \
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="6 9 20 20"> \
                     <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path> \
                 </svg> \
-            </button> \
-            <span style="margin: 0; padding-right: 3vw;" onclick="loadDuty.call(this);"> \
-                '+ duty.value + ' \
-            </span> \
-    </div>';*/
+            </button>'; // clone in functions.php [wrapperHtmlTagsSkills() row:col];
 
-    elem = document.createElement('label');
-    elem.className = "labelTag";
-    elem.style.paddingRight = paddingRight + "px";
-    elem.innerHTML = label;
-    //elem.style.listStyleType = 'none'; //(code_peration ? 'none': 'disc')
+    duplicateСontrol.call(a, container, log); // this.value,
 
-    tags.appendChild(elem);
 }
 
 function addSkill(container, log){
@@ -921,7 +885,7 @@ function addSkill(container, log){
     label.classList.add('labelTag');
 
     label.innerHTML = this.value + ' \
-        <button class="buttonTag display" onclick="this.parentNode.remove();" style="display: block;" > <!-- hidden visibility: hidden; style="display: none;" --> \
+        <button class="buttonTag display" onclick="this.parentNode.remove();" style="display: flex;" > <!-- hidden visibility: hidden; style="display: none;" --> \
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="7 10 20 20"> \
                 <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path> \
             </svg> \
@@ -1123,65 +1087,36 @@ function mask_site(e) {
 
 }
 
-function updateTextAreaResize() {
-    var textareas = document.getElementsByTagName('textarea');
-    [...textareas].forEach((elem) => { // Недостаток `textarea` исправляем таким образом. // div c contentEdit='true'.
-        //console.log(elem);
-
-        //console.log(elem.offsetHeight, elem.cols, elem.rows, elem.textLength, elem.clientHeight);
-        var data = elem.innerHTML;
-        elem.innerHTML = '';
-        elem.style.height = 0 + 'px';
-
-        // console.log(elem.scrollHeight, elem.offsetHeight); // data, 
-
-        elem.innerHTML = data;
-
-        // console.log(elem.scrollHeight, elem.offsetHeight); // data, 
-        
-        elem.style.height = (elem.scrollHeight > 0 ? elem.scrollHeight : 40) + 'px';
-        
-       // elem.style.height = elem.innerHTML. + 'px';
-    });
-    //document.getElementById("aboutProjTextarea").autosize();
-}
-
-window.addEventListener('load', function () { // - выполняется после полной загрузки
-    console.log('load');
-
-    window.addEventListener('resize', function(event) {
-        console.log('resize');
-        updateTextAreaResize();
-    }, true);
-
-    window.dispatchEvent(new Event('resize'));
-});
-
-window.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     //loadMetaStars();
     //goToNextSlide();
-
-    console.log('DOMContentLoaded');
 
     setPattern();
 
     //var input = document.querySelector("#phone");
     //if (input) input.addEventListener("input", mask_phone, false);
 
+    var textareas = document.getElementsByTagName('textarea');
+    [...textareas].forEach((elem) => { // Недостаток `textarea` исправляем таким образом. // div c contentEdit='true'.
+        elem.style.height = (elem.scrollHeight > 0 ? elem.scrollHeight : 40) + 'px';
+    });
+
+
     var list = document.getElementById("dragAndDrop");
 
     var sortableList = document.getElementsByClassName('dragAndDrop');
 
     [...sortableList].forEach((container) => {
-        var dragTag = '';
+        var dragTag = 'span';
         var remId = '';
         switch (container.id) {
             case 'contacts':
-                dragTag = 'span';
                 remId = 'contact';
                 break;
+            case 'references':
+                remId = 'reference';
+                break;
             case 'urls':
-                dragTag = 'span';
                 remId = 'url';
                 break;
             default:
@@ -1203,11 +1138,6 @@ window.addEventListener('DOMContentLoaded', function () {
             }// filter: 'input',
         });
     });
-
-
-    // window.onresize = updateTextAreaResize;
-
-
 
 
     //setInterval(goToNextSlide, 2000);
@@ -1406,7 +1336,24 @@ function addContacts() {
 						</svg>';
 
     //this.append(span);
-    this.insertBefore(span, this.childNodes[this.childNodes.length - 2]);
+    this.insertBefore(span, this.children[this.children.length - 1]); // childNodes
+}
+
+function addRefs() {
+    var span = document.createElement('span');
+    span.classList.add('reference');
+    span.id = this.children.length + 1;
+
+    span.innerHTML = ' \
+        <input  id="nameref" type="text" value="..."> \
+        <string>:</string>\
+        <input  id="urlref"  type="text" value="...">\
+        <svg class="drag display" width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"> \
+			<rect width="48" height="48" fill="white" fill-opacity="0.01"/> \
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M19 10.3075C19 12.6865 17.2091 14.615 15 14.615C12.7909 14.615 11 12.6865 11 10.3075C11 7.92854 12.7909 6 15 6C17.2091 6 19 7.92854 19 10.3075ZM15 28.615C17.2091 28.615 19 26.6865 19 24.3075C19 21.9285 17.2091 20 15 20C12.7909 20 11 21.9285 11 24.3075C11 26.6865 12.7909 28.615 15 28.615ZM15 42.615C17.2091 42.615 19 40.6865 19 38.3075C19 35.9285 17.2091 34 15 34C12.7909 34 11 35.9285 11 38.3075C11 40.6865 12.7909 42.615 15 42.615Z" fill="black"/> \
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M37 10.3075C37 12.6865 35.2091 14.615 33 14.615C30.7909 14.615 29 12.6865 29 10.3075C29 7.92854 30.7909 6 33 6C35.2091 6 37 7.92854 37 10.3075ZM33 28.615C35.2091 28.615 37 26.6865 37 24.3075C37 21.9285 35.2091 20 33 20C30.7909 20 29 21.9285 29 24.3075C29 26.6865 30.7909 28.615 33 28.615ZM33 42.615C35.2091 42.615 37 40.6865 37 38.3075C37 35.9285 35.2091 34 33 34C30.7909 34 29 35.9285 29 38.3075C29 40.6865 30.7909 42.615 33 42.615Z" fill="black"/> \
+		</svg>';
+     this.insertBefore(span, this.children[this.children.length - 1]);
 }
 
 function allowDrop(ev) {
@@ -1535,7 +1482,7 @@ function inputSugToolTip(path) {
             
             print_projects(result);
             let projectTitle = document.getElementById('projectTitle').innerHTML;
-            //$('#inputSugUi').append('<li id="inputLi"><button class="inputLiBtn">' + projectTitle + '</button></li>');
+            $('#inputSugUi').append('<li id="inputLi"><button class="inputLiBtn">' + projectTitle + '</button></li>');
         }
     });
 
@@ -1570,8 +1517,6 @@ function orderByNewest(path){
 function order_sort(type, path){
     var currentPage = window.location.href.split('/').pop().split('.')[0];
 
-    
-
     if(this.style.background === ''){
         this.style.background = 'red';
 
@@ -1604,14 +1549,4 @@ function order_sort(type, path){
 function resizeTextarea(){
     this.style.height = '1px';
     this.style.height = (this.scrollHeight + 6) + 'px'; 
-}
-
-function changeStars() {
-    console.log(this, this.style.fill);
-
-    if(this.hasAttribute('stroke')){
-        console.log('stroke');
-    } else {
-        console.log('fill');
-    }
 }

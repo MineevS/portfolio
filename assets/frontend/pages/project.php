@@ -60,7 +60,7 @@
 
 	$smarty->assign('tab_vacancies', TBN::VACANCIES->value);
 
-	$smarty->assign("CSS_MAIN", STYLE::PROFILE->value);
+	$smarty->assign("CSS_MAIN", STYLE::PROJECT->value);
 	$smarty->assign("MAIN", $root.'/assets/frontend/mains/main_for_project.php'); // Указываем, что добавляем. (Реализуем и добавляем только основную часть кода);
     
 	

@@ -1,4 +1,28 @@
-<section class="section_1" style="width: 100%;">
+<?php
+/* Smarty version 5.4.2, created on 2025-01-29 21:14:55
+  from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_projects.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.2',
+  'unifunc' => 'content_679a701f3da798_53253746',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c6a3938f18704fcdf808a50ca9d876194da09ccc' => 
+    array (
+      0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_projects.php',
+      1 => 1738174491,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_679a701f3da798_53253746 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
+?><section class="section_1" style="width: 100%;">
     <div style="width: 65%; /*padding: 7%;*/ padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 20%; *//* padding-right: 20%; */margin: 0%;">
         <article style="display: grid; width: 50%; align-self: flex-start;">
             <h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
@@ -9,7 +33,8 @@
 
             <div style="display: flex; flex-direction: row; width: 70%; height: 5vh;">
                 <div class="inputDiv">
-                    <input class="inputSearch" id="inputSearch" onblur="hideInputSugToolTip()" oninput="inputSugToolTip('{$ACTION}')">
+                    <input class="inputSearch" id="inputSearch" onblur="hideInputSugToolTip()" oninput="inputSugToolTip('<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">
                     </input>
                     <!-- <div class="inputSug">
                         <ul class="inputSugUi" id="inputSugUi">
@@ -38,9 +63,12 @@
                             <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                         </svg></button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="order_sort.call(this, 'new', '{$ACTION}')">Новые</a>
-                        <a href="#" onclick="order_sort.call(this, ('old', '{$ACTION}')">Старые</a>
-                        <a href="#" onclick="order_sort.call(this, ('rel', '{$ACTION}')">Релевантные</a>
+                        <a href="#" onclick="order_sort.call(this, 'new', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Новые</a>
+                        <a href="#" onclick="order_sort.call(this, ('old', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Старые</a>
+                        <a href="#" onclick="order_sort.call(this, ('rel', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Релевантные</a>
                     </div>
                 </div>
             </div>
@@ -50,9 +78,11 @@
         </div>
         <hr class="hrProject">
         <div id="projects" class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; min-height: 200px; align-items: center;">
-            {query_projects select="*" from="$tab_projects" orderby="id" limit="$SIZE_PAGE_PROJECTS" offset="0"}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tab_projects')),'orderby'=>"id",'limit'=>((string)$_smarty_tpl->getValue('SIZE_PAGE_PROJECTS')),'offset'=>"0"), $_smarty_tpl);?>
+
             <div style="display: flex;flex-direction: column;align-items: center; justify-content: center;">
-                <button class="loadProjectsBtn" id="load_project_button" type="submit" style="width: auto;height: auto;opacity: 100%; vertical-align: middle; border: none; border-radius: 20px;" onclick="loadProjets('{$ACTION}');">
+                <button class="loadProjectsBtn" id="load_project_button" type="submit" style="width: auto;height: auto;opacity: 100%; vertical-align: middle; border: none; border-radius: 20px;" onclick="loadProjets('<?php echo $_smarty_tpl->getValue('ACTION');?>
+');">
                     <!--<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
                         <rect width="29" height="29" x=".5" y=".5" stroke="#202020" rx="14.5"/>
                         <path fill="#202020" d="M14 24.896a1 1 0 0 0 2 0h-2Zm1.707-20.499a1 1 0 0 0-1.414 0l-6.364 6.364a1 1 0 0 0 1.414 1.414L15 6.518l5.657 5.657a1 1 0 0 0 1.414-1.414l-6.364-6.364ZM16 24.896V5.104h-2v19.792h2Z"/>
@@ -72,4 +102,5 @@
 			<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
 		</svg>
 	</div>-->
-</section>
+</section><?php }
+}
