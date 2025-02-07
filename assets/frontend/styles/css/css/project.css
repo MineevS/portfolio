@@ -1,190 +1,89 @@
 fieldset, label { margin: 0; padding: 0; }
-/*body{ margin: 20px; }*/
-/*h1 { font-size: 1.5em; margin: 10px; }*/
 
 /****** Style Star Rating Widget *****/
 
 fieldset {
-  /*display: flex;*/
-  /*float: right;*/
-
-  width: 320px;
-}
-
-.rating {
-  /* border: none; */
-  /*float: left;*/
-  float: left;
-  /* border: none; */
-  outline: none;
-  /*display: flex;*/
-  border: none;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  /*width: 100%;*/
+  width: 392px;
 }
 
 .rating > input { display: none; }
-
+.rating > label {background: none;}
 
 .rating > label:before { /* Правая половина */
-  /*margin: 5px;*/
-  /*font-size: 1.25em;*/
-  /*font-family: FontAwesome;*/
-  /*display: inline-block;*/
-  /*content: "\f089";*/ /*\f005*/
-  /*background-image: url("data:image/svg+xml, \
-  <svg xmlns='http://www.w3.org/2000/svg' stroke='%23202020' fill='none' width='16' height='16' viewBox='0 0 16 16'> \
-    <path d='M7.21 1.604c.3-.922 1.603-.922 1.903 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.44 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.679 15.25c-.784.57-1.839-.197-1.54-1.118l1.107-3.403a1 1 0 0 0-.364-1.118L.987 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.21 1.603Z'/>\
-  </svg>");*/
-
-  margin: none !important;
-  padding: none !important;
-  /*font-size: 2.25em;*/
-  /*font-family: FontAwesome;*/
-  /*display: inline-block;*/
-  /*content: "\f009";*/
-  /*display: block;*/
-
-  /*width: 25px;
-  height: 25px;*/
-
-  /*color: #202020;*/
-
-  /*background-image*/
-  
-  /*content: url("data:image/svg+xml, \
-  <svg xmlns='http://www.w3.org/2000/svg' fill='%23202020' width='20' height='20' viewBox='0 0 8 15'> \
-    <path d='M.795.315C.645-.12 0-.013 0 .448v10.777a1 1 0 0 0 .433.824l3.251 2.235c.795.546 1.826-.237 1.513-1.149l-1.13-3.292a1 1 0 0 1 .379-1.149L7.347 6.7c.81-.556.415-1.824-.567-1.824H3.075a1 1 0 0 1-.946-.675L.795.315Z'/> \
-  </svg>");*/
-
-  /*content: url("data:image/svg+xml, \
-  <svg xmlns='http://www.w3.org/2000/svg' fill='%23202020' width='25' height='25' viewBox='-1 2 8 15'> \
-    <path d='M8.892 2.378c.139-.43.772-.329.772.122v11.033a1 1 0 0 1-.412.81l-3.07 2.23c-.784.57-1.839-.196-1.54-1.118l1.106-3.403a1 1 0 0 0-.363-1.118L2.49 8.83c-.784-.569-.381-1.809.588-1.809h3.578a1 1 0 0 0 .951-.69l1.285-3.953Z'/> \
-  </svg>");*/
-
   content: url("data:image/svg+xml, \
-    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='8 0  16 16'> \
-      <path fill='%23202020' d='M7.21 1.604c.3-.922 1.603-.922 1.903 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.44 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.679 15.25c-.784.57-1.839-.197-1.54-1.118l1.107-3.403a1 1 0 0 0-.364-1.118L.987 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.21 1.603Z'/>\
-    </svg>");
-
-  border: none;
-
-  /*border: 1px solid gray;*/
-
-  /*width: fit-content;*/
-}
-
-/*
-  content: url("data:image/svg+xml, \
-    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'> \
-      <path fill='%23202020' d='M7.21 1.604c.3-.922 1.603-.922 1.903 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.44 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.679 15.25c-.784.57-1.839-.197-1.54-1.118l1.107-3.403a1 1 0 0 0-.364-1.118L.987 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.21 1.603Z'/>\
-    </svg>");
-
-*/
-
-/*
-<svg xmlns='http://www.w3.org/2000/svg' fill='%23202020' width='8' height='15' viewBox='0 0 8 15'> \
-  <path d='M.795.315C.645-.12 0-.013 0 .448v10.777a1 1 0 0 0 .433.824l3.251 2.235c.795.546 1.826-.237 1.513-1.149l-1.13-3.292a1 1 0 0 1 .379-1.149L7.347 6.7c.81-.556.415-1.824-.567-1.824H3.075a1 1 0 0 1-.946-.675L.795.315Z'/> \
-</svg> \
-
-  <svg xmlns='http://www.w3.org/2000/svg' fill='%23202020' width='10' height='19' viewBox='0 0 10 19'> \
-    <path d='M8.892 2.378c.139-.43.772-.329.772.122v11.033a1 1 0 0 1-.412.81l-3.07 2.23c-.784.57-1.839-.196-1.54-1.118l1.106-3.403a1 1 0 0 0-.363-1.118L2.49 8.83c-.784-.569-.381-1.809.588-1.809h3.578a1 1 0 0 0 .951-.69l1.285-3.953Z'/> \
-  </svg>
-*/
-
-.rating > .half:before { /* Левая половина */
-  /*content: "\f0000";*/
-  position: absolute;
-  /*color: #f1f1f1;*/
-  /*background-color: red;
-
-  border: none !important;
-
-  margin: none !important;
-  padding: none !important;*/
-  /* content: url("data:image/svg+xml, \
-  <svg xmlns='http://www.w3.org/2000/svg' fill='%23202020' width='25' height='25' viewBox='1 2 8 15'> \
-    <path d='M8.892 2.378c.139-.43.772-.329.772.122v11.033a1 1 0 0 1-.412.81l-3.07 2.23c-.784.57-1.839-.196-1.54-1.118l1.106-3.403a1 1 0 0 0-.363-1.118L2.49 8.83c-.784-.569-.381-1.809.588-1.809h3.578a1 1 0 0 0 .951-.69l1.285-3.953Z'/> \
-  </svg>"); */
-
-  margin: none !important;
-  padding: none !important;
-
-  content: url("data:image/svg+xml, \
-    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='-4 0 8 16'> \
-      <path fill='%230f0' d='M7.21 1.604c.3-.922 1.603-.922 1.903 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.44 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.679 15.25c-.784.57-1.839-.197-1.54-1.118l1.107-3.403a1 1 0 0 0-.364-1.118L.987 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.21 1.603Z'/>\
-    </svg>");
-  
-  /*border: 1px solid;*/
-  border: none;
-
-
-
-  /*display: flex;*/
-}
-
-
-
-/*
-
-
-
-
-<svg xmlns='http://www.w3.org/2000/svg' fill='%23202020' width='10' height='19' fill='none' viewBox='0 0 10 19'>
-  <path d="M8.892 2.378c.139-.43.772-.329.772.122v11.033a1 1 0 0 1-.412.81l-3.07 2.23c-.784.57-1.839-.196-1.54-1.118l1.106-3.403a1 1 0 0 0-.363-1.118L2.49 8.83c-.784-.569-.381-1.809.588-1.809h3.578a1 1 0 0 0 .951-.69l1.285-3.953Z'/>
-</svg>
-
-
-*/
-
-.rating > label { 
-  /*color: #ddd; */
- /*float: right;*/
-
-  background: none;
-
+  <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' stroke='%23202020' fill='none' viewBox='0 0 16 16'> \
+    <path  d='M7.5 1.604c.299-.922 1.602-.922 1.902 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.73 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.968 15.25c-.784.57-1.838-.197-1.54-1.118l1.107-3.403A1 1 0 0 0 4.17 9.61L1.276 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.5 1.603Z'/> \
+  </svg>");
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
 
-
-
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { 
-
-  color: #fc1b1b;
-  
-}
-
-
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { 
-  color: #FFD700; 
-  
-  background-repeat: no-repeat;
-  background-position:center;
-} /* hover previous stars in list */
-
-
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label.half {
-  color: #FFD700;
-  /*content: url("data:image/svg+xml, \
-  <svg xmlns='http://www.w3.org/2000/svg' fill='%23202020'  width='25' height='25' viewBox='1 0 16 16'> \
-    <path d='M7.21 1.604c.3-.922 1.603-.922 1.903 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.44 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.679 15.25c-.784.57-1.839-.197-1.54-1.118l1.107-3.403a1 1 0 0 0-.364-1.118L.987 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.21 1.603Z'/>\
-  </svg>");*/ /*background-image*/
+.rating:not(:checked) > label:hover ~ label {
   content: url("data:image/svg+xml, \
-    <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' stroke='%23202020' fill='none' viewBox='0 0 17 16'> \
+    <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23202020' stroke='none' viewBox='0 0 16 16'> \
       <path  d='M7.5 1.604c.299-.922 1.602-.922 1.902 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.73 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.968 15.25c-.784.57-1.838-.197-1.54-1.118l1.107-3.403A1 1 0 0 0 4.17 9.61L1.276 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.5 1.603Z'/> \
     </svg>");
-  border: 1px solid green;
-  /*stroke: #202020;
-  fill: initial;*/
-  background-repeat: no-repeat;
-  /*background-position: center;*/
 }
 
+fieldset.rating:has( > input:checked + label)::after {
+  content: "Pекомендую";
+}
 
+fieldset.rating:has( > input:checked[value = '1'], input:checked[value = '2'] + label)::after {
+  content: "Не рекомендую";
+}
 
+div.container-feedbacks {
+  display: flex; 
+  flex-direction: column; 
+  gap:  10px; 
+  align-items: flex-start;
+}
+
+div.card-project, div.card-feedback {
+  display: flex; 
+  flex-direction: row; 
+  column-gap: 10px; 
+  width: 100%;
+}
+
+string.stars {
+  display: flex;
+  white-space: nowrap;
+  column-gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.card-project-left, div.card-feedback-left {
+  
+}
+
+div.card-project-right, div.card-feedback-right {
+  display: flex; 
+  flex-direction: column; 
+  column-gap: 7px; 
+  justify-content: center;
+  width: 100%;
+}
+
+div.card-project-left:before, div.card-feedback-left:before {
+  /*content: 'hello';*/
+  content: attr(icon) url("data:image/svg+xml, \
+  <svg class='avatar' xmlns='http://www.w3.org/2000/svg' width='128' height='105' fill='none' viewBox='0 0 214 211'> \
+    <defs> \
+    </defs> \
+    <rect width='197.234' height='197.234' x='8.067' y='10.59' fill='' stroke='%23EA5657' stroke-width='3' rx='98.617'></rect> \
+    <path stroke='%23EA5657' stroke-linecap='round' stroke-width='3' d='M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658'></path>\
+    <path stroke='%23EA5657' stroke-linecap='round' stroke-width='3' d='M2 109.838C7.045 49.298 33.532 16.505 72.63 2'></path> \
+  </svg>");
+
+  background: icon;
+}

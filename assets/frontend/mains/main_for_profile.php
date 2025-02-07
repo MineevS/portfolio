@@ -1,25 +1,25 @@
 <section class="section_1">
 	<div class="section_1">
 		{query_header_page}
-	    <div class="container propertiesProfile" > <!-- height: 500px; style="display: grid; width: 50%; grid-template-columns: 2fr auto; gap: 20px;" -->
-	        <div class="container" style="display: flex; flex-direction: column; width: 100%; background-color: #fff;"> <!-- Основная информация-->
-	            <article> <!-- display: flex; gap: 2%;-->
+	    <div class=" propertiesProfile" >
+	        <div class="base_info">
+	            <article>
 	                <h1><span>//</span> Основная информация</h1>
 	            </article>
-	            <div class="container properties" style="display: flex; flex-direction: column; gap: 10px;">
+	            <div class="properties">
 					{query_properties_profile for="base_properties"}              
 	            </div>
 	        </div>
-	        <div class="container contacts"> <!-- ссылки - background-color: #7feb7f; -->
+	        <div class="contacts"> 
 	            <article>
 	                  <h1><span>//</span>Контакты </h1>
 	            </article>
-	            <div id="contacts" class="container remove dragAndDrop" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"  > <!--ondropstart="drop(event)" ondragover="allowDrop(event)"-->
+	            <div id="contacts" class=" remove dragAndDrop">
 					{query_properties_profile  	for="contacts"}
 					{query_properties_add 		for="contacts"}
 	            </div>
 				<div id="urls" class="icons remove dragAndDrop">
-					<span class="icon" style="display: flex; flex-direction: column; ">
+					<span class="icon">
 						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
 							<path fill="#29b6f6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path>
 							<path fill="#fff" d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"></path>
@@ -48,63 +48,63 @@
 							<input class="contentProperty" type="url" value="..." ></input>
 						</div>
 					</span>
-					<div class="display" style="display: flex; justify-content: space-between; display: none; width: 100%; align-items: center;">
+					<div class="addimage display">
 						<button class="addImage display" onclick="addContactsIcon.call(this.parentNode.parentNode)" style="display: none;">
 							<svg class="add" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 34 33">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.444 17h31.111M17 1v31.111"/>
 							</svg>
 						</button>
-						<svg id="url" class="add remove" xmlns="http://www.w3.org/2000/svg" width="34" height="33" fill="none" viewBox="0 0 100 100" > <!-- stroke="#F6F6F6" -->
+						<svg id="url" class="add remove" xmlns="http://www.w3.org/2000/svg" width="34" height="33" fill="none" viewBox="0 0 100 100">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m25.582 43.93 5.542 33.334a8.334 8.334 0 0 0 8.334 6.958H60.79a8.334 8.334 0 0 0 8.333-6.958l5.542-33.334a8.334 8.334 0 0 0-8.334-9.708h-32.54a8.333 8.333 0 0 0-8.208 9.708Z"/>
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M39.999 38.389V27.555a10.042 10.042 0 0 1 10-10 10.042 10.042 0 0 1 10 10V38.39m-4.125 14.957-11.75 11.75m11.75 0-11.75-11.75"/>
 						</svg>
 					</div>
 				</div>
 	        </div>
-	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
+	        <div class="con1 " > 
 	            <article>
 	                  <h1><span>//</span> О себе </h1>
 	            </article>
-	            <div class="container" style="display: grid;"> <!-- display: flex; flex-direction: column; gap:  10px; align-items: flex-start; -->
+	            <div class="about ">
 					{query_properties_profile  for="about"} 
 	            </div>
 			</div>
-			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
+			<div class="con2 ">
 	            <article>
 	                  <h1><span>//</span> Навыки </h1>
 	            </article>
-	            <div id="skills" class="contentProperty container skills ">
+	            <div id="skills" class="contentProperty  skills">
 					{query_properties_profile  for="skills"}
 	            </div>
-				<div class="display" style="display: flex; flex-direction: column; align-items: center; margin-top: 25px; row-gap: 15px; display: none;">
+				<div class="inp1 display">
 					{query_input for="add"}
 				</div>
 			</div>
-			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
+			<div class="con1 "> 
 	            <article>
 	                  <h1><span>//</span> Цели </h1>
 	            </article>
-	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
+	            <div class="con4 ">
 					{query_properties_profile  for="goals"}
 	            </div>
-				<div class="display" style="display: flex; flex-direction: column; align-items: center; margin-top: 25px; display: none;"> <!-- row-gap: 15px; -->
+				<div class="display">
 					{query_input for="add" type="textarea"}
 				</div>
 			</div>
-			<div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- о себе background-color: orange;-->
+			<div class="con1 "> 
 	            <article>
 	                  <h1><span>//</span> Материалы </h1>
 	            </article>
-	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
+	            <div class="mats " >
 					{query_properties_profile  for="materials"}
 	            </div>
 			</div>
-	        <div class="container" style="grid-column: 1 / span 2; display: flex; flex-direction: column; width: 100%; "> <!-- Проекты  background-color: gray; -->
-	            <article style="display: flex; gap: 2%; align-items: center; justify-content: space-between;">
+	        <div class="con1 ">
+	            <article class="projects">
 	                  <h1><span>//</span> Проекты </h1>
 					  <button class="create_project" onclick="">создать проект</button>
 	            </article>
-	            <div class="container" style="display: grid; grid-template-columns: auto auto; gap:  10px; align-items: flex-start; justify-content: center;">
+	            <div class="projects ">
 					{query_projects for="profile" select="*" from="$tab_projects" orderby="id" limit="3" offset="0" where="author" author="$id_author"}
 					{query_properties_add 		for="projects"}
 	            </div>

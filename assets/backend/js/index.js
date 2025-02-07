@@ -26,6 +26,7 @@ function close_iframe() {
     iframe.remove();
 }
 
+
 function change_size_iframe(name_iframe, width, height) {
     // Получение корневого элемента
     const root = document.querySelector(":root");

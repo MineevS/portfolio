@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-30 08:47:17
+/* Smarty version 5.4.2, created on 2025-02-06 14:49:41
   from 'file:C:\projects\portfolio_oleg\portfolioSer/smarty_dirs/templates/main.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_679b1265c4bfc5_17163281',
+  'unifunc' => 'content_67a4a1d5babdc3_73944866',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '584ed3450621a3dd8f8aa73b4c89cf9ae973c4a5' => 
     array (
       0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/smarty_dirs/templates/main.tpl',
-      1 => 1738215802,
+      1 => 1738842113,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_679b1265c4bfc5_17163281 (\Smarty\Template $_smarty_tpl) {
+function content_67a4a1d5babdc3_73944866 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\smarty_dirs\\templates';
 ?><!DOCTYPE HTML>
 <html>
@@ -41,16 +41,15 @@ $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\smarty_dirs\
 		
 		<!--<?php echo 2;?>
  Стили-->
-		<link href="<?php echo $_smarty_tpl->getValue('CSS_MAIN');?>
-" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
 		<link href="<?php echo $_smarty_tpl->getValue('CSS_TOTAL');?>
 " 	type="text/css" 	rel="stylesheet"> <!-- Общий стиль для всех страниц --> 
+		<link href="<?php echo $_smarty_tpl->getValue('CSS_MAIN');?>
+" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
 		<link href="<?php echo $_smarty_tpl->getValue('CSS_AOS');?>
 "		type="text/css"		rel="stylesheet">
 
 		<!--<?php echo 3;?>
  Скрипты -->
-		
 		<?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->getValue('SJS');?>
 ">								<?php echo '</script'; ?>
@@ -108,7 +107,7 @@ $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\smarty_dirs\
 ');">Выход</button>
 							</section>-->
 							<div class="dropdown">
-							<a href="" class="lass="dropbtn"">
+							<a href="" class="dropbtn">
 								<img id="profile" class="avatar" src="<?php echo $_smarty_tpl->getValue('icon');?>
 " />
 							</a>

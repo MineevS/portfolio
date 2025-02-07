@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-30 09:48:46
+/* Smarty version 5.4.2, created on 2025-01-31 10:18:56
   from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_project.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_679b20ce8fb985_98056800',
+  'unifunc' => 'content_679c7960f0b2b7_24205083',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ae5015eed18fe8bc8cf4ca554055fe8e3955f6f4' => 
     array (
       0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_project.php',
-      1 => 1738219550,
+      1 => 1738307934,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_679b20ce8fb985_98056800 (\Smarty\Template $_smarty_tpl) {
+function content_679c7960f0b2b7_24205083 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
 ?><section class="section_1" style="width: 100%; display: flex; flex-direction: column; gap: 100px;">
 	<div style="display: flex; flex-direction: column; width: 100%; align-items: center;"> <!-- padding-top: 10%; -->
@@ -108,11 +108,11 @@ $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\fron
 
 				</div>
 			</div>
-            <div class="container" style="grid-column: 1 / span 1; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
+            <div class="container" style="grid-column: 1 / span 1; display: flex; flex-direction: column; width: 87%;"> <!-- Проекты  background-color: gray; -->
 	            <article>
 	                <h2><span >//</span> Отзывы </h2>
 	            </article>
-	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
+	            <div class="container container-feedbacks"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
 					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_project')->handle(array('for'=>"feedback"), $_smarty_tpl);?>
 
 	            </div>

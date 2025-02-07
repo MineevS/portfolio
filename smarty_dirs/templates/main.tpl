@@ -13,12 +13,11 @@
 
 		
 		<!--{2} Стили-->
-		<link href="{$CSS_MAIN}" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
 		<link href="{$CSS_TOTAL}" 	type="text/css" 	rel="stylesheet"> <!-- Общий стиль для всех страниц --> 
+		<link href="{$CSS_MAIN}" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
 		<link href="{$CSS_AOS}"		type="text/css"		rel="stylesheet">
 
 		<!--{3} Скрипты -->
-		
 		<script src="{$SJS}">								</script>
 		
 		<script src="{$JSX}" 		type="text/javascript"></script> 
@@ -56,7 +55,7 @@
 								<button onclick="logout('{$ACTION}');">Выход</button>
 							</section>-->
 							<div class="dropdown">
-							<a href="" class="lass="dropbtn"">
+							<a href="" class="dropbtn">
 								<img id="profile" class="avatar" src="{$icon}" />
 							</a>
 								<div class="dropdown-content">

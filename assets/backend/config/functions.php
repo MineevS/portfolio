@@ -844,7 +844,7 @@ function psql_query_properties_profile($params, $smarty)
                     break;
                 case 'head':
                     $html .= '
-                        <p class= "fontHead">' . $data['firstname'] . '</p><p class= "fontHead">' . $data['lastname'] . '</p>';
+                        <p class= "fontHead fontVasek">' . $data['firstname'] . '</p><p class= "fontHead fontVasek">' . $data['lastname'] . '</p>';
                     break;
                 case 'skills':
                     if (isset($data['skills'])) {
@@ -936,11 +936,14 @@ function psql_query_properties_user($params, $smarty){
                         break;
                 }
 
+                $cardname = $params["for"];
+                // '.$_SERVER['HTTP_REFERER'].
+
                 $id = $id_prefix.'-'.$key;
                 $html .= '
-                <div style="display: flex; flex-direction: row; column-gap: 10px;">
-                    <div class="div-left">
-                            <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="128" height="105" fill="none" viewBox="0 0 214 211">
+                <div class="card-'.$cardname.'">
+                    <div class="card-'.$cardname.'-left" icon="/assets/frontend/icons/avatars_profiles/'.$icon.'">
+                        <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="128" height="105" fill="none" viewBox="0 0 214 211">
                             <defs>
                                 <pattern id="'.$id.'" width="1" height="1" patternContentUnits="objectBoundingBox">
                                     <use href="#img'.'-'.$id.'" transform="translate(0 -.6) scale(.00174)"></use>
@@ -952,7 +955,7 @@ function psql_query_properties_user($params, $smarty){
                             <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M2 109.838C7.045 49.298 33.532 16.505 72.63 2"></path>
                         </svg>
                     </div>
-                    <div class="div-right" style="display: flex; flex-direction: column; column-gap: 7px; justify-content: center; ">
+                    <div class="card-'.$cardname.'-right" >
                         <input class="projectTitle name" value="'.$firstname .' '. $lastname.'" readOnly />';
 
                 switch($params["for"]){
@@ -970,117 +973,28 @@ function psql_query_properties_user($params, $smarty){
 
                         $count_stars;
 
-                        $status = ($count_stars > 2 ? 'Рекомендую' : 'Не рекомендую');
+                        //$status = ($count_stars > 2 ? 'Рекомендую' : 'Не рекомендую');
 
-                        $html_stars = '<div class="stars">';
+                        // $html_stars = '<div class="stars">';
+
+                        $html_stars = '<fieldset class="rating starts">';
                         $name = 'star-'.$id;
-                        /*for($i = 0; $i < 5; $i++){
+                        for($i = 5; $i > 0; $i--){
                             $sid = $name.'-'.$i;
+                            $ckeck = ''; $hover = ''; if($i == $count_stars) { $ckeck = 'checked'; $hover = 'hover'; }
+                            $html_stars .= '<input type="radio" id="'.$sid.'" name="rating_'.$id.'" value="'.$i.'" '.$ckeck.'/><label class = "full" for="'.$sid.'" title="Awesome - '.$i.' stars" '.$hover.'></label>';
+                        }
 
-                            $html_stars .= '
-                            <input name="'.$sid.'" type="radio" class="star-ratio" name="rt">
-                            <label class="star" for="'.$sid.'"></label>';
-                        }*/
-
-                        $html_stars .= '</div>';
-                            
-
-                            /*
-                            <svg class="star" xmlns="http://www.w3.org/2000/svg" '.($i < $count_stars ? 'fill' : 'stroke').'="#202020" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                <path d="M7.21 1.604c.3-.922 1.603-.922 1.903 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.44 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.679 15.25c-.784.57-1.839-.197-1.54-1.118l1.107-3.403a1 1 0 0 0-.364-1.118L.987 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.21 1.603Z"/>
-                            </svg>
-                            
-                            */
-
-                            
-
-                        /*$html_stars .= '<div class="ratio">
-                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
-                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
-                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
-                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
-                            <input name="'.$name.'" type="radio" class="star-ratio" name="rt">
-                        </div>';*/
-
-                        // <string>'.$status.$html_stars.'</string></div>
-
-                        $html_stars = '
-                            <fieldset class="rating">
-                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                            </fieldset>
-                        ';
-
-
-                        /*
-                        
-                                                    <fieldset class="rating">
-                                
-                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-
-                                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                            </fieldset>
-                        
-                        
-                        */
-
+                        $html_stars .= '</fieldset>';
                         $html .= '
-                            <string>'.$status.$html_stars.'</string>
+                            <string class="stars">'.$html_stars.'</string>
                             <textarea>'.$msg.'</textarea></div>
                         ';
 
-
                         break;
                 }
-
-                $html .= '</div>';
-
                 
-    
-                /*$html .= '
-                    <div style="display: flex; flex-direction: row; column-gap: 10px;">
-                        <div class="div-left">
-                                <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="128" height="105" fill="none" viewBox="0 0 214 211">
-                                <defs>
-                                    <pattern id="'.$id.'" width="1" height="1" patternContentUnits="objectBoundingBox">
-                                        <use href="#img'.'-'.$id.'" transform="translate(0 -.6) scale(.00174)"></use>
-                                    </pattern>
-                                    <image class="avatar" id="img'.'-'.$id.'" width="576" height="1280" data-name="image.png" href="/assets/frontend/icons/avatars_profiles/'.$icon.'"></image>
-                                </defs>
-                                <rect width="197.234" height="197.234" x="8.067" y="10.59" fill="url(#'.$id.')" stroke="#EA5657" stroke-width="3" rx="98.617"></rect>
-                                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658"></path>
-                                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M2 109.838C7.045 49.298 33.532 16.505 72.63 2"></path>
-                            </svg>
-                        </div>
-                        <div class="div-right" style="display: flex; flex-direction: column; column-gap: 7px; justify-content: center; ">
-                            <input class="projectTitle name" value="'.$firstname .' '. $lastname.'" readOnly />
-                            <div style="display: flex; column-gap: 10px; align-items: center; ">
-                                <div style="display: flex; column-gap: 7px;">
-                                    <string>c</string><input id="from" class="user_data" type="text"  value="'.$from.'" readOnly>
-                                    <string>по</string><input id="to" class="user_data" type="text"  value="'.$to.'" readOnly>
-                                </div>
-                                <string styl="matgin-left: 1rem;">|</string><input  id="role" class="user_data" type="text"  value="'.$role.'" readOnly>
-                            </div>
-                        </div>
-                    </div>
-                ';*/
-    
+                $html .= '</div>';
             }
         }
     }
@@ -2064,13 +1978,13 @@ function wrapperHtmlSpan()
 
         $content_html .= '
         <span class="contact">
-            <input class="shower_hider" style="font-family: \'Helvetica\';" type="text" value="' . $value . '" readOnly>
+            <input class="head_content shower_hider" style="font-family: \'Helvetica\';" type="text" value="' . $value . '" readOnly>
             <select name="type" id="pet-select" value="' . $value . '" onchange="selectTypeContact.call(this)" hidden="true">
                 <option value="Телефон" ' . $sel_phone . '>Телефон</option>
                 <option value="Почта" ' . $sel_email . '>Почта</option>
                 <option value="Сайт" ' . $sel_site . '>Сайт</option>
             </select>
-            <input class="contentProperty" id="' . $id_name . '" name="' . $id_name . '" type="' . $type . '" oninput="' . $mask . '" maxlength="17" value="' . $elem . '" placeholder="' . $placeholder . '" readOnly/>
+            <input class="contact contentProperty" id="' . $id_name . '" name="' . $id_name . '" type="' . $type . '" oninput="' . $mask . '" maxlength="17" value="' . $elem . '" placeholder="' . $placeholder . '" readOnly/>
             <svg class="drag display" width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" hidden="true" style="display: none;"> 
                 <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M19 10.3075C19 12.6865 17.2091 14.615 15 14.615C12.7909 14.615 11 12.6865 11 10.3075C11 7.92854 12.7909 6 15 6C17.2091 6 19 7.92854 19 10.3075ZM15 28.615C17.2091 28.615 19 26.6865 19 24.3075C19 21.9285 17.2091 20 15 20C12.7909 20 11 21.9285 11 24.3075C11 26.6865 12.7909 28.615 15 28.615ZM15 42.615C17.2091 42.615 19 40.6865 19 38.3075C19 35.9285 17.2091 34 15 34C12.7909 34 11 35.9285 11 38.3075C11 40.6865 12.7909 42.615 15 42.615Z" fill="black"/>

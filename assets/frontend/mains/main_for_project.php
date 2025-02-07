@@ -72,11 +72,11 @@
 					{query_input for="screenshots"}
 				</div>
 			</div>
-            <div class="container" style="grid-column: 1 / span 1; display: flex; flex-direction: column; width: 100%;"> <!-- Проекты  background-color: gray; -->
+            <div class="container" style="grid-column: 1 / span 1; display: flex; flex-direction: column; width: 87%;"> <!-- Проекты  background-color: gray; -->
 	            <article>
 	                <h2><span >//</span> Отзывы </h2>
 	            </article>
-	            <div class="container" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
+	            <div class="container container-feedbacks"> <!-- select="*" from="info_user" orderby="id" limit="3" offset="0"-->
 					{query_properties_project for="feedback"}
 	            </div>
 				<div class="display" style="display: flex; flex-direction: column; align-items: center; margin-top: 25px; row-gap: 15px; display: none;">
