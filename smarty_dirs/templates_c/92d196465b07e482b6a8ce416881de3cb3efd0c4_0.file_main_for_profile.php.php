@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-02-22 08:59:10
+/* Smarty version 5.4.2, created on 2025-02-22 12:20:21
   from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_profile.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_67b967ae1ef3f5_90882155',
+  'unifunc' => 'content_67b996d5ea2c20_95545985',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '92d196465b07e482b6a8ce416881de3cb3efd0c4' => 
     array (
       0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_profile.php',
-      1 => 1740203933,
+      1 => 1740216020,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67b967ae1ef3f5_90882155 (\Smarty\Template $_smarty_tpl) {
+function content_67b996d5ea2c20_95545985 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
 ?><section class="section_1">
 	<div class="section_1">
@@ -107,20 +107,20 @@ $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\fron
 
 	            </div>
 				<div class="inp1 display">
-					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_input')->handle(array('for'=>"add"), $_smarty_tpl);?>
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_input')->handle(array('for'=>"skills"), $_smarty_tpl);?>
 
 				</div>
 			</div>
-			<div class="con1 "> 
+			<div class="goals con1 "> 
 	            <article>
 	                  <h1><span>//</span> Цели </h1>
 	            </article>
-	            <div class="con4 ">
+	            <div id="goals" class="con4">
 					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_properties_profile')->handle(array('for'=>"goals"), $_smarty_tpl);?>
 
 	            </div>
-				<div class="display">
-					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_input')->handle(array('for'=>"add",'type'=>"textarea"), $_smarty_tpl);?>
+				<div class="inp1 display">
+					<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_input')->handle(array('for'=>"goals",'type'=>"textarea"), $_smarty_tpl);?>
 
 				</div>
 			</div>

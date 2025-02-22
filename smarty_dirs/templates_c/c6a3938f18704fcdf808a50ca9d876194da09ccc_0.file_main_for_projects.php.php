@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-29 21:14:55
+/* Smarty version 5.4.2, created on 2025-02-22 12:43:39
   from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_projects.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_679a701f3da798_53253746',
+  'unifunc' => 'content_67b99c4b230713_58410933',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c6a3938f18704fcdf808a50ca9d876194da09ccc' => 
     array (
       0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_projects.php',
-      1 => 1738174491,
+      1 => 1740217417,
       2 => 'file',
     ),
   ),
@@ -20,17 +20,17 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_679a701f3da798_53253746 (\Smarty\Template $_smarty_tpl) {
+function content_67b99c4b230713_58410933 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
-?><section class="section_1" style="width: 100%;">
-    <div style="width: 65%; /*padding: 7%;*/ padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 20%; *//* padding-right: 20%; */margin: 0%;">
+?><section id="sctn-1" > <!-- style="width: 100%;" -->
+    <div class="container-projects" > <!-- width: 65%; /*padding: 7%;*/ padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 20%; *//* padding-right: 20%; */margin: 0%; -->
         <article style="display: grid; width: 50%; align-self: flex-start;">
             <h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
             <p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
             <h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
         </article>
-        <div class="container" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%; justify-content: flex-start;">
-
+		
+		<div class="container" style="display: none;" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%; justify-content: flex-start;">
             <div style="display: flex; flex-direction: row; width: 70%; height: 5vh;">
                 <div class="inputDiv">
                     <input class="inputSearch" id="inputSearch" onblur="hideInputSugToolTip()" oninput="inputSugToolTip('<?php echo $_smarty_tpl->getValue('ACTION');?>
@@ -72,11 +72,9 @@ $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\fron
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-        <hr class="hrProject">
+
+		<hr class="hrProject">
         <div id="projects" class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; min-height: 200px; align-items: center;">
             <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tab_projects')),'orderby'=>"id",'limit'=>((string)$_smarty_tpl->getValue('SIZE_PAGE_PROJECTS')),'offset'=>"0"), $_smarty_tpl);?>
 
@@ -95,6 +93,8 @@ $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\fron
                 <p id="load_project_p" style="display: none; font-family: 'Helvetica'; font-size: 16px; font-weight: lighter;">Кажется вы всё посмотрели</p>
             </div>
         </div>
+
+
     </div>
     <!--<div style=" height: auto; display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
 		<p>Посмотрите все наши проекты</p> 

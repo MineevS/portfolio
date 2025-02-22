@@ -77,18 +77,18 @@
 					{query_properties_profile  for="skills"}
 	            </div>
 				<div class="inp1 display">
-					{query_input for="add"}
+					{query_input for="skills"}
 				</div>
 			</div>
-			<div class="con1 "> 
+			<div class="goals con1 "> 
 	            <article>
 	                  <h1><span>//</span> Цели </h1>
 	            </article>
-	            <div class="con4 ">
+	            <div id="goals" class="con4">
 					{query_properties_profile  for="goals"}
 	            </div>
-				<div class="display">
-					{query_input for="add" type="textarea"}
+				<div class="inp1 display">
+					{query_input for="goals" type="textarea"}
 				</div>
 			</div>
 			<div class="con1 "> 

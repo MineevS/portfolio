@@ -50,6 +50,7 @@ div.base_info {
 #urls {
     display: flex;
     flex-direction: row;
+    justify-self: flex-end;
 }
 div.addUrls {
     /*width: 100%;*/
@@ -101,14 +102,30 @@ svg.add:active {
   stroke: #ea5657;
 }
 
-
-
 div.con1 { /* <!-- о себе background-color: orange;--> */
     grid-column: 1 / span 2;
     display: flex;
     flex-direction: column;
     width: 100%;
     /* display: none; */
+}
+
+div.goals {
+    /* TODO */
+}
+
+#goals {
+    /* TODO */
+}
+
+div.inp-goals {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+li:has(button[style="display: flex;"]) {
+  list-style-type: none;
 }
 
 div.con2 { /* <!-- о себе background-color: orange;--> */
@@ -128,11 +145,55 @@ div.inp1{
     display: none;
 }
 
+input.addSearch {
+  all: unset;
+  width: 100%;
+}
+
+span.search {
+
+}
+
+span.addSearch, span.addGoals {
+  border: 1px solid #858585;
+  border-radius: 25px;
+  padding: 10px;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}
+
 div.con4 {
     display: flex; 
     flex-direction: column; 
     gap:  10px; 
     align-items: flex-start;
+}
+
+.cardDuty {
+  font-family: 'Helvetica', arial;
+  /* font-size: 0.9vw; */
+  font-weight: 100;
+  margin: 0 0 0 0;
+  color: #202020;
+  margin: .5rem 0 .5rem 0;
+  text-align: justify;
+  /* flex-wrap: nowrap; */
+  display: flex;
+  /* grid-template-columns: 35px auto; */
+  column-gap: 15px;
+  align-items: center;
+}
+
+.buttonDuty {
+  all: unset;
+  width: 25px;
+  /* height: 32px; */
+  background-color: #EA5657;
+  border: gray;
+  border-radius: 64px;
+  /*margin-left: 10px;*/
+  flex-wrap: wrap;
 }
 
 div.inp2 {
@@ -163,11 +224,6 @@ div.projects {
     gap:  10px; 
     align-items: flex-start; 
     justify-content: center;
-}
-
-div.contacts {
-    /* <!-- ссылки - background-color: #7feb7f; --> */
-    /* <!--ondropstart="drop(event)" ondragover="allowDrop(event)"--> */
 }
 
 article {
@@ -208,7 +264,7 @@ span.contact {
     flex-wrap: nowrap;
     /* align-content: center; */
     width: 100%;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 div.avatar {
@@ -236,10 +292,14 @@ div.about {
 div.contacts {
   display: flex;
   flex-direction: column;
-  /* width: 50%; */
-  /* align-items: flex-start; */
+  width: 280px;
+  /*align-items: flex-end;*/
   row-gap: 10px;
   /* display: none; */
+}
+
+#contacts {
+	justify-self: flex-end;
 }
 
 button.contact {

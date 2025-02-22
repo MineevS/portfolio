@@ -1,12 +1,12 @@
-<section class="section_1" style="width: 100%;">
-    <div style="width: 65%; /*padding: 7%;*/ padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 20%; *//* padding-right: 20%; */margin: 0%;">
+<section id="sctn-1" > <!-- style="width: 100%;" -->
+    <div class="container-projects" > <!-- width: 65%; /*padding: 7%;*/ padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 20%; *//* padding-right: 20%; */margin: 0%; -->
         <article style="display: grid; width: 50%; align-self: flex-start;">
             <h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
             <p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
             <h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
         </article>
-        <div class="container" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%; justify-content: flex-start;">
-
+		
+		<div class="container" style="display: none;" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%; justify-content: flex-start;">
             <div style="display: flex; flex-direction: row; width: 70%; height: 5vh;">
                 <div class="inputDiv">
                     <input class="inputSearch" id="inputSearch" onblur="hideInputSugToolTip()" oninput="inputSugToolTip('{$ACTION}')">
@@ -44,11 +44,9 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-        <hr class="hrProject">
+
+		<hr class="hrProject">
         <div id="projects" class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; min-height: 200px; align-items: center;">
             {query_projects select="*" from="$tab_projects" orderby="id" limit="$SIZE_PAGE_PROJECTS" offset="0"}
             <div style="display: flex;flex-direction: column;align-items: center; justify-content: center;">
@@ -65,6 +63,8 @@
                 <p id="load_project_p" style="display: none; font-family: 'Helvetica'; font-size: 16px; font-weight: lighter;">Кажется вы всё посмотрели</p>
             </div>
         </div>
+
+
     </div>
     <!--<div style=" height: auto; display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
 		<p>Посмотрите все наши проекты</p> 

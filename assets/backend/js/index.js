@@ -922,7 +922,7 @@ function addSkill(container, log){
     label.classList.add('labelTag');
 
     label.innerHTML = this.value + ' \
-        <button class="buttonTag display" onclick="this.parentNode.remove();" style="display: block;" > <!-- hidden visibility: hidden; style="display: none;" --> \
+        <button class="buttonTag display" onclick="this.parentNode.remove();" style="display: flex;" > <!-- hidden visibility: hidden; style="display: none;" --> \
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="7 10 20 20"> \
                 <path stroke="#F6F6F6" stroke-linecap="round" d="M10.903 14.904 15.5 19.5m0 0 4.597 4.596M15.499 19.5l4.597-4.596M15.499 19.5l-4.596 4.596"></path> \
             </svg> \
@@ -1387,13 +1387,17 @@ function goToPrevSlide() {
 
 /*profile*/
 function addContacts() {
+    var count_children = this.children.length;
+
+    if(count_children > 6) return;
+    
     // console.log(this);
     var span = document.createElement('span');
     //span.draggable ="true";
     span.className = "contact ";
     span.id = this.children.length + 1;
     //span.setAttribute('ondragstart', 'drag(event)'); // readOnly // Добавление осуществляется  в режиме `редактирования`. Поэтому
-    span.innerHTML = ' <input class="shower_hider" type="text" value="Телефон" readOnly hidden> \
+    span.innerHTML = ' <input class="head_content shower_hider" type="text" value="Телефон" readOnly hidden> \
 						<select name="type" id="pet-select" onchange="selectTypeContact.call(this)">\
 							<option value="Телефон">Телефон</option>\
 							<option value="Почта">Почта</option>\
@@ -1407,7 +1411,7 @@ function addContacts() {
 						</svg>';
 
     //this.append(span);
-    this.insertBefore(span, this.childNodes[this.childNodes.length - 2]);
+    this.insertBefore(span, this.children[count_children - 1]);
 }
 
 function allowDrop(ev) {
@@ -1468,7 +1472,9 @@ function showContextMenu() {
 }
 
 function addContactsIcon() {
-    console.log(this);
+    var count_children = this.children.length;
+
+    if(count_children > 6) return;
 
     var span = document.createElement('span');
 
@@ -1520,9 +1526,9 @@ function addContactsIcon() {
 
     //select.append(opt);
 
+    this.insertBefore(span, this.children[count_children - 1]);
 
-
-    this.insertBefore(span, this.childNodes[this.childNodes.length - 2]);
+    // if(count_children == 5) this.onclick = "";
 }
 
 function inputSugToolTip(path) {

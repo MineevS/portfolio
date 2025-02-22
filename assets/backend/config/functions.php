@@ -1170,6 +1170,10 @@ function query_input($params, $smarty)
     $css = 'addSearch';
     $type = 'search';
     switch ($for) {
+        case 'skills':
+            $placeholder = "Навык";
+            $onclick = 'addSkill';
+            break;
         case 'search':
             $onclick = 'addSkill';
             break;
