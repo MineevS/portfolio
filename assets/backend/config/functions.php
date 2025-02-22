@@ -1212,10 +1212,15 @@ function query_properties_add($params, $smarty){
 
     $isDragAndDrop = false;
     $onclick = '';
+
+    $style_height = 99;
+    $style_height_unit = '%';
     switch($for){
         case 'contacts':
             $isDragAndDrop = true;
             $onclick = 'addContacts.call(this.parentNode.parentNode)';
+            $style_height = 42;
+            $style_height_unit = 'px';
             break;
         case 'projects':
             $onclick = 'window.location.href=\''.$smarty->getTemplateVars('PAGE_PROJECT').'\'';
@@ -1235,8 +1240,8 @@ function query_properties_add($params, $smarty){
         </svg>';
 
     $html = '
-        <div class="display" style="display: flex; justify-content: space-between; display: none; width: 100%; align-items: center;  height: 100%;">
-            <button class="visibility add " onclick="'.$onclick.'"  >
+        <div class="display" style="display: flex; justify-content: space-between; display: none; width: 100%; align-items: center; height:'.$style_height.$style_height_unit.'; ">
+            <button class="visibility add" onclick="'.$onclick.'"  >
                 <svg class="add" xmlns="http://www.w3.org/2000/svg" width="34" height="33" fill="none" viewBox="0 0 34 33">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.444 17h31.111M17 1v31.111"/>
                 </svg>

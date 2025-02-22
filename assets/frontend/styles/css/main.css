@@ -1,11 +1,8 @@
+ @import "./css/fonts.css";
+
 * {
   box-sizing: border-box;
   user-select: none;
-}
-
-@font-face {
-  font-family: Vasek;
-  src: url("/assets/frontend/fonts/vasek.ttf");
 }
 
 :root { --height-header: 80px; --height-footer: 166px;  }
@@ -23,6 +20,13 @@ body {
   margin: 0;
 }
 
+#iframe-auth-reg {
+	position: absolute;
+	z-index: 2;
+	height: 50vh;
+	width: 50vw;
+}
+
 /* {0} .layout */
 
 .layout {
@@ -38,9 +42,10 @@ body {
   /* z-index: 1; */
   visibility: visible;
   /* hidden ,  visible*/
-  /* height: 100vh; */
+  height: 100vh;
   flex-wrap: wrap;
   /* row-gap: 25px; */
+  position: relative;
 }
 
 /* {1} - settings header: */
@@ -388,13 +393,15 @@ p.projectBody {
   /* font-family: 'Helvetica'; */
 }
 div.tags {
-  display: flex;
-  column-gap: 10px;
+  /* display: flex; */
+  /* column-gap: 10px; */
   /* overflow: hidden; */
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
   font-size: 18px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  font-family: 'Helvetica-Regular';
 }
+
 div.projectLikeComms {
   color: #202020;
   font-family: 'Helvetica', arial;

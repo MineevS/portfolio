@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-02-03 13:47:43
+/* Smarty version 5.4.2, created on 2025-02-22 08:59:10
   from 'file:C:\projects\portfolio_oleg\portfolioSer/assets/frontend/mains/main_for_profile.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_67a09ecf019c42_80598746',
+  'unifunc' => 'content_67b967ae1ef3f5_90882155',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '92d196465b07e482b6a8ce416881de3cb3efd0c4' => 
     array (
       0 => 'C:\\projects\\portfolio_oleg\\portfolioSer/assets/frontend/mains/main_for_profile.php',
-      1 => 1738579658,
+      1 => 1740203933,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67a09ecf019c42_80598746 (\Smarty\Template $_smarty_tpl) {
+function content_67b967ae1ef3f5_90882155 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\frontend\\mains';
 ?><section class="section_1">
 	<div class="section_1">
@@ -76,7 +76,7 @@ $_smarty_current_dir = 'C:\\projects\\portfolio_oleg\\portfolioSer\\assets\\fron
 							<input class="contentProperty" type="url" value="..." ></input>
 						</div>
 					</span>
-					<div class="addimage display">
+					<div class="addUrls display" style="display: none;">
 						<button class="addImage display" onclick="addContactsIcon.call(this.parentNode.parentNode)" style="display: none;">
 							<svg class="add" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 34 33">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.444 17h31.111M17 1v31.111"/>

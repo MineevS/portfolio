@@ -47,18 +47,61 @@ div.base_info {
     background-color: #fff;
 }
 
+#urls {
+    display: flex;
+    flex-direction: row;
+}
+div.addUrls {
+    /*width: 100%;*/
+    height: 50px;
+}
 span.icon {
     display: flex; 
     flex-direction: column; 
 }
 
-div.addimage {
-    display: flex; 
-    justify-content: space-between; 
-    display: none; 
-    width: 100%; 
-    align-items: center;
+div.icon {
+  display: flex;
+  flex-direction: column;
 }
+
+div.addimage {
+    display: flex;
+    /* justify-content: space-between; */
+    /* display: none; */
+    width: 100%;
+    align-items: center;
+    position: relative;
+}
+button.addImage {
+  all: unset;
+  border: 1px dashed #202020;
+  /*width: 50%;*/
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  /* margin: 25px; */
+  border-radius: 60px;
+}
+
+button.add:active {
+  background: #ccc;
+}
+svg.add {
+    stroke: #202020;
+    width: 28px;
+    height: 28px;
+}
+svg.add.remove {
+    stroke: #202020;
+    width: 42px;
+    height: 42px;
+}
+svg.add:active {
+  stroke: #ea5657;
+}
+
+
 
 div.con1 { /* <!-- о себе background-color: orange;--> */
     grid-column: 1 / span 2;

@@ -4,7 +4,7 @@
  /* {2.1} - settings section 1: */
 
 :root {
-	--font-vasek: 'Vasek';
+	--font-vasek: 'Vasek-Italic';
 }
 
 main {
@@ -191,7 +191,7 @@ p.VasekMainWhiteP {
 }
 
 p {
-	font-family: attr(font);
+	font-family: attr(font); /* ??? */
 }
 
 p.VasekMain {

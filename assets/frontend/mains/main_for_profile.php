@@ -48,7 +48,7 @@
 							<input class="contentProperty" type="url" value="..." ></input>
 						</div>
 					</span>
-					<div class="addimage display">
+					<div class="addUrls display" style="display: none;">
 						<button class="addImage display" onclick="addContactsIcon.call(this.parentNode.parentNode)" style="display: none;">
 							<svg class="add" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 34 33">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.444 17h31.111M17 1v31.111"/>
