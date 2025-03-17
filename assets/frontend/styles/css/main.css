@@ -246,7 +246,7 @@ font-size: 30px;
    visibility: visible;
    border: none;
    justify-content: center;
-   display: flex;
+   display: grid;
    /* background: gray; */
    position: relative;
    min-height: calc(100vh - var(--height-header) - 5px - var(--height-footer));
@@ -439,9 +439,15 @@ font-size: 30px;
    /* height: 100%; */
    /* display: inline-block; */
    flex-basis: 25%;
-   /* border: 1px solid #ddd; */
-   /* border-radius: 5px; */
+   border: 1px solid #ddd;
+   border-radius: 20px;
    aspect-ratio: 1 / 1;
+ }
+
+ .image-2:hover {
+   -webkit-box-shadow: 3px 4px 8px 0px rgba(34, 60, 80, 0.2);
+   -moz-box-shadow: 3px 4px 8px 0px rgba(34, 60, 80, 0.2);
+   box-shadow: 3px 4px 8px 0px rgba(34, 60, 80, 0.2);
  }
 
  .div-right {
@@ -772,4 +778,79 @@ font-size: 30px;
 
  .loadProjectsBtn:hover {
    background-color: #5f5f5f;
+ }
+
+ .dropdownProfile {
+   position: relative;
+   display: inline-block;
+   width: auto;
+   align-content: center;
+ }
+
+ /* Dropdown Content (Hidden by Default) */
+ .dropdownProfile-content {
+   display: none;
+   position: absolute;
+   background-color: #F6F6F6;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+   z-index: 1;
+ }
+
+ /* Links inside the dropdown */
+ .dropdownProfile-content a {
+   color: #202020;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+ }
+
+ /* Change color of dropdown links on hover */
+ .dropdownProfile-content a:hover {
+   background-color: #ccc
+ }
+
+ /* Show the dropdown menu on hover */
+ .dropdownProfile:hover .dropdown-content {
+   display: block;
+ }
+
+ /* Change the background color of the dropdown button when the dropdown content is shown */
+ .dropdownProfile:hover .dropbtn {
+   background-color: #5f5f5f;
+   color: #fff;
+ }
+
+ .buttonRefHeadline {
+   display: flex;
+   background-color: white;
+   padding: 0 0 0 5px;
+   text-align: left;
+   border: none;
+   width: fit-content;
+   font-family: 'Lack';
+   /* font-size: 48px; */
+   /* line-height: 60px; */
+   /* font-weight: 50; */
+   margin: 0 0 0 0;
+   color: #EA5657;
+   /* background: green; */
+   /* height: 25%; */
+   /* Интеллектуальный поиск */
+   /* position: absolute; */
+   /* width: 405px; */
+   /* height: 32px; */
+   /* font-family: 'Lack'; */
+   /* font-style: normal; */
+   /* font-weight: 400; */
+   font-size: 36px;
+   /* line-height: 48px; */
+   /* identical to box height */
+   /* color: #EA5657; */
+ }
+
+ .buttonRefHeadline:hover {
+   border: 2px solid #EA5657;
+   border-color: white white #EA5657 white;
+   /* border-radius: 20px; */
  }

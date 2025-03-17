@@ -14,7 +14,7 @@
 	            <article>
 	                  <h2><span>//</span> Ссылки</h2>
 	            </article>
-	            <div class="contentProperty container dragAndDrop" id="references" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start;">
+	            <div class="contentProperty container dragAndDrop" id="references" style="display: flex; flex-direction: column; gap:  10px; align-items: flex-start; resize: none;">
 					<!--query_properties_profile  	for="contacts"-->
 					{query_properties_add 		for="references"}
 	            </div>

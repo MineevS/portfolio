@@ -54,8 +54,8 @@
 								<button onclick="location.href='{$PROFILE}'">Мой профиль</button>
 								<button onclick="logout('{$ACTION}');">Выход</button>
 							</section>-->
-							<div class="dropdown">
-							<a href="" class="dropbtn">
+							<div class="dropdownProfile">
+							<a href="" class="dropbtnProfile">
 								<img id="profile" class="avatar" src="{$icon}" />
 							</a>
 								<div class="dropdown-content">
