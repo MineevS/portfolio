@@ -15,6 +15,7 @@ function create_iframe_authorization_registration() {
 
         iframe_auth.id = name_id_iframe;
         iframe_auth.name = iframe_auth.id;
+        // iframe_auth.attr("scrolling", "no");
 
         layout.prepend(iframe_auth);
     }

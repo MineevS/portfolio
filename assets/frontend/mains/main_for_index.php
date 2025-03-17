@@ -21,7 +21,7 @@
 	</div>
 	<div class="footer-section">
 		<p class="ref">Посмотрите все наши проекты</p>
-		<svg class="bi bi-arrow-right" style="color: #F6F6F6; margin: 0 1rem 0 1rem;" onclick="window.location.href='{$PROJECTS}'" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"  viewBox="0 0 16 16" >
+		<svg class="bi bi-arrow-right" style="color: #F6F6F6; margin: 0 1rem 0 1rem;" onclick="window.location.href='{$PROJECTS}'" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
 			<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
 		</svg>
 	</div>
@@ -33,17 +33,17 @@
 	</div>
 </section>
 <section id="sctn-4" data-aos="fade-up">
-	<div style="width: 100%;height: fit-content;/* justify-content: flex-end; */display: flex;flex-direction: column;align-items: center;"> 
+	<div style="width: 100%;height: fit-content;/* justify-content: flex-end; */display: flex;flex-direction: column;align-items: center;">
 		{query_article head1="Наши звёзды с" svg="2" head3="сияют ярче, чем в Голливуде" class="HelveticaMain" style="display: grid; width: 70%;"}
-		<div class="container stars" >
+		<div class="container stars">
 			<svg onclick="prevStar.call(this.nextSibling.nextSibling);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%; box-shadow: 20px 0px 10px 0px #ffffff; z-index: 1;">
 				<path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 			</svg>
 			<div class="carousel" style="width: 100%; ">
-				<div class="carousel-inner"> 
+				<div class="carousel-inner">
 					{query_stars select="*" from="$tag_awesome" orderby="id"}
 				</div>
-			</div> 
+			</div>
 			<svg onclick="nextStar.call(this.previousSibling.previousSibling);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23fff" style="flex-basis: 10%; box-shadow: -20px 0px 8px 0px #ffffff; z-index: 1;">
 				<path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
 			</svg>
@@ -69,4 +69,9 @@
 		</div>
 	</div>
 </section>
-
+<!-- <script>
+	$(document).ready(function() {
+		let modal = document.getElementById("myModal");
+		modal.style.setProperty('display', 'block');
+	});
+</script> -->
