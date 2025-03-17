@@ -172,6 +172,7 @@ h1.HelveticaMain {
   font-weight: 400;
   margin: 0 0 0 0;
   color: #202020;
+  margin-left: 5rem;
 }
 
 h1.HelveticaMainWhite {
@@ -180,6 +181,7 @@ h1.HelveticaMainWhite {
   font-weight: 400;
   margin: 0 0 0 0;
   color: #F6F6F6;
+  margin-left: 5rem;
 }
 
 p.VasekMainWhiteP {

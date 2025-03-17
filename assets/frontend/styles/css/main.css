@@ -57,7 +57,7 @@ header {
   left: 0;
   width: 100%;
   height: var(--height-header); /* */
-  background-color: #e2dbdb;
+  background-color: #fff;
   border-radius: 0px 0px 5px 5px;
   border-color: black;
   display: flex;
@@ -194,8 +194,8 @@ header a {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #202020;
-  color: #F6F6F6;
+  background-color: #fff;
+  color: #fff;
 }
 
 
@@ -207,7 +207,7 @@ header a {
   font-size: 16px;
   border: solid;
   border-width: 1px;
-  border-color: #ccc;
+  border-color: #fff;
   cursor: pointer;
   border-radius: 20px;
   padding: 1rem .5rem 1rem .5rem;
@@ -492,7 +492,7 @@ div.projectLikeComms {
   align-items: center;
   /* cursor: pointer; */
   padding: 1vh 3vw;
-  font-size: 1.2vw;
+  font-size: 1.5vw;
   background: transparent;
   color: white;
   width: 100% !important;

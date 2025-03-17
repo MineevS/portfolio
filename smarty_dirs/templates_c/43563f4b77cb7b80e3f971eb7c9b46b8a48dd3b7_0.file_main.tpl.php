@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-01-26 10:56:03
+/* Smarty version 5.4.2, created on 2025-03-12 13:22:58
   from 'file:C:/xampp/htdocs/portfolio/smarty_dirs/templates/main.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_679606b30bf324_17283195',
+  'unifunc' => 'content_67d17ca24e42c1_00911781',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '43563f4b77cb7b80e3f971eb7c9b46b8a48dd3b7' => 
     array (
       0 => 'C:/xampp/htdocs/portfolio/smarty_dirs/templates/main.tpl',
-      1 => 1737883041,
+      1 => 1741782177,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_679606b30bf324_17283195 (\Smarty\Template $_smarty_tpl) {
+function content_67d17ca24e42c1_00911781 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolio\\smarty_dirs\\templates';
 ?><!DOCTYPE HTML>
 <html>
@@ -41,18 +41,18 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolio\\smarty_dirs\\templates';
 		
 		<!--<?php echo 2;?>
  Стили-->
-		<link href="<?php echo $_smarty_tpl->getValue('CSS_MAIN');?>
-" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
 		<link href="<?php echo $_smarty_tpl->getValue('CSS_TOTAL');?>
 " 	type="text/css" 	rel="stylesheet"> <!-- Общий стиль для всех страниц --> 
+		<link href="<?php echo $_smarty_tpl->getValue('CSS_MAIN');?>
+" 	type="text/css" 	rel="stylesheet"> <!-- Стиль для `<main>`-->
 		<link href="<?php echo $_smarty_tpl->getValue('CSS_AOS');?>
 "		type="text/css"		rel="stylesheet">
 
 		<!--<?php echo 3;?>
  Скрипты -->
-		
 		<?php echo '<script'; ?>
- src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.6/Sortable.min.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->getValue('SJS');?>
+">								<?php echo '</script'; ?>
 >
 		
 		<?php echo '<script'; ?>
@@ -99,16 +99,25 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolio\\smarty_dirs\\templates';
 					</nav>
 					<div>
 						<?php if ((($tmp = (null !== ($_smarty_tpl->getValue('icon') ?? null)) ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-							<a href="">
-								<img id="profile" class="avatar" src="<?php echo $_smarty_tpl->getValue('icon');?>
-" />
-							</a>
-							<section style="display: flex; flex-direction: column; position: absolute; z-index: 5; width: fit-content; heigh: 100px; border: 3px solid black; border-radius: 5px; ">
+							
+							<!--<section style="display: flex; flex-direction: column; position: absolute; z-index: 5; width: fit-content; heigh: 100px; border: 3px solid black; border-radius: 5px; ">
 								<button onclick="location.href='<?php echo $_smarty_tpl->getValue('PROFILE');?>
 '">Мой профиль</button>
 								<button onclick="logout('<?php echo $_smarty_tpl->getValue('ACTION');?>
 ');">Выход</button>
-							</section>
+							</section>-->
+							<div class="dropdown">
+							<a href="" class="dropbtn">
+								<img id="profile" class="avatar" src="<?php echo $_smarty_tpl->getValue('icon');?>
+" />
+							</a>
+								<div class="dropdown-content">
+									<a href="#" onclick="location.href='<?php echo $_smarty_tpl->getValue('PROFILE');?>
+'">Мой профиль</a>
+									<a href="#" onclick="logout('<?php echo $_smarty_tpl->getValue('ACTION');?>
+');">Выход</a>
+								</div>
+							</div>
 						<?php } else { ?>
 							<div>
 								<a target="iframe-auth-reg" onclick="create_iframe_authorization_registration();" href="<?php echo $_smarty_tpl->getValue('HFR');?>
