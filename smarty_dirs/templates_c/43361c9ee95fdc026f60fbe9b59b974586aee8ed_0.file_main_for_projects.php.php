@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2025-03-12 15:10:29
+/* Smarty version 5.4.2, created on 2025-03-17 10:58:17
   from 'file:C:/xampp/htdocs/portfolio/assets/frontend/mains/main_for_projects.php' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_67d195d52f1db7_62639307',
+  'unifunc' => 'content_67d7f2391436a0_25884562',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '43361c9ee95fdc026f60fbe9b59b974586aee8ed' => 
     array (
       0 => 'C:/xampp/htdocs/portfolio/assets/frontend/mains/main_for_projects.php',
-      1 => 1741788628,
+      1 => 1742205496,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67d195d52f1db7_62639307 (\Smarty\Template $_smarty_tpl) {
+function content_67d7f2391436a0_25884562 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolio\\assets\\frontend\\mains';
 ?><section id="sctn-1" style="display: grid;"> <!-- style="width: 100%;" -->
     <div class="container-projects" style="width: 75%; justify-self: center; display: grid;"> <!-- width: 65%; /*padding: 7%;*/ padding-bottom: 2%; height: fit-content;/* padding-bottom: 2%; *//* padding-left: 20%; *//* padding-right: 20%; */margin: 0%; -->
-        <article style="display: grid; width: 50%; justify-self: center;">
-            <h1 class="HelveticaMain" style="justify-self: start;">Представляем вам</h1>
-            <p class="VasekMain" style="justify-self: center;">лучшие проекты</p>
-            <h1 class="HelveticaMain" style="justify-self: end;">базовой кафедры</h1>
+        <article style="display: grid; width: 75%; justify-self: center;">
+            <h1 class="HelveticaProject" style="justify-self: start;">Представляем вам</h1>
+            <p class="VasekProject" style="justify-self: center;">лучшие проекты</p>
+            <h1 class="HelveticaProject" style="justify-self: end;">базовой кафедры</h1>
         </article>
 
-        <div class="container" style="" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%;">
-            <div style="display: flex; flex-direction: row; width: 70%; height: 5vh;">
+        <div class="container" style="margin: 2rem 0 2rem 0;" style="display: flex; flex-direction: row; gap: 30px; margin-top: 2rem; width: 100%;">
+            <div style="display: flex; flex-direction: row; width: 70%; height: 2rem;">
                 <div class="inputDiv">
                     <input class="inputSearch" id="inputSearch" onblur="hideInputSugToolTip()" oninput="inputSugToolTip('<?php echo $_smarty_tpl->getValue('ACTION');?>
 ')">
@@ -86,8 +86,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolio\\assets\\frontend\\mains';
                         <path fill="#202020" d="M14 24.896a1 1 0 0 0 2 0h-2Zm1.707-20.499a1 1 0 0 0-1.414 0l-6.364 6.364a1 1 0 0 0 1.414 1.414L15 6.518l5.657 5.657a1 1 0 0 0 1.414-1.414l-6.364-6.364ZM16 24.896V5.104h-2v19.792h2Z"/>
                     </svg>--> <!-- Если элементы закончились -->
                     <svg id="load_project_svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
-                        <rect width="29" height="29" x="29.499" y="29.5" stroke="#202020" rx="14.5" transform="rotate(-180 29.499 29.5)" />
-                        <path fill="#202020" d="M15.999 5.104a1 1 0 1 0-2 0h2Zm-1.707 20.498a1 1 0 0 0 1.414 0l6.364-6.363a1 1 0 0 0-1.414-1.415l-5.657 5.657-5.657-5.657a1 1 0 1 0-1.414 1.415l6.364 6.363Zm-.293-20.498v19.791h2V5.104h-2Z" />
+                        <!-- <rect width="29" height="29" x="29.499" y="29.5" stroke="white" rx="14.5" transform="rotate(-180 29.499 29.5)" /> -->
+                        <path fill="white" d="M15.999 5.104a1 1 0 1 0-2 0h2Zm-1.707 20.498a1 1 0 0 0 1.414 0l6.364-6.363a1 1 0 0 0-1.414-1.415l-5.657 5.657-5.657-5.657a1 1 0 1 0-1.414 1.415l6.364 6.363Zm-.293-20.498v19.791h2V5.104h-2Z" />
                     </svg> <!-- Если элементы ещё имеются -->
                 </button>
                 <p id="load_project_p" style="display: none; font-family: 'Helvetica'; font-size: 16px; font-weight: lighter;">Кажется вы всё посмотрели</p>
