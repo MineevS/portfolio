@@ -191,7 +191,7 @@ function loadProjets(path) {
     query_projects(path);
 }
 
-function query_projects(path){
+function query_projects(path) {
     $.ajax({
         type: "POST",
         url: path,
@@ -207,10 +207,10 @@ function query_projects(path){
 
 function removeAllChildren(parent) {
     while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
+        parent.removeChild(parent.firstChild);
     }
-  }
-  
+}
+
 
 function print_projects(result) {
     console.log(result);
@@ -275,7 +275,7 @@ function editPage(code_peration, path) {
     var displays = document.getElementsByClassName('display');
     [...displays].forEach((elem) => {
         elem.style.display = (code_peration ? 'flex' : 'none');
-        if(elem.classList.contains('buttonTag')) 
+        if (elem.classList.contains('buttonTag'))
             elem.setAttribute('onclick', (code_peration ? 'this.parentNode.remove();' : '')) // onclick=""
     });
     var visibls = document.getElementsByClassName('visibility'); // edit
@@ -296,7 +296,7 @@ function editPage(code_peration, path) {
     [...selects].forEach((sl) => {
         var elem = sl.previousElementSibling;
 
-        if(code_peration) sl.removeAttribute('hidden');
+        if (code_peration) sl.removeAttribute('hidden');
         else sl.setAttribute('hidden', true);
 
         elem.setAttribute('type', (!code_peration ? 'text' : 'hidden'));
@@ -327,7 +327,7 @@ function editPage(code_peration, path) {
                     console.log(select.value);
                     select.previousElementSibling;
                 });*/
-                
+
                 func_page = function (json_data) {
                     if (json_data.hasOwnProperty('error_code') && !json_data['error_code']) { // Очистка после успешной загрузки;
                         var avatar = document.getElementById('avatar');
@@ -393,21 +393,21 @@ function editPage(code_peration, path) {
                     formData.append(property.id, JSON.stringify(duties));
                     break;
                 case 'email':
-                    if(!emails.includes(property.value.trim())){
+                    if (!emails.includes(property.value.trim())) {
                         emails.push(property.value.trim());
                     } else {
                         // TODO;
                     }
                     break;
                 case 'phone':
-                    if(!phones.includes(property.value.trim())){
+                    if (!phones.includes(property.value.trim())) {
                         phones.push(property.value.trim());
                     } else {
                         // TODO;
                     }
                     break;
                 case 'site':
-                    if(!sites.includes(property.value.trim())){
+                    if (!sites.includes(property.value.trim())) {
                         sites.push(property.value.trim());
                     } else {
                         // TODO;
@@ -416,24 +416,24 @@ function editPage(code_peration, path) {
                     break;
                 default:
                     try {
-                        if(property.value) formData.append(property.id, property.value.trim());
+                        if (property.value) formData.append(property.id, property.value.trim());
                         else formData.append(property.id, property.textContent.trim());
-                    } catch(error){
+                    } catch (error) {
                         console.log(error);
                     }
                     break;
             }
         });
 
-        if(emails.length > 0) contacts['emails'] = emails;
-        if(phones.length > 0) contacts['phones'] = phones;
-        if(sites.length  > 0) contacts['sites']  = sites;
+        if (emails.length > 0) contacts['emails'] = emails;
+        if (phones.length > 0) contacts['phones'] = phones;
+        if (sites.length > 0) contacts['sites'] = sites;
 
         if (Object.keys(contacts).length > 0) formData.append('contacts', JSON.stringify(contacts));
 
 
         // contacts[property.value.trim()] = property.id; // Ключом является значение, а значением id.
-        
+
         formData.entries().forEach((entry) => { // For Debug;
             console.log(entry);
         });
@@ -449,7 +449,7 @@ function selectTypeContact() {
     var name = '';
     var maxlength = '';
     var placeholder = '';
-    var mask = function (params) {};
+    var mask = function (params) { };
     switch (this.value) {
         case 'Телефон':
             value = "+7(___)___-__-__";
@@ -494,7 +494,7 @@ function selectTypeContact() {
     input.placeholder = placeholder;
 
     input.setAttribute('oninput', mask_phone);
-    
+
     input.setAttribute('value', value);
     input.setAttribute('maxlength', maxlength);
     input.setAttribute('placeholder', placeholder);
@@ -532,7 +532,7 @@ elems += '"' + this[this.length - 1].textContent.trim() + '"]';*/
     
 }*/
 
-function addGoalDuty(container, log){
+function addGoalDuty(container, log) {
     //console.log(this.value, container);
     var li = document.createElement('li');
     var div = ' \
@@ -544,7 +544,7 @@ function addGoalDuty(container, log){
                     </svg> \
                 </button> \
                 <span style="margin: 0; padding-right: 3vw;" onclick="loadDuty.call(this);"> \
-                    '+ this.value +' \
+                    '+ this.value + ' \
                 </span> \
             </div> \
         </li>'; // wrapperHtmlLi()
@@ -553,7 +553,7 @@ function addGoalDuty(container, log){
 
     // console.log(li.textContent);
 
-    duplicateСontrol.call(li, container,  log);
+    duplicateСontrol.call(li, container, log);
 }
 
 
@@ -840,7 +840,7 @@ function editVacancy(code_peration, path) {
         }, path);*/
 
         //if (change_avater.length != 0)
-            //ajax_img(formData, path, 'avatar-vacancy');
+        //ajax_img(formData, path, 'avatar-vacancy');
     }
 }
 
@@ -915,7 +915,7 @@ function addTag() {
     tags.appendChild(elem);
 }
 
-function addSkill(container, log){
+function addSkill(container, log) {
     console.log(this, this.value); // input;
     console.log(container); // container;
 
@@ -957,18 +957,18 @@ function addSkill(container, log){
 
 function duplicateСontrol(container, log) {
     var fsd = false; // fsd - flag_search_dublicap;
-    for (const elem of container.children){
-        if(elem.textContent.trim() === this.textContent.trim()){
-            fsd = true; 
+    for (const elem of container.children) {
+        if (elem.textContent.trim() === this.textContent.trim()) {
+            fsd = true;
             break;
         }
     }
 
-    if(!fsd) container.append(this);
+    if (!fsd) container.append(this);
     else {
         log.textContent = 'Обнаружен дубликат!';
 
-        var myTimer = setTimeout(function(){
+        var myTimer = setTimeout(function () {
             log.textContent = '';
             clearTimeout(myTimer);
         }, 1000);
@@ -977,8 +977,8 @@ function duplicateСontrol(container, log) {
     }
 }
 
-function addTagSkill(){
-    
+function addTagSkill() {
+
 }
 
 function resultSearch(value) {
@@ -1140,10 +1140,10 @@ function updateTextAreaResize() {
         elem.innerHTML = data;
 
         // console.log(elem.scrollHeight, elem.offsetHeight); // data, 
-        
+
         elem.style.height = (elem.scrollHeight > 0 ? elem.scrollHeight : 40) + 'px';
-        
-       // elem.style.height = elem.innerHTML. + 'px';
+
+        // elem.style.height = elem.innerHTML. + 'px';
     });
     //document.getElementById("aboutProjTextarea").autosize();
 }
@@ -1151,7 +1151,7 @@ function updateTextAreaResize() {
 window.addEventListener('load', function () { // - выполняется после полной загрузки
     console.log('load');
 
-    window.addEventListener('resize', function(event) {
+    window.addEventListener('resize', function (event) {
         console.log('resize');
         updateTextAreaResize();
     }, true);
@@ -1390,8 +1390,8 @@ function goToPrevSlide() {
 function addContacts() {
     var count_children = this.children.length;
 
-    if(count_children > 6) return;
-    
+    if (count_children > 6) return;
+
     // console.log(this);
     var span = document.createElement('span');
     //span.draggable ="true";
@@ -1475,7 +1475,7 @@ function showContextMenu() {
 function addContactsIcon() {
     var count_children = this.children.length;
 
-    if(count_children > 6) return;
+    if (count_children > 6) return;
 
     var span = document.createElement('span');
 
@@ -1495,19 +1495,19 @@ function addContactsIcon() {
       <option>другое</option>';*/
 
     /*span.innerHTML = '\
-						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48"> \
-							<path fill="#29b6f6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path> \
-							<path fill="#fff" d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"></path> \
-							<path fill="#b0bec5" d="M23,30.505l-3.426,3.374c0,0-0.149,0.115-0.348,0.12c-0.069,0.002-0.143-0.009-0.219-0.043 l0.964-5.965L23,30.505z"></path> \
-							<path fill="#cfd8dc" d="M29.897,18.196c-0.169-0.22-0.481-0.26-0.701-0.093L16,26c0,0,2.106,5.892,2.427,6.912 c0.322,1.021,0.58,1.045,0.58,1.045l0.964-5.965l9.832-9.096C30.023,18.729,30.064,18.416,29.897,18.196z"></path> \
-						</svg> \
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48"> \
+                            <path fill="#29b6f6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path> \
+                            <path fill="#fff" d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"></path> \
+                            <path fill="#b0bec5" d="M23,30.505l-3.426,3.374c0,0-0.149,0.115-0.348,0.12c-0.069,0.002-0.143-0.009-0.219-0.043 l0.964-5.965L23,30.505z"></path> \
+                            <path fill="#cfd8dc" d="M29.897,18.196c-0.169-0.22-0.481-0.26-0.701-0.093L16,26c0,0,2.106,5.892,2.427,6.912 c0.322,1.021,0.58,1.045,0.58,1.045l0.964-5.965l9.832-9.096C30.023,18.729,30.064,18.416,29.897,18.196z"></path> \
+                        </svg> \
                         <div class="showHide">  \
-							<select> \
-								<option>Вконтакте</option> \
+                            <select> \
+                                <option>Вконтакте</option> \
         < option > другое</option > \
-							</select > \
+                            </select > \
     <input class="contentProperty" type="url" value="..." ></input> \
-						</div > ';*/
+                        </div > ';*/
 
     span.innerHTML = '	<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48"> \
 			<path fill="#1976d2" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path> \
@@ -1549,10 +1549,10 @@ function inputSugToolTip(path) {
             //print_projects(result);
             //document.getElementsByClassName('buttonRef')
             document.getElementById('projects').innerHTML = '';
-           
+
             if (document.getElementById('inputLi'))
                 document.getElementById('inputLi').remove();
-            
+
             print_projects(result);
             let projectTitle = document.getElementById('projectTitle').innerHTML;
             //$('#inputSugUi').append('<li id="inputLi"><button class="inputLiBtn">' + projectTitle + '</button></li>');
@@ -1569,7 +1569,7 @@ function hideInputSugToolTip() {
         document.getElementById('inputLi').remove();
 }
 
-function orderByNewest(path){
+function orderByNewest(path) {
     $.ajax({
         type: "POST",
         url: path,
@@ -1582,17 +1582,17 @@ function orderByNewest(path){
             console.log(result);
             document.getElementById('projects').innerHTML = '';
             print_projects(result);
-         
+
         }
     });
 }
 
-function order_sort(type, path){
+function order_sort(type, path) {
     var currentPage = window.location.href.split('/').pop().split('.')[0];
 
-    
 
-    if(this.style.background === ''){
+
+    if (this.style.background === '') {
         this.style.background = 'red';
 
         $.ajax({
@@ -1606,11 +1606,11 @@ function order_sort(type, path){
             },
             success: function (result) {
                 console.log(result);
-                
+
                 document.getElementById('projects').innerHTML = '';
-                
+
                 print_projects(result);
-             
+
             }
         });
 
@@ -1621,17 +1621,69 @@ function order_sort(type, path){
     }
 }
 
-function resizeTextarea(){
+function resizeTextarea() {
     this.style.height = '1px';
-    this.style.height = (this.scrollHeight + 6) + 'px'; 
+    this.style.height = (this.scrollHeight + 6) + 'px';
 }
 
 function changeStars() {
     console.log(this, this.style.fill);
 
-    if(this.hasAttribute('stroke')){
+    if (this.hasAttribute('stroke')) {
         console.log('stroke');
     } else {
         console.log('fill');
     }
 }
+
+function moveStar(diriction) {
+
+    var itemListParent = document.querySelector('.carousel-inner');
+    var itemList = document.querySelectorAll('.star');
+
+    // hideNonShowStars(itemList);
+
+    console.log(itemListParent);
+
+
+    if (diriction === 0) {
+        itemListParent.insertBefore(itemList[0], null)
+    } else {
+        itemListParent.insertBefore(itemList[9], itemList[0]);
+    }
+    // $(itemList[0]).hide().slideDown(2000);
+
+    var itemList = document.querySelectorAll('.star');
+    // setTimeout(() => {
+
+    itemList[0].style.setProperty('transform', 'scale(0.3)');
+    itemList[1].style.setProperty('transform', 'scale(0.7)');
+    itemList[2].style.setProperty('transform', 'scale(1)');
+    itemList[3].style.setProperty('transform', 'scale(0.7)');
+    itemList[4].style.setProperty('transform', 'scale(0.3)');
+    // }, 100);
+
+    let nextTitle = itemList[2].title.split(',');
+
+    let curTitle = document.getElementById('bestPeople');
+
+    curTitle.childNodes[0].innerHTML = nextTitle[0];
+    curTitle.childNodes[1].innerHTML = nextTitle[1];
+    curTitle.childNodes[2].innerHTML = nextTitle[2];
+
+    $("#bestPeople").hide().fadeIn("slow");
+
+}
+
+function arrowAnimationEnter() {
+    let arrow = document.getElementById("projArrow");
+    // let arrowBtnDiv = document.getElementById('arrowBtnDiv');
+    // arrowBtnDiv.style.setProperty()
+    arrow.style.setProperty('margin', '0 1rem 0 1rem');
+}
+
+function arrowAnimationLeave() {
+    let arrow = document.getElementById("projArrow");
+    arrow.style.setProperty('margin', '0 3rem 0 1rem');
+}
+

@@ -268,7 +268,7 @@ font-size: 30px;
    display: flex;
    flex-direction: column;
    /* min-height: 100vh; */
-   /* margin-top: auto; */
+   margin-top: 0;
    /* bottom: 0; */
    left: 0;
    /* width: 100%; */
@@ -314,7 +314,9 @@ font-size: 30px;
  label.labelTag,
  label.tag {
    /*?tag*/
-   background: #d8d5d5;
+   font-family: 'Helvetica';
+   font-weight: 400;
+   background: #eee;
    border-radius: 25px;
    text-wrap: nowrap;
    padding-left: 10px;
@@ -324,6 +326,29 @@ font-size: 30px;
    flex-direction: row;
    align-items: center;
    column-gap: 10px;
+   margin-bottom: 0.5rem;
+ }
+
+ .cardDuties {
+   font-family: 'Helvetica Light';
+   font-weight: lighter;
+   color: #202020;
+ }
+
+ .cardDuty {
+   font-family: 'Helvetica', arial;
+   /* font-size: 0.9vw; */
+   font-weight: 100;
+   margin: 0 0 0 0;
+   color: #202020;
+   margin: .5rem 0 .5rem 0;
+   text-align: justify;
+   /* flex-wrap: nowrap; */
+   /* display: flex; */
+   /* grid-template-columns: 35px auto; */
+   column-gap: 15px;
+   align-items: center;
+   letter-spacing: normal;
  }
 
  .buttonTag {
@@ -367,7 +392,8 @@ font-size: 30px;
 
  /* {2} - projects*/
  .formProject {
-   /* display: flex; */
+   display: flex;
+   flex-direction: row;
    /* width: 50%; */
    /* background: gray; */
    column-gap: 3%;
@@ -533,17 +559,18 @@ font-size: 30px;
  .interestsSubmitButton {
    /* ориентация */
    display: flex;
+   flex-direction: row;
    justify-content: space-between;
    align-items: center;
    /* cursor: pointer; */
-   padding: 1vh 3vw;
+   padding-left: 3vw;
    font-size: 1.5vw;
    background: transparent;
    color: white;
    width: 100% !important;
    height: 7vh;
    /* border: none !important; */
-   font-family: 'Helvetica Light';
+   font-family: 'Helvetica';
    border-top: 1px solid #ddd;
  }
 
@@ -660,7 +687,10 @@ font-size: 30px;
    padding-right: 25%;
  }
 
- .vacancieDescription {}
+ .vacancieDescription {
+   font-family: 'Helvetica Light';
+   font-size: 20px;
+ }
 
  .coincidenceVacancy {
    all: unset;
@@ -677,6 +707,26 @@ font-size: 30px;
    padding: 1vh;
    border: 1px solid #858585;
    border-radius: 25px;
+   background-color: white;
+   font-family: 'Helvetica';
+ }
+
+ .clickVacancy:hover {
+   background-color: #858585;
+   color: white;
+ }
+
+ .starBtn {
+   background-color: white;
+   color: black;
+   border-radius: 30px;
+ }
+
+ .starBtn:hover {
+   background-color: black;
+   color: white;
+   fill: white;
+   /* opacity: 0.5; */
  }
 
  .divVacancy {
@@ -702,6 +752,11 @@ font-size: 30px;
    padding: 10px;
    border: none;
    column-gap: 20px;
+ }
+
+ .cardTitle {
+   font-family: 'Lack';
+   color: #EA5657;
  }
 
  h1.HelveticaProject {
@@ -756,6 +811,19 @@ font-size: 30px;
  .hrProject {
    width: 100%;
 
+ }
+
+ .star {
+   transition: 0.5s linear;
+ }
+
+ .VasekMainStarAnim {
+   font-family: var(--font-vasek);
+   font-size: 128px;
+   font-weight: 400;
+   color: #EA5657;
+   margin: 0;
+   transition: 0.5s linear;
  }
 
  .buttonCard {

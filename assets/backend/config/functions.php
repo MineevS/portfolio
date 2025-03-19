@@ -154,7 +154,7 @@ function psql_query_projects($params, $smarty)
 
             if ($include_right)
                 $html .=  '<div class="div-right" > <!-- background-color: green; -->
-                <!--<h1 class="projectTitle" id="projectTitle">' . $data["name"] . '</h1> -->
+                <!--<h1 class="projectTitle" id="projectTitle">' . $data["name"] . '</h1> -->   
                     <button class="buttonRefHeadline"><input type="hidden" name="id" id="id" value=' . $data['id'] . '>' . $data["name"] . '</button>
                     <p class="projectBody" >' . $data['description'] . '</p>
                     <div class="tags">
@@ -317,7 +317,7 @@ function psql_query_stars($params, $smarty)
 
 
             $html .=
-                '<div id="' . $id . '" class="item-of-stars" style="' . $style . '' . $style_svg . '" title="лучший,' . $data["description"] . ',' . $data["time"] . '"> <!-- none / block pointer-events: none; --> 
+                '<div class="star" id="star' . $id . '" class="item-of-stars" style="' . $style . '' . $style_svg . '" title="лучший,' . $data["description"] . ',' . $data["time"] . '"> <!-- none / block pointer-events: none; --> 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 470" fill="currentColor" style="display:block; width:100%; ">
                     <!-- pattern -->
                     <defs>
@@ -551,7 +551,7 @@ function psql_query_vacancies($params, $smarty)
 
             $html .= '
                     </div>
-                    <p class="vacancieDescription" style="font-size: 1.3vw; text-align: justify; font-family: \'Helvetica\';">' . $description . '</p>';
+                    <p class="vacancieDescription" style="">' . $description . '</p>';
 
             $tags = json_decode($data['tags']);
             if (count($tags) == 0) $html .= '<p class="" style="font-size: 1.3vw;" >Теги отсутствуют</p>';
@@ -580,7 +580,7 @@ function psql_query_vacancies($params, $smarty)
                 $html .= '<p class="cardExperience" style="font-size: 1.3vw;" >Опыт:</p>';
 
                 $html .= '<ul>';
-                foreach ($experience as $exper) $html .= '<li class="cardExper">' . $exper . '</li>';
+                foreach ($experience as $exper) $html .= '<li class="cardDuty">' . $exper . '</li>';
                 $html .= '</ul>';
             } else
                 $html .= ''; // <p class="" style="font-size: 1.3vw;" >требуемый опыт отсутствуют</p>
