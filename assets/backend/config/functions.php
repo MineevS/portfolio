@@ -1125,7 +1125,7 @@ function psql_query_header_page($params, $smarty)
     ';*/
 
     return    '<article class="articleProfile"> <!-- style="display: flex;  width: fit-content; justify-content: center; space-between; gap: 5%; align-items: center;"-->
-			<div class="avatar">
+			<div class="avatarTitle">
                 <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="' . $width . '" height="' . $height . '" fill="none" viewBox="0 0 ' . $width . ' ' . $height . '">
                     <defs>
                         <pattern id="a" width="1" height="1" patternContentUnits="objectBoundingBox">
@@ -1357,7 +1357,9 @@ function psql_query_properties_project($params, $smarty)
             $html .= $icon;
             break;
         case 'name':
-            $html .= '<input class="contentProperty" id="' . $params["for"] . '"  value="' . $name . '" readonly/>';
+            $html .= '<input class="contentProperty" id="' . $params["for"] . '"  value="' . $name . '"
+            style="height: fit-content; border: none;color: #EA5657; font-family: \'Vasek\'; font-size: 5vw; outline:none; caret-color: transparent;"
+            />';
             break;
         case 'description':
             $html .= '<textarea class="contentProperty" oninput="resizeTextarea.call(this);" id="' . $params["for"] . '" style="width: 100%;" readonly>' . $description . '</textarea>';

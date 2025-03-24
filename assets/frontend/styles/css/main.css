@@ -1100,3 +1100,35 @@ font-size: 30px;
  .cardExperience {
    font-family: 'Helvetica';
  }
+
+ /* /////profile/////// */
+ article.articleProfile {
+   justify-self: center;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+ }
+
+ .contentProperty {
+   border: none;
+   height: fit-content;
+ }
+
+ svg.editor {
+   stroke: #EA5657;
+   min-width: 50px;
+ }
+
+ svg.editor:hover {
+   box-shadow: 3px 4px 8px 0px rgba(34, 60, 80, 0.2);
+ }
+
+ svg.editor:active {
+   stroke: gray;
+ }
+
+ .avatarTitle {
+   position: absolute;
+   top: 0%;
+   left: 17%;
+ }
