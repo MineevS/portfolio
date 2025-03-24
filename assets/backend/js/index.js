@@ -224,14 +224,18 @@ function print_projects(result) {
         if (divs.length > 0)
             [...divs].forEach((div_elem) => {
 
-                console.log(div_elem.getElementsByClassName('projectTitle')[0].textContent);
+                //console.log(div_elem.getElementsByClassName('projectTitle')[0].textContent);
                 container_projects.insertBefore(div_elem, container_projects.childNodes[container_projects.childNodes.length - 2]);
             });
         else {                     // Закончились элементы;
             // load_project_button; // Можно сделать не onckick;
+
+
             var svg = document.getElementById('load_project_svg');
             svg.style.transform = "rotate(180deg)";
             var p = document.getElementById('load_project_p');
+
+            $('#load_project_button').attr('onclick', "topFunction()");
             p.style.display = "block";
         }
     }
@@ -1548,13 +1552,19 @@ function inputSugToolTip(path) {
             //console.log(result);
             //print_projects(result);
             //document.getElementsByClassName('buttonRef')
+
+            let section = document.getElementById('sctn-1');
+            let curWidth = section.offsetWidth;
+            console.log(curWidth);
+            section.style.setProperty('min-width', curWidth + 'px');
+
             document.getElementById('projects').innerHTML = '';
 
             if (document.getElementById('inputLi'))
                 document.getElementById('inputLi').remove();
 
             print_projects(result);
-            let projectTitle = document.getElementById('projectTitle').innerHTML;
+            // let projectTitle = document.getElementById('projectTitle').innerHTML;
             //$('#inputSugUi').append('<li id="inputLi"><button class="inputLiBtn">' + projectTitle + '</button></li>');
         }
     });
@@ -1675,15 +1685,39 @@ function moveStar(diriction) {
 
 }
 
-function arrowAnimationEnter() {
-    let arrow = document.getElementById("projArrow");
+function arrowAnimationEnter(el) {
+    console.log(el);
+    if (el.type == "submit") {
+        el.style.setProperty('padding-right', '4vw');
+    } else {
+        el.childNodes[3].style.setProperty('margin', '0 1rem 0 1rem');
+    }
+    //let arrow = document.getElementById("projArrow");
     // let arrowBtnDiv = document.getElementById('arrowBtnDiv');
     // arrowBtnDiv.style.setProperty()
-    arrow.style.setProperty('margin', '0 1rem 0 1rem');
+    // arrow.style.setProperty('margin', '0 1rem 0 1rem');
 }
 
-function arrowAnimationLeave() {
-    let arrow = document.getElementById("projArrow");
-    arrow.style.setProperty('margin', '0 3rem 0 1rem');
+function arrowAnimationLeave(el) {
+    // let arrow = document.getElementById("projArrow");
+    // arrow.style.setProperty('margin', '0 3rem 0 1rem');
+    if (el.type == "submit") {
+        el.style.setProperty('padding-right', '5vw');
+    } else {
+        el.childNodes[3].style.setProperty('margin', '0 3rem 0 1rem');
+    }
 }
 
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+    $('#load_project_button').attr('onclick', "loadProjets('/assets/frontend/pages/action.php');");
+
+    var svg = document.getElementById('load_project_svg');
+    svg.style.transform = "rotate(0deg)";
+    var p = document.getElementById('load_project_p');
+    p.style.display = "none";
+} 
