@@ -944,7 +944,7 @@ function psql_query_properties_user($params, $smarty)
                 $id = $id_prefix . '-' . $key;
                 $html .= '
                 <div class="card-' . $cardname . '">
-                    <div class="card-' . $cardname . '-left" icon="/assets/frontend/icons/avatars_profiles/' . $icon . '">
+                    <div class="card-' . $cardname . '-left">
                         <svg class="avatar" xmlns="http://www.w3.org/2000/svg" width="128" height="105" fill="none" viewBox="0 0 214 211">
                             <defs>
                                 <pattern id="' . $id . '" width="1" height="1" patternContentUnits="objectBoundingBox">
@@ -963,8 +963,8 @@ function psql_query_properties_user($params, $smarty)
                 switch ($params["for"]) {
                     case 'project':
                         $html .= '
-                            <div style="display: flex; column-gap: 10px; align-items: center; ">
-                                <div style="display: flex; column-gap: 7px;">
+                            <div style="display: flex; column-gap: 10px; align-items: center;">
+                                <div style="display: flex; column-gap: 7px; align-items: center;">
                                     <string>c</string><input id="from" class="user_data" type="text"  value="' . $from . '" readOnly>
                                     <string>по</string><input id="to" class="user_data" type="text"  value="' . $to . '" readOnly>
                                 </div>
@@ -995,7 +995,7 @@ function psql_query_properties_user($params, $smarty)
                         $html_stars .= '</fieldset>';
                         $html .= '
                             <string class="stars">' . $html_stars . '</string>
-                            <textarea>' . $msg . '</textarea></div>
+                            <textarea class="text_area_feedback">' . $msg . '</textarea></div>
                         ';
 
                         break;
@@ -1334,12 +1334,21 @@ function psql_query_properties_project($params, $smarty)
         case 'properties':
             $html_select = query_property_option('status');
             $html .= '
-            <string>Дата начала:                    <input class="contentProperty" id="premier"          value="' . $premier . '"        type="date"         readonly /></string>                                       
+            <string style="font-family: \'Helvetica-Light\'; font-weight: lighter; display: flex; align-items: center; font-size: 1vw;">Дата начала:
+                <div style="display: flex; width: fit-content; margin-left: 0.8rem; background-color: #E7E7E7; align-items: center; padding: 5px; border-radius: 6px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                    </svg>
+                    <input style="background-color: #E7E7E7;" class="contentProperty" id="premier"          value="' . $premier . '"        type="date"         readonly />
+                </div>
+            </string>                                       
             <span>
-                <string >Статус:                    
-                <input class="contentProperty" id="status"           value="' . $status . '"         name="selectStatus"  readonly />
-                    ' . $html_select . '
-                </string>
+                <string style="font-family: \'Helvetica-Light\'; font-weight: lighter;display: flex; align-items: end; font-size: 1vw;">Статус:
+                <div style="display: flex; width: fit-content; margin-left: 0.8rem; background-color: #E7E7E7; align-items: center; padding: 5px; border-radius: 6px;">                    
+                    <input style="background-color: #E7E7E7;" class="contentProperty" id="status"           value="' . $status . '"         name="selectStatus"  readonly />
+                        ' . $html_select . '
+                    </string>
+                </div>
             </span>';
 
             /*
@@ -1362,7 +1371,7 @@ function psql_query_properties_project($params, $smarty)
             />';
             break;
         case 'description':
-            $html .= '<textarea class="contentProperty" oninput="resizeTextarea.call(this);" id="' . $params["for"] . '" style="width: 100%;" readonly>' . $description . '</textarea>';
+            $html .= '<textarea style="font-family: \'Helvetica-Light\'; font-weight: lighter; resize: none; width: 100%; font-size: 1vw;" class="contentProperty" oninput="resizeTextarea.call(this);" id="' . $params["for"] . '" style="width: 100%;" readonly>' . $description . '</textarea>';
             break;
         case 'tags':
             if (isset($data[$params["for"]])) {

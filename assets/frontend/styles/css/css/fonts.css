@@ -1,21 +1,32 @@
-
 @font-face {
-    font-family: LackLine-Regular;
-    src:  url("lack line - regular.ttf"); /*  format('otf') */
+    font-family: "LackLine-Regular";
+    src: url("lack line - regular.ttf");
+    /*  format('otf') */
 }
 
 @font-face {
-    font-family: Vasek-Italic;
-    src:  url("vasek - italic.ttf"); /*  format('otf') */
+    font-family: "Vasek-Italic";
+    src: url("vasek - italic.ttf");
+    /*  format('otf') */
 }
 
 @font-face {
-    font-family: Helvetica-Regular;
-    src:  url("helvetica - regular.ttf");
+    font-family: "Helvetica-Regular";
+    src: url("helvetica - regular.ttf");
 }
 
 @font-face {
-    font-family: Helvetica-Light;
-    src:  url("helvetica - light.ttf");
+    font-family: "Helvetica-Light";
+    src: url("helvetica - light.ttf");
 }
 
+@font-face {
+    font-family: "lack-italic";
+    src: url("lack-italic.otf")format('opentype');
+    ;
+}
+
+@font-face {
+    font-family: "lack-regular";
+    src: url("lack-regular.otf")format('opentype');
+}

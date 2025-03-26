@@ -252,6 +252,7 @@ font-size: 30px;
    /* background: gray; */
    position: relative;
    min-height: calc(100vh - var(--height-header) - 5px - var(--height-footer));
+   grid-auto-columns: 100%;
    /* calc(100% + var(--height-header) + var(--height-footer)); */
  }
 
@@ -327,6 +328,8 @@ font-size: 30px;
    align-items: center;
    column-gap: 10px;
    margin-bottom: 0.5rem;
+   width: fit-content;
+   margin-right: .5rem;
  }
 
  .cardDuties {
@@ -649,7 +652,7 @@ font-size: 30px;
 
  div.vacancies-container {
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   grid-template-columns: auto auto;
    column-gap: 20px;
    /* margin-top: 2rem; */
    /* width: 50%; */
@@ -680,7 +683,7 @@ font-size: 30px;
    justify-content: space-between;
    align-items: center;
    /* width: 50%; */
-   width: 100%;
+   width: 30vw;
  }
 
  div.vacancies-container[style="display: flex;"]>form.formVacancy {
@@ -690,7 +693,7 @@ font-size: 30px;
 
  .vacancieDescription {
    font-family: 'Helvetica';
-   font-size: 3.5vh;
+   font-size: .8vw;
    font-weight: 400;
 
  }
@@ -743,6 +746,7 @@ font-size: 30px;
 
  #tags {
    flex-wrap: wrap;
+   width: 30vw;
  }
 
  .footerSection {
@@ -761,6 +765,8 @@ font-size: 30px;
  .cardTitle {
    font-family: 'Lack';
    color: #EA5657;
+   font-size: 1vw;
+
  }
 
  h1.HelveticaProject {
@@ -1102,12 +1108,7 @@ font-size: 30px;
  }
 
  /* /////profile/////// */
- article.articleProfile {
-   justify-self: center;
-   display: flex;
-   flex-direction: row;
-   align-items: center;
- }
+ article.articleProfile {}
 
  .contentProperty {
    border: none;
@@ -1132,3 +1133,138 @@ font-size: 30px;
    top: 0%;
    left: 17%;
  }
+
+ .projectH2 {
+   font-family: "lack-regular";
+ }
+
+ section.section_1 {
+   display: grid;
+   justify-content: center;
+   width: 100%;
+ }
+
+ .card-project {
+   display: flex;
+   align-items: center;
+ }
+
+ .projectTitle {
+   color: #EA5657;
+   font-family: 'Vasek';
+   font-size: 2vw;
+   border: none;
+   outline: none;
+   caret-color: transparent;
+ }
+
+ .user_data {
+   font-family: 'Helvetica-light';
+   font-size: 1 vw;
+   border: none;
+   outline: none;
+   caret-color: transparent;
+ }
+
+ .text_area_feedback {
+   outline: none;
+   resize: none;
+   border: none;
+   width: 20vw;
+   height: fit-content;
+   font-family: "Helvetica-Light";
+   font-weight: lighter;
+ }
+
+ fieldset {
+   display: flex;
+   flex-direction: row-reverse;
+   align-items: center;
+   justify-content: space-between;
+   width: 392px;
+   border: none;
+   padding: 0;
+   padding-bottom: .5rem;
+   font-family: "Helvetica-Light";
+   font-weight: lighter;
+ }
+
+ .rating>input {
+   display: none;
+ }
+
+ .rating>label {
+   background: none;
+ }
+
+ .rating>label:before {
+   content: url("data:image/svg+xml, \
+  <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' stroke='%23202020' fill='none' viewBox='0 0 16 16'> \
+    <path  d='M7.5 1.604c.299-.922 1.602-.922 1.902 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.73 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.968 15.25c-.784.57-1.838-.197-1.54-1.118l1.107-3.403A1 1 0 0 0 4.17 9.61L1.276 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.5 1.603Z'/> \
+  </svg>");
+ }
+
+
+ .rating>input:checked~label,
+ .rating:not(:checked)>label:hover,
+ .rating:not(:checked)>label:hover~label {
+   content: url("data:image/svg+xml, \
+    <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23202020' stroke='none' viewBox='0 0 16 16'> \
+      <path  d='M7.5 1.604c.299-.922 1.602-.922 1.902 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.73 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.968 15.25c-.784.57-1.838-.197-1.54-1.118l1.107-3.403A1 1 0 0 0 4.17 9.61L1.276 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.5 1.603Z'/> \
+    </svg>");
+ }
+
+ fieldset.rating:has(> input:checked + label)::after {
+   content: "Pекомендую";
+ }
+
+ fieldset.rating:has(> input:checked[value='1'], input:checked[value='2'] + label)::after {
+   content: "Не рекомендую";
+ }
+
+ div.container-feedbacks {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   align-items: flex-start;
+ }
+
+ div.card-feedback {
+   display: flex;
+   flex-direction: row;
+   column-gap: 10px;
+   width: 100%;
+ }
+
+ string.stars {
+   display: flex;
+   white-space: nowrap;
+   column-gap: 10px;
+   align-items: center;
+   justify-content: space-between;
+ }
+
+ div.card-feedback-left {}
+
+ div.card-project-right,
+ div.card-feedback-right {
+   display: flex;
+   flex-direction: column;
+   column-gap: 7px;
+   justify-content: center;
+   width: 100%;
+ }
+
+ /* div.card-feedback-left:before {
+   content: 'hello';
+   content: attr(icon) url("data:image/svg+xml, \
+  <svg class='avatar' xmlns='http://www.w3.org/2000/svg' width='128' height='105' fill='none' viewBox='0 0 214 211'> \
+    <defs> \
+    </defs> \
+    <rect width='197.234' height='197.234' x='8.067' y='10.59' fill='' stroke='%23EA5657' stroke-width='3' rx='98.617'></rect> \
+    <path stroke='%23EA5657' stroke-linecap='round' stroke-width='3' d='M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658'></path>\
+    <path stroke='%23EA5657' stroke-linecap='round' stroke-width='3' d='M2 109.838C7.045 49.298 33.532 16.505 72.63 2'></path> \
+  </svg>");
+
+   background: icon;
+ } */

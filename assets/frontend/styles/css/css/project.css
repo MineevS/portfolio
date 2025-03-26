@@ -1,30 +1,28 @@
-fieldset, label { margin: 0; padding: 0; }
+/* fieldset, label { margin: 0; padding: 0; } */
 
 /****** Style Star Rating Widget *****/
 
-fieldset {
+/* fieldset {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
-  /*width: 100%;*/
   width: 392px;
 }
 
 .rating > input { display: none; }
 .rating > label {background: none;}
 
-.rating > label:before { /* Правая половина */
+.rating > label:before { 
   content: url("data:image/svg+xml, \
   <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' stroke='%23202020' fill='none' viewBox='0 0 16 16'> \
     <path  d='M7.5 1.604c.299-.922 1.602-.922 1.902 0l1.106 3.403a1 1 0 0 0 .95.691h3.58c.968 0 1.37 1.24.587 1.81L12.73 9.61a1 1 0 0 0-.364 1.118l1.106 3.403c.3.921-.755 1.688-1.538 1.118l-2.896-2.103a1 1 0 0 0-1.175 0L4.968 15.25c-.784.57-1.838-.197-1.54-1.118l1.107-3.403A1 1 0 0 0 4.17 9.61L1.276 7.507c-.783-.57-.38-1.809.588-1.809h3.579a1 1 0 0 0 .95-.69L7.5 1.603Z'/> \
   </svg>");
-}
+} 
 
-/***** CSS Magic to Highlight Stars on Hover *****/
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover, 
 .rating:not(:checked) > label:hover ~ label {
   content: url("data:image/svg+xml, \
     <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23202020' stroke='none' viewBox='0 0 16 16'> \
@@ -75,7 +73,7 @@ div.card-project-right, div.card-feedback-right {
 }
 
 div.card-project-left:before, div.card-feedback-left:before {
-  /*content: 'hello';*/
+  content: 'hello';
   content: attr(icon) url("data:image/svg+xml, \
   <svg class='avatar' xmlns='http://www.w3.org/2000/svg' width='128' height='105' fill='none' viewBox='0 0 214 211'> \
     <defs> \
@@ -86,4 +84,4 @@ div.card-project-left:before, div.card-feedback-left:before {
   </svg>");
 
   background: icon;
-}
+} */

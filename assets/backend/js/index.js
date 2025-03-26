@@ -1631,9 +1631,9 @@ function order_sort(type, path) {
     }
 }
 
-function resizeTextarea() {
-    this.style.height = '1px';
-    this.style.height = (this.scrollHeight + 6) + 'px';
+function resizeTextarea(el) {
+    el.style.height = '1px';
+    el.style.height = (el.scrollHeight + 6) + 'px';
 }
 
 function changeStars() {
