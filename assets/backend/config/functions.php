@@ -134,12 +134,14 @@ function psql_query_projects($params, $smarty)
                 ->groupby('id')
                 ->exec();
 
-            $svg_color = '#fff'; // Нет лайка `по умолчанию`;
-            $svg_stroke = '#202020';
+            /*$svg_color = '#fff'; // Нет лайка `по умолчанию`;
+            $svg_stroke = '#202020';*/
             $responce = $wdbc->query()->responce();
+            $class = "like-svg";
             if ($status_query && count($responce) > 0) {
-                $svg_color = '#EA5657';
-                $svg_stroke = '#fff';
+                /*$svg_color = '#EA5657';
+                $svg_stroke = '#fff';*/
+                $class = "not-like-svg";
             }
 
             $html .= '
@@ -163,9 +165,7 @@ function psql_query_projects($params, $smarty)
                     <div class="projectLikeComms">
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <div style="margin-right: 1rem;">
-                                <svg id="like-' . $data['id'] . '"  onclick="like(' . $data['id'] . ', \'' . $smarty->getTemplateVars('ACTION') . '\')" stroke="' . $svg_stroke . '" color="' . $svg_color . '" xmlns="http://www.w3.org/2000/svg" width="16" height="16" >
-                                    <path stroke-linejoin="round" fill="currentColor" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"></path>
-                                </svg>
+                                <svg class="' . $class . '" id="like-' . $data['id'] . '"  onclick="like.call(this.nextElementSibling, ' . $data['id'] . ' , \'' . $smarty->getTemplateVars('ACTION') . '\')"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" > <!-- stroke="' . $svg_stroke . '" color="' . $svg_color . '" --> </svg>
                                 <small class="contentProperty" id="likee-' . $data['id'] . '">' . $count_like . '</small>
                             </div>
                             <div style="margin-right: 1rem;">
@@ -840,7 +840,7 @@ function psql_query_properties_profile($params, $smarty)
                     break;
                 case 'about':
                     /*$html = $html . '<input id="about" value="' . $data['about'] . '" readonly />';*/
-                    $html .= '<textarea id="about" onload="loadTextArea.call(this);" oninput="resizeTextarea.call(this);" class="contentProperty" readonly>' . $data['about'] . '</textarea>';
+                    $html .= '<textarea id="about" onload="loadTextArea.call(this);" oninput="resizeTextarea.call(this);" class="contentProperty" readonly style="font-family: \'Helvetica-Light\'; font-weight: lighter; resize: none; width: 100%; font-size: 1vw; height: 434px; outline: none;" oninput="resizeTextarea.call(this);">' . $data['about'] . '</textarea>';
                     //$html .= '<div id="about" contenteditable="true" oninput="resizeTextarea.call(this);" class="contentProperty" readonly>'.$data['about'].'</div>';
                     break;
                 case 'head':

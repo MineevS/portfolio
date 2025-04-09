@@ -442,7 +442,7 @@ function editPage(code_peration, path) {
             console.log(entry);
         });
 
-        // ajax_formData(formData, func_page, path);
+        ajax_formData(formData, func_page, path, this);
     }
 }
 
@@ -699,8 +699,9 @@ function editProject(code_peration, path) {
     }
 }
 
-function ajax_formData(data, func, path) {
+function ajax_formData(data, func, path, obj) {
     $.ajax({
+        context: obj,
         type: "POST",
         url: path,
         cache: false,
@@ -1600,8 +1601,6 @@ function orderByNewest(path) {
 function order_sort(type, path) {
     var currentPage = window.location.href.split('/').pop().split('.')[0];
 
-
-
     if (this.style.background === '') {
         this.style.background = 'red';
 
@@ -1685,6 +1684,40 @@ function moveStar(diriction) {
 
 }
 
+// function moveStar(direction) {
+//     var itemListParent = document.querySelector('.carousel-inner');
+//     var itemList = document.querySelectorAll('.star');
+
+//     let gap = 20;
+
+//     console.log(window.innerWidth);
+
+//     itemList.forEach(element => {
+
+//         let curTransform = element.offsetWidth;
+//         // Получаем новые координаты крайних звёзд
+//         const firstStar = itemList[0].getBoundingClientRect();
+//         const lastStar = itemList[itemList.length - 1].getBoundingClientRect();
+
+//         if (direction === 0) {
+//             //itemListParent.insertBefore(itemList[0], null)
+//             element.style.transform = `translateX(${curTransform + gap}px)`;
+//         } else {
+//             element.style.transform = `translateX(${curTransform}px)`;
+//         }
+
+//         if (lastStar.left > window.innerWidth) {
+//             itemListParent.insertBefore(itemList[9], itemList[0]);
+//             lastStar.style.transform = `translateX(${0}px)`;
+//         }
+        
+
+//     });
+
+
+
+// }
+
 function arrowAnimationEnter(el) {
     console.log(el);
     if (el.type == "submit") {
@@ -1720,4 +1753,34 @@ function topFunction() {
     svg.style.transform = "rotate(0deg)";
     var p = document.getElementById('load_project_p');
     p.style.display = "none";
-} 
+}
+
+function like(project_id, path) {
+    var formData = new FormData();
+    var func_page = function (result) {
+        let json_data = result; // JSON.parse(result)
+
+        if (json_data.hasOwnProperty('check_like_project')) { // && json_data.hasOwnProperty('error_code')
+            if (json_data['check_like_project'] === 'success') {
+                var first = 'like-svg';
+                var second = 'not-like-svg';
+                if (parseInt(this.textContent, 10) < json_data['like'])
+                    second = [first, first = second][0];
+
+                this.textContent = json_data['like']; // Обновление счётчика лайков
+
+                this.previousElementSibling.classList.remove(first);
+                this.previousElementSibling.classList.add(second); // Отметка успешности.
+            }
+        }
+    };
+
+    formData.append('project_id', project_id);
+    formData.append('action', "check_like_project");
+
+    /*formData.entries().forEach((entry) => { // For Debug;
+        console.log(entry);
+    });*/
+
+    ajax_formData(formData, func_page, path, this);
+}

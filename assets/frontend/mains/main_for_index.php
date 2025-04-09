@@ -75,9 +75,3 @@
 		</div>
 	</div>
 </section>
-<!-- <script>
-	$(document).ready(function() {
-		let modal = document.getElementById("myModal");
-		modal.style.setProperty('display', 'block');
-	});
-</script> -->

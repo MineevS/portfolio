@@ -48,11 +48,10 @@
         </div>
 
         <hr class="hrProject">
-        <div id="projects" class="container" style="display: flex; flex-direction: column; gap: 30px; margin-top: 2rem; width: 100%; min-height: 200px; align-items: center;">
+        <div id="projects" class="container container-for-projects">
             {query_projects select="*" from="$tab_projects" orderby="id" limit="$SIZE_PAGE_PROJECTS" offset="0"}
-
         </div>
-        <div style="display: flex;flex-direction: column;align-items: center; justify-content: center; margin-bottom: .5rem;">
+        <div class="next-load-projects">
             <button class="loadProjectsBtn" id="load_project_button" type="submit" style="width: auto;height: auto;opacity: 100%; vertical-align: middle; border: none; border-radius: 20px;" onclick="loadProjets('{$ACTION}');">
                 <!--<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 30 30">
                         <rect width="29" height="29" x=".5" y=".5" stroke="#202020" rx="14.5"/>
